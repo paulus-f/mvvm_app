@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using University_students.Models;
+using University_students.ViewModel;
 
 namespace University_students
 {
@@ -26,17 +27,25 @@ namespace University_students
         public MainWindow()
         {
             InitializeComponent();
-
+            DataContext = new LoginViewModel();
             db = new UserContext();
             db.Users.Load();
-            db.SaveChanges();
             this.Closing += MainWindow_Closing;
         }
 
-    private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-    {
-        db.Dispose();
-    }
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            db.Dispose();
+        }
 
-}
+        private void ButtonFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void GridBarraTitulo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+    }
 }

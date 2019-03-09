@@ -13,5 +13,6 @@ namespace University_students
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

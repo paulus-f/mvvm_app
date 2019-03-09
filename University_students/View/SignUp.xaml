@@ -1,0 +1,40 @@
+﻿<Page x:Class="University_students.View.SignUp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:University_students.View"
+      mc:Ignorable="d" 
+      Title="Sign Up" Height="333.825" Width="425">
+    <Border BorderBrush="#412C84" Background="#412C84" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
+        <Grid x:Name="SignUpLayer" Background="#412C84" Margin="10,10,10,9" RenderTransformOrigin="0.499,0.423">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Sign Up" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="119,5,134,5" FontSize="20" Foreground="#FFF9F9F9" Grid.Column="1" Width="103"/>
+            <TextBlock Text="Login" Grid.Row="1" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtNameSignUp" Text="{Binding CurrentUser.Login}" Grid.Row="1" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
+            <TextBlock Text="First Name" Grid.Row="2" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtFirstNameSignUp" Text="{Binding CurrentUser.FisrtName}" Grid.Row="2" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
+            <TextBlock Text="Last Name" Grid.Row="3" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtLastNameSignUp" Text="{Binding CurrentUser.LastName}" Grid.Row="3" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
+            <TextBlock Text="Password" Grid.Row="5" Margin="14,10,238,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
+            <TextBox x:Name="txtPasswordSignUp" Text="{Binding CurrentUser.Password}" Grid.Column="1" Grid.Row="5" Margin="135,3,10,10" MinWidth="100"/>
+            <TextBlock Text="Confirmed Password" Grid.Row="6" Margin="14,10,238,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
+            <TextBox x:Name="txtConfirmedPasswordSignUp" Text="{Binding CurrentUser.ConfirmedPassword}" Grid.Column="1" Grid.Row="6" Margin="135,3,10,10" MinWidth="100"/>
+
+            <Button Command="{Binding LoginViewModel.LoginCommand}" Content="Ok" Grid.Row="7" Grid.Column="1" Margin="235,10,10,2" Height="Auto"/>
+        </Grid>
+    </Border>
+</Page>
