@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.Models;
 
 namespace University_students
 {
@@ -20,9 +22,21 @@ namespace University_students
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserContext db;
         public MainWindow()
         {
             InitializeComponent();
+
+            db = new UserContext();
+            db.Users.Load();
+            db.SaveChanges();
+            this.Closing += MainWindow_Closing;
         }
+
+    private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        db.Dispose();
     }
+
+}
 }
