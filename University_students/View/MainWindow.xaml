@@ -38,6 +38,7 @@
                 Margin="0,10" 
              />
             <Button Content="Log In" Command="{Binding LogInCommand}"  Grid.Column="1" Margin="10,9,331,3" Grid.Row="1" Height="Auto"/>
+            <Button Content="Support" Command="{Binding SupportCommand}" Grid.Column="1" Margin="162,10,172,63" Grid.Row="2" Height="Auto"/>
             <Button Content="Sign Up" Command="{Binding SignUpCommand}" Grid.Column="1" Margin="331,9,10,3" Grid.Row="1" Height="Auto"/>
         </Grid>
 

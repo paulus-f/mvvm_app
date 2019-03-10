@@ -17,6 +17,7 @@ namespace University_students.ViewModel
     {
         private Page LoginPage;
         private Page SignUpPage;
+        private Page SupportPage;
 
         private Page _currentPage;
         public Page CurrentPage
@@ -40,6 +41,7 @@ namespace University_students.ViewModel
         {
             LoginPage = new View.Login();
             SignUpPage = new View.SignUp();
+            SupportPage = new View.Support();
             FrameOpacity = 1;
             CurrentPage = LoginPage;
         }
@@ -72,6 +74,21 @@ namespace University_students.ViewModel
         private void CanLogin()
         {
             CurrentPage = LoginPage;
+        }
+
+        public ICommand SupportCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanSupport()
+                );
+            }
+        }
+
+        private void CanSupport()
+        {
+            CurrentPage = SupportPage;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
