@@ -261,4 +261,4 @@ __pycache__/
 *.pyc
 
 # Sectrets 
-University_students/University_students/Data
+Secrets.cs
