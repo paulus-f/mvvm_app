@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.ViewModel;
 
 namespace University_students.View
 {
@@ -23,6 +24,7 @@ namespace University_students.View
         public Login()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
     }
 }

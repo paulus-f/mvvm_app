@@ -27,7 +27,7 @@ namespace University_students
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
+            DataContext = new StartUpViewModel();
             db = new UserContext();
             db.Users.Load();
             this.Closing += MainWindow_Closing;

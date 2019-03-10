@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.ViewModel;
 
 namespace University_students.View
 {
-    /// <summary>
-    /// Логика взаимодействия для SignUp.xaml
-    /// </summary>
     public partial class SignUp : Page
     {
         public SignUp()
         {
             InitializeComponent();
+            DataContext = new SignUpViewModel();
         }
     }
 }

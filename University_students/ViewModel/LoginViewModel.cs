@@ -1,77 +1,22 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using System.ComponentModel;
-using System.Windows;
-using System.Runtime.CompilerServices;
+using University_students.Models;
 
 namespace University_students.ViewModel
 {
-    public class LoginViewModel : ViewModelBase, INotifyPropertyChanged
+    class LoginViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        private Page LoginPage;
-        private Page SignUpPage;
-
-        private Page _currentPage;
-        public Page CurrentPage
-        {
-            get => _currentPage;
-            set
-            {
-                _currentPage = value;
-                OnPropertyChanged("CurrentPage");
-            }
-        }
-
-        private double _frameOpacity;
-        public double FrameOpacity
-        {
-            get => _frameOpacity;
-            set => _frameOpacity = value;
-        }
+        UserContext db;
 
         public LoginViewModel()
         {
-            LoginPage = new View.Login();
-            SignUpPage = new View.SignUp();
-            FrameOpacity = 1;
-            CurrentPage = LoginPage;
-        }
-
-        public ICommand LogInCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    () => CanLogin()
-                );
-            }
-        }
-
-        private void CanSignUp()
-        {
-            CurrentPage = SignUpPage;
-        }
-
-        public ICommand SignUpCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    () => CanSignUp()
-                );
-            }
-        }
-
-        private void CanLogin()
-        {
-            CurrentPage = LoginPage;
+            db = new UserContext();
         }
 
         private string _login;
@@ -96,52 +41,11 @@ namespace University_students.ViewModel
             }
         }
 
-        private string _confirmed_password;
-        public string ConfirmedPassword
-        {
-            get { return _confirmed_password; }
-            set
-            {
-                _confirmed_password = value;
-                OnPropertyChanged("Confirmed Password");
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                OnPropertyChanged("Last Name");
-            }
-        }
-
-        private string _firstName;
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged("Fisrt Name");
-            }
-        }
-
-        public void LoginUser()
-        {
-            //TODO check username and password vs database here.
-            //If using membershipprovider then just call Membership.ValidateUser(UserName, Password)
-           
-        }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
     }
 }
