@@ -65,11 +65,8 @@ namespace University_students.ViewModel
         {
             from = new MailAddress(_email);
             message = new MailMessage(from, to);
-            // тема письма
             message.Subject = Secrets.SUBJECT_EMAIL;
-            // текст письма
             message.Body = $"<h2>{_message}</h2>";
-            // письмо представляет код html
             message.IsBodyHtml = true;
             smtp.EnableSsl = true;
             smtp.Send(message);

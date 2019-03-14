@@ -23,12 +23,12 @@ namespace University_students
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserContext db;
+        USDbContext db;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new StartUpViewModel();
-            db = new UserContext();
+            DataContext = new NavigationViewModel();
+            db = new USDbContext();
             db.Users.Load();
             this.Closing += MainWindow_Closing;
         }

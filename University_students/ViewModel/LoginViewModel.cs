@@ -12,11 +12,11 @@ namespace University_students.ViewModel
 {
     class LoginViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        UserContext db;
+        USDbContext db;
 
         public LoginViewModel()
         {
-            db = new UserContext();
+            db = new USDbContext();
         }
 
         private string _login;
