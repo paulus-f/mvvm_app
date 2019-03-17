@@ -16,10 +16,7 @@ using University_students.ViewModel;
 
 namespace University_students.View
 {
-    /// <summary>
-    /// Логика взаимодействия для StartUpPage.xaml
-    /// </summary>
-    public partial class StartUpPage : Page
+    public partial class StartUpPage : UserControl
     {
         public StartUpPage()
         {

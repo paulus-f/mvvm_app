@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:University_students"
         xmlns:vm="clr-namespace:University_students.ViewModel"
-        mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        xmlns:views="clr-namespace:University_students.View"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
         x:Name="mainWindow">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
@@ -19,11 +20,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Frame 
-            Content="{Binding MainCurrentPage}"
-            NavigationUIVisibility="Hidden" 
-            Grid.Row="1" 
-        />
+        <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" />
         <Grid x:Name="GridBarTitle" Background="#FF8522BD"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
                 <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">

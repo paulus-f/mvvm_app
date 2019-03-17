@@ -13,34 +13,42 @@ namespace University_students.ViewModel
 {
     class NavigationViewModel
     {
-        private Page StartUpPage;
-        private Page AdminPage;
-        private Page UserPage;
-
-        private Page _mainCurrentPage;
-        public Page MainCurrentPage
+        private UserControl StartUpPage;
+        private UserControl AdminPage;
+        private UserControl UserPage;
+        private ContentControl _currentControl;
+        
+        private UserControl _mainCurrentControl;
+        public UserControl MainCurrentControl
         {
-            get => _mainCurrentPage;
+            get => _mainCurrentControl;
             set
             {
-                _mainCurrentPage = value;
-                OnPropertyChanged("MainCurrentPage");
+                _mainCurrentControl = value;
+                OnPropertyChanged("MainCurrentControl");
             }
         }
 
-        public NavigationViewModel()
+        public NavigationViewModel(ContentControl currentControl)
         {
+            _currentControl = currentControl;
             StartUpPage = new View.StartUpPage();
             AdminPage = new View.AdminPage();
             UserPage = new View.UserPage();
-            MainCurrentPage = StartUpPage;
+            MainCurrentControl = StartUpPage;
             Messenger.Default.Register<ChangeNavigationPageMessage> (this, (action) => ReceiveMessage(action));
         }
 
         private object ReceiveMessage(ChangeNavigationPageMessage action)
         {
-            MainCurrentPage = UserPage;
+            ChangePage("user");
             return null;
+        }
+
+        private void ChangePage(string typePage)
+        {
+            _currentControl.Content = new View.UserPage();
+            _currentControl.UpdateLayout();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

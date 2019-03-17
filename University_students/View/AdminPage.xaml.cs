@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.ViewModel;
 
 namespace University_students.View
 {
     /// <summary>
     /// Логика взаимодействия для AdminPage.xaml
     /// </summary>
-    public partial class AdminPage : Page
+    public partial class AdminPage : UserControl
     {
         public AdminPage()
         {
             InitializeComponent();
+            DataContext = new AdminViewModel();
         }
     }
 }

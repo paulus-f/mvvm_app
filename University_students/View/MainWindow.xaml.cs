@@ -23,19 +23,11 @@ namespace University_students
     /// </summary>
     public partial class MainWindow : Window
     {
-        USDbContext db;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new NavigationViewModel();
-            db = new USDbContext();
-            db.Users.Load();
-            this.Closing += MainWindow_Closing;
-        }
-
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            db.Dispose();
+            DataContext = new NavigationViewModel(currentControl);
+            //UpdateLayout(); don't forget
         }
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
