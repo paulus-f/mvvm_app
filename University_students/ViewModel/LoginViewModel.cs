@@ -78,7 +78,18 @@ namespace University_students.ViewModel
                 );
             }
         }
-        
+
+        public ICommand UndoCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUndoMessage()
+                );
+            }
+        }
+
+
         private string _error;
         public string Error
         {
@@ -124,7 +135,6 @@ namespace University_students.ViewModel
             User currentUser = db.Users.FirstOrDefault(user => user.Login == Login);
             if (currentUser != null)
             {
-                BCrypt.Net.BCrypt.
                 if (BCrypt.Net.BCrypt.Verify(Password, currentUser.Password) == true)
                 {
                     GoToUserPage(currentUser);
