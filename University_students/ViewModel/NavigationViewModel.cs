@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using University_students.Messager;
+using University_students.Models;
 
 namespace University_students.ViewModel
 {
@@ -33,21 +34,31 @@ namespace University_students.ViewModel
         {
             _currentControl = currentControl;
             StartUpPage = new View.StartUpPage();
-            AdminPage = new View.AdminPage();
-            UserPage = new View.UserPage();
             MainCurrentControl = StartUpPage;
             Messenger.Default.Register<ChangeNavigationPageMessage> (this, (action) => ReceiveMessage(action));
         }
 
         private object ReceiveMessage(ChangeNavigationPageMessage action)
         {
-            ChangePage("user");
+            if(action.CurrentUser.TypeUser == Enums.Role.Students)
+            {
+                ChangeOnUserPage(action.CurrentUser);
+            }
             return null;
         }
 
-        private void ChangePage(string typePage)
+
+        private object SetCurrentUser(User user)
+        {
+            var msg = new SendCurrentUserMessage() { CurrentUser = user };
+            Messenger.Default.Send<SendCurrentUserMessage>(msg);
+            return null;
+        }
+
+        private void ChangeOnUserPage(User user)
         {
             _currentControl.Content = new View.UserPage();
+            SetCurrentUser(user);
             _currentControl.UpdateLayout();
         }
 

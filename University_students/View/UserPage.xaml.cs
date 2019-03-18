@@ -26,5 +26,7 @@ namespace University_students.View
             InitializeComponent();
             DataContext = new UserViewModel();
         }
+
+
     }
 }

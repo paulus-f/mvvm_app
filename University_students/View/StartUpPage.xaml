@@ -19,6 +19,14 @@
             <ColumnDefinition Width="146*"></ColumnDefinition>
             <ColumnDefinition Width="59*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.552,0.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Log In" Command="{Binding LogInCommand}"  Grid.Column="0" Margin="10,9,86,3" Height="Auto"/>
+            <Button Content="Sign Up" Command="{Binding SignUpCommand}" Grid.Column="1" Margin="86,9,10,3" Height="Auto"/>
+        </Grid>
         <Frame 
             x:Name="AuthAction"
             Content="{Binding CurrentPage}"
@@ -27,8 +35,6 @@
             Grid.Row="0" 
             Margin="0,10" 
             />
-        <Button Content="Log In" Command="{Binding LogInCommand}"  Grid.Column="1" Margin="10,9,331,3" Grid.Row="1" Height="Auto"/>
-        <Button Content="Support" Command="{Binding SupportCommand}" Grid.Column="1" Margin="162,10,172,63" Grid.Row="2" Height="Auto"/>
-        <Button Content="Sign Up" Command="{Binding SignUpCommand}" Grid.Column="1" Margin="331,9,10,3" Grid.Row="1" Height="Auto"/>
+        <Button Content="Support" Command="{Binding SupportCommand}" Grid.Column="1" Margin="162,33,172,33" Grid.Row="2" Height="Auto"/>
     </Grid>
 </UserControl>

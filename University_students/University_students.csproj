@@ -106,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\RegexPattern.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
+    <Compile Include="Messager\SendCurrentUserMessage.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.Designer.cs">
       <DependentUpon>201903090934379_InitialCreate.cs</DependentUpon>

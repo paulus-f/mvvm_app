@@ -20,14 +20,33 @@ namespace University_students.ViewModel
     {
         USDbContext db;
 
-
-
         public SignUpViewModel()
         {
             _isEnabled = true;
             db = new USDbContext();
         }
 
+        private bool _isActiveMessage;
+        public bool IsActiveMessage
+        {
+            get => _isActiveMessage;
+            set
+            {
+                _isActiveMessage = value;
+                OnPropertyChanged("IsActiveMessage");
+            }
+        }
+
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged("Message");
+            }
+        }
 
         private bool _isEnabled;
         public bool IsEnabled
@@ -104,6 +123,17 @@ namespace University_students.ViewModel
                 );
             }
         }
+
+        public ICommand UndoCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUndoMessage()
+                );
+            }
+        }
+
         private string _error;
         public string Error
         {
@@ -163,13 +193,26 @@ namespace University_students.ViewModel
             }
         }
 
+        private void CanUndoMessage()
+        {
+            IsActiveMessage = false;
+            Message = String.Empty;
+        }
+
         private void CanSignUp()
         {
             if(ConfirmedPassword != Password )
             {
-
                 return;
             }
+
+            if(db.Users.FirstOrDefault(user => user.Login == Login) != null)
+            {
+                Message = "User already exist";
+                IsActiveMessage = true;
+                return;
+            }
+
             User newUser = new User()
             {
                 Login = _login,
@@ -185,12 +228,12 @@ namespace University_students.ViewModel
             Password = String.Empty;
             ConfirmedPassword = String.Empty;
             db.SaveChanges();
-            GoToUserPage(newUser.Login);
+            GoToUserPage(newUser);
         }
 
-        private object GoToUserPage(string userLogin)
+        private object GoToUserPage(User user)
         {
-            var msg = new ChangeNavigationPageMessage() { UserLogin = userLogin };
+            var msg = new ChangeNavigationPageMessage() { CurrentUser = user };
             Messenger.Default.Send<ChangeNavigationPageMessage>(msg);
             return null;
         }

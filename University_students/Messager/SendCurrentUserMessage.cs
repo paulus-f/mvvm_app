@@ -7,7 +7,7 @@ using University_students.Models;
 
 namespace University_students.Messager
 {
-    public class ChangeNavigationPageMessage
+    public class SendCurrentUserMessage
     {
         public User CurrentUser { get; set; }
     }
