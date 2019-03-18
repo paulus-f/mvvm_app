@@ -16,12 +16,12 @@ using University_students.ViewModel;
 
 namespace University_students.View
 {
-    public partial class SignUp : Page
+    public partial class StartUpPage : UserControl
     {
-        public SignUp()
+        public StartUpPage()
         {
             InitializeComponent();
-            DataContext = new SignUpViewModel();
+            DataContext = new StartUpViewModel();
         }
     }
 }

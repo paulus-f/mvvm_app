@@ -16,12 +16,15 @@ using University_students.ViewModel;
 
 namespace University_students.View
 {
-    public partial class SignUp : Page
+    /// <summary>
+    /// Логика взаимодействия для Support.xaml
+    /// </summary>
+    public partial class Support : Page
     {
-        public SignUp()
+        public Support()
         {
             InitializeComponent();
-            DataContext = new SignUpViewModel();
+            DataContext = new SupportViewModel();
         }
     }
 }

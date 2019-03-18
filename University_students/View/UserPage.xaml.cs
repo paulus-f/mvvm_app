@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.ViewModel;
 
 namespace University_students.View
 {
     /// <summary>
-    /// Логика взаимодействия для UserPage.xaml
+    /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
-    public partial class UserPage : Page
+    public partial class UserPage : UserControl
     {
         public UserPage()
         {
             InitializeComponent();
+            DataContext = new UserViewModel();
         }
+
+
     }
 }

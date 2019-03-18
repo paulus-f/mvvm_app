@@ -4,13 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      Title="Sign Up" Height="333.825" Width="425">
+      Title="Sign Up" Height="319.158" Width="425">
     <Border BorderBrush="#412C84" Background="#412C84" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
-        <Grid x:Name="SignUpLayer" Background="#412C84" Margin="10,10,10,9" RenderTransformOrigin="0.499,0.423">
+        <Grid x:Name="SignUpLayer" Margin="10,-42,10,3" RenderTransformOrigin="0.499,0.423">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="18*"/>
-                <ColumnDefinition Width="187*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="164*"/>
+                <ColumnDefinition Width="199*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -21,20 +23,64 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Sign Up" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="119,5,134,5" FontSize="20" Foreground="#FFF9F9F9" Grid.Column="1" Width="103"/>
-            <TextBlock Text="Login" Grid.Row="1" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
-            <TextBox x:Name="txtNameSignUp" Text="{Binding CurrentUser.Login}" Grid.Row="1" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
-            <TextBlock Text="First Name" Grid.Row="2" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
-            <TextBox x:Name="txtFirstNameSignUp" Text="{Binding CurrentUser.FisrtName}" Grid.Row="2" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
-            <TextBlock Text="Last Name" Grid.Row="3" Margin="14,10,238,10" Foreground="White" Grid.Column="1"/>
-            <TextBox x:Name="txtLastNameSignUp" Text="{Binding CurrentUser.LastName}" Grid.Row="3" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
-            <TextBlock Text="Password" Grid.Row="5" Margin="14,10,238,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
-            <TextBox x:Name="txtPasswordSignUp" Text="{Binding CurrentUser.Password}" Grid.Column="1" Grid.Row="5" Margin="135,3,10,10" MinWidth="100"/>
-            <TextBlock Text="Confirmed Password" Grid.Row="6" Margin="14,10,238,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
-            <TextBox x:Name="txtConfirmedPasswordSignUp" Text="{Binding CurrentUser.ConfirmedPassword}" Grid.Column="1" Grid.Row="6" Margin="135,3,10,10" MinWidth="100"/>
-
-            <Button Command="{Binding LoginViewModel.LoginCommand}" Content="Ok" Grid.Row="7" Grid.Column="1" Margin="235,10,10,2" Height="Auto"/>
+            <TextBlock Text="Sign Up" FontWeight="Bold" HorizontalAlignment="Center" Margin="122,5,137,5" FontSize="20" Grid.Row="1" Foreground="#FFF9F9F9" Grid.Column="1" Width="104" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Login" Grid.Row="2" Margin="14,10,39.333,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtNameSignUp" Grid.Row="2" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1" Grid.ColumnSpan="2">
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules >
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="First Name" Grid.Row="3" Margin="14,10,39.333,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtFirstNameSignUp"  Grid.Row="3" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1" Grid.ColumnSpan="2">
+                <TextBox.Text>
+                    <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules >
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="Last Name" Grid.Row="4" Margin="14,10,39.333,10" Foreground="White" Grid.Column="1"/>
+            <TextBox x:Name="txtLastNameSignUp" Grid.Row="4" Grid.Column="1" Margin="135,3,10,10" MinWidth="100" Foreground="#FFFFC1C1" Grid.ColumnSpan="2">
+                <TextBox.Text>
+                    <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules >
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="Password" Grid.Row="5" Margin="14,10,39.333,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
+            <TextBox x:Name="txtPasswordSignUp" Grid.Column="1" Grid.Row="5" Margin="135,3,10,10" MinWidth="100" Grid.ColumnSpan="2">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules >
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Text="Confirmed Password" Grid.Row="6" Margin="14,10,39.333,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
+            <TextBox x:Name="txtConfirmedPasswordSignUp" Grid.Column="1" Grid.Row="6" Margin="135,3,10,10" MinWidth="100" Grid.ColumnSpan="2">
+                <TextBox.Text>
+                    <Binding Path="ConfirmedPassword" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                        <Binding.ValidationRules >
+                            <ExceptionValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Button Command="{Binding SignUpCommand}" IsEnabled="{Binding IsEnabled}" Content="Ok" Grid.Row="7" Grid.Column="2" Margin="70.667,10,10,2" Height="Auto"/>
+            <materialDesign:Snackbar IsActive="{Binding IsActiveMessage}" Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="0,10,137,17" Grid.RowSpan="2" VerticalAlignment="Stretch">
+                <materialDesign:SnackbarMessage Content="{Binding Message}" ActionContent="X" ActionCommand="{Binding UndoCommand}" Margin="0,0,15,0" />
+            </materialDesign:Snackbar>
         </Grid>
     </Border>
+
 </Page>

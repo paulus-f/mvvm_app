@@ -7,9 +7,9 @@ using System.Data.Entity;
 
 namespace University_students.Models
 {
-    public class UserContext : DbContext
+    public class USDbContext : DbContext
     {
-        public UserContext() : base("DefaultConnection") { }
+        public USDbContext() : base("DefaultConnection") { }
         public DbSet<User> Users { get; set; }
     }
 }

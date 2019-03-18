@@ -9,21 +9,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using University_students.Messager;
 using University_students.Models;
 
 namespace University_students.ViewModel
 {
-    class LoginViewModel : ViewModelBase, INotifyPropertyChanged
+    class SignUpViewModel : ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
         USDbContext db;
 
-        public LoginViewModel()
+        public SignUpViewModel()
         {
+            _isEnabled = true;
             db = new USDbContext();
         }
-
 
         private bool _isActiveMessage;
         public bool IsActiveMessage
@@ -46,7 +47,18 @@ namespace University_students.ViewModel
                 OnPropertyChanged("Message");
             }
         }
-        //if (BCrypt.Net.BCrypt.Verify(password, passwordFromLocalDB) == true)
+
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged("IsEnabled");
+            }
+        }
+
         private string _login;
         public string Login
         {
@@ -69,12 +81,45 @@ namespace University_students.ViewModel
             }
         }
 
-        public ICommand LoginCommand
+        private string _confirmed_password;
+        public string ConfirmedPassword
+        {
+            get { return _confirmed_password; }
+            set
+            {
+                _confirmed_password = value;
+                OnPropertyChanged("ConfirmedPassword");
+            }
+        }
+
+        private string _lastName;
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+
+        private string _firstName;
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
+
+        public ICommand SignUpCommand
         {
             get
             {
                 return new RelayCommand(
-                    () => CanLogin()
+                    () => CanSignUp()
                 );
             }
         }
@@ -89,20 +134,21 @@ namespace University_students.ViewModel
             }
         }
 
-
         private string _error;
         public string Error
         {
             get => _error;
         }
 
-        public string this[string columnName]
-        {
+        public string this[string columnName] {
             get
             {
                 string msg = null;
+                IsEnabled = true;
                 Regex regexLogin = new Regex(RegexPattern.loginPattern);
                 Regex regexPassword = new Regex(RegexPattern.passwordPattern);
+                Regex regexFirstName = new Regex(RegexPattern.firstNamePattern);
+                Regex regexLastName = new Regex(RegexPattern.lastNamePattern);
                 if (Login == null) return msg;
 
                 switch (columnName)
@@ -110,13 +156,36 @@ namespace University_students.ViewModel
                     case "Login":
                         if (!regexLogin.IsMatch(Login))
                         {
+                            IsEnabled = false;
                             msg = "Login is not validated";
                         }
                         break;
                     case "Password":
                         if (!regexPassword.IsMatch(Password) || Password.Length < 6)
                         {
+                            IsEnabled = false;
                             msg = "Password is not validated";
+                        }
+                        break;
+                    case "ConfirmedPassword":
+                        if(Password != ConfirmedPassword)
+                        {
+                            IsEnabled = false;
+                            msg = "Confirmed Password is not equal to Password";
+                        }
+                        break;
+                    case "FirstName":
+                        if (!regexFirstName.IsMatch(FirstName))
+                        {
+                            IsEnabled = false;
+                            msg = "First Name is not validated";
+                        }
+                        break;
+                    case "LastName":
+                        if (!regexLastName.IsMatch(LastName))
+                        {
+                            IsEnabled = false;
+                            msg = "Last Name is not validated";
                         }
                         break;
                 }
@@ -130,27 +199,36 @@ namespace University_students.ViewModel
             Message = String.Empty;
         }
 
-        private void CanLogin()
+        private void CanSignUp()
         {
-            User currentUser = db.Users.FirstOrDefault(user => user.Login == Login);
-            if (currentUser != null)
+            if(ConfirmedPassword != Password )
             {
-                if (BCrypt.Net.BCrypt.Verify(Password, currentUser.Password) == true)
-                {
-                    GoToUserPage(currentUser);
-                }
-                else
-                {
-                    Message = "Login or Password is not correctly";
-                    IsActiveMessage = true;
-                }
+                return;
+            }
 
-            }
-            else
+            if(db.Users.FirstOrDefault(user => user.Login == Login) != null)
             {
-                Message = "User is don't exist";
+                Message = "User already exist";
                 IsActiveMessage = true;
+                return;
             }
+
+            User newUser = new User()
+            {
+                Login = _login,
+                FirstName = _firstName,
+                LastName = _lastName,
+                TypeUser = Enums.Role.Students,
+                Password = BCrypt.Net.BCrypt.HashPassword(_password)
+            };
+            db.Users.Add(newUser);
+            Login = String.Empty;
+            FirstName = String.Empty;
+            LastName = String.Empty;
+            Password = String.Empty;
+            ConfirmedPassword = String.Empty;
+            db.SaveChanges();
+            GoToUserPage(newUser);
         }
 
         private object GoToUserPage(User user)
@@ -159,7 +237,6 @@ namespace University_students.ViewModel
             Messenger.Default.Send<ChangeNavigationPageMessage>(msg);
             return null;
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
