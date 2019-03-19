@@ -40,9 +40,17 @@ namespace University_students.ViewModel
 
         private object ReceiveMessage(ChangeNavigationPageMessage action)
         {
-            if(action.CurrentUser.TypeUser == Enums.Role.Students)
+            switch (action.CurrentUser.TypeUser)
             {
-                ChangeOnUserPage(action.CurrentUser);
+                case Enums.Role.Admin:
+                    ChangeOnAdminPage(action.CurrentUser);
+                    break;
+                case Enums.Role.Students:
+                    ChangeOnUserPage(action.CurrentUser);
+                    break;
+                case Enums.Role.Teacher:
+                    ChangeOnTeacherPage(action.CurrentUser);
+                    break;
             }
             return null;
         }
@@ -58,6 +66,20 @@ namespace University_students.ViewModel
         private void ChangeOnUserPage(User user)
         {
             _currentControl.Content = new View.UserPage();
+            SetCurrentUser(user);
+            _currentControl.UpdateLayout();
+        }
+
+        private void ChangeOnAdminPage(User user)
+        {
+            _currentControl.Content = new View.AdminPage();
+            SetCurrentUser(user);
+            _currentControl.UpdateLayout();
+        }
+
+        private void ChangeOnTeacherPage(User user)
+        {
+            _currentControl.Content = new View.TeacherPage();
             SetCurrentUser(user);
             _currentControl.UpdateLayout();
         }
