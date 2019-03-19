@@ -4,12 +4,37 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View.AdminPages"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Universities">
 
     <Grid>
-        <Label Content="Unik" Foreground="#DD14B42A"></Label>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Foreground="#DD14B42A">
+            <DataGrid Height="26" Width="11"/>
+        </Label>
+        <DataGrid Margin="10,0,10,10" Grid.Row="1" Grid.ColumnSpan="2" DataContext="{Binding AllUniversities}" Grid.RowSpan="2"/>
+        <Button Content="Add" Grid.Column="2" Command="{Binding AddUnivirsityCommand}" Margin="165,10,160,79" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431" Grid.ColumnSpan="2"/>
+        <ComboBox Grid.Column="2" Text="Type University" Margin="140,75,140,10" Grid.Row="1" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
+            <System:String>University</System:String>
+            <System:String>Academy</System:String>
+            <System:String>Institute</System:String>
+        </ComboBox>
+        <TextBox Grid.Column="2" Text="{Binding City}"  Margin="140,10,140,80" Grid.Row="1" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <Label Content="City" Grid.Column="2" HorizontalAlignment="Left" Margin="68,7,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271"/>
+        <TextBox Grid.Column="2" Text="{Binding Name}" Margin="140,79,140,10" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <Label Content="Name" Grid.Column="2" HorizontalAlignment="Left" Margin="68,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271"/>
     </Grid>
 </Page>
