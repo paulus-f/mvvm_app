@@ -22,18 +22,19 @@
             <RowDefinition Height="16*"/>
             <RowDefinition Height="209*"/>
         </Grid.RowDefinitions>
-        <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}" Grid.Column="0" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Content="Faculties" Command="{Binding ChooseAdminPageCommand}"  Grid.Column="1" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Content="Specialities" Command="{Binding ChooseAdminPageCommand}"  Grid.Column="2" Grid.Row="0"  FontSize="12" Height="Auto"/>
-        <Button Content="Groups" Command="{Binding ChooseAdminPageCommand}" Grid.Column="3" Grid.Row="0" Height="Auto" FontSize="12"/>
-        <Button Content="Teachers" Command="{Binding ChooseAdminPageCommand}" Grid.Column="4" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Content="Students" Command="{Binding ChooseAdminPageCommand}"  Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Content="Subjects" Command="{Binding ChooseAdminPageCommand}"  Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}"  CommandParameter="university" Grid.Column="0" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Specialities" Command="{Binding ChooseAdminPageCommand}" CommandParameter="speciality"  Grid.Column="2" Grid.Row="0"  FontSize="12" Height="Auto"/>
+        <Button Content="Groups" Command="{Binding ChooseAdminPageCommand}" CommandParameter="group" Grid.Column="3" Grid.Row="0" Height="Auto" FontSize="12"/>
+        <Button Content="Teachers" Command="{Binding ChooseAdminPageCommand}" CommandParameter="teacher" Grid.Column="4" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Students" Command="{Binding ChooseAdminPageCommand}" CommandParameter="student" Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Subjects" Command="{Binding ChooseAdminPageCommand}" CommandParameter="subject" Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
         <Label  Content="{Binding Login}" Grid.Column="6" Grid.Row="0" FontSize="12" Height="Auto" Background="#FF4AAE3F" Foreground="#DDFFFFFF"/>
         <Button Content="Log Out" Grid.Column="7" Grid.Row="0" FontSize="12" Height="Auto" Background="#FFA2252A"/>
         <Frame 
             Grid.ColumnSpan="7" 
             Content="{Binding CurrentAdminPage}" 
+            NavigationUIVisibility="Hidden"
             HorizontalAlignment="Left"
             Height="418" 
             Grid.Row="1"
@@ -41,6 +42,5 @@
             Width="801" 
             Margin="0,0,-1,0"
         />
-
     </Grid>
 </UserControl>

@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+//using GalaSoft.MvvmLight.Command;
 using System.ComponentModel;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Messaging;
 using University_students.Messager;
 using University_students.Models;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace University_students.ViewModel
 {
@@ -54,18 +55,14 @@ namespace University_students.ViewModel
         public AdminViewModel()
         {
             UniversitiesPage = new View.AdminPages.Universities();
+            FacultiesPage = new View.AdminPages.Faculties();
+            GroupsPage = new View.AdminPages.Groups();
+            SubjectsPage = new View.AdminPages.Subjects();
+            TeachersPage = new View.AdminPages.Teachers();
+            StudentsPage = new View.AdminPages.Students();
+            SpecialitiesPage = new View.AdminPages.Specialities();
             CurrentAdminPage = UniversitiesPage;
             Messenger.Default.Register<SendCurrentUserMessage>(this, (action) => ReceiveMessage(action));
-        }
-
-        public ICommand ChooseAdminPageCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    () => { }
-                );
-            }
         }
 
         public string Login
@@ -77,6 +74,76 @@ namespace University_students.ViewModel
         {
             CurrentUser = action.CurrentUser;
             return null;
+        }
+
+        public ICommand ChooseAdminPageCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => {
+                        switch ((string)param)
+                        {
+                            case "university":
+                                CanRedirectUniversities();
+                                break;
+                            case "faculty":
+                                CanRedirectFaculties();
+                                break;
+                            case "group":
+                                CanRedirectGroups();
+                                break;
+                            case "student":
+                                CanRedirectStudents();
+                                break;
+                            case "teacher":
+                                CanRedirectTeachers();
+                                break;
+                            case "subject":
+                                CanRedirectSubjects();
+                                break;
+                            case "speciality":
+                                CanRedirectSpecialities();
+                                break;
+                        }
+                    }
+                );
+            }
+        }
+
+        private void CanRedirectUniversities()
+        {
+            CurrentAdminPage = UniversitiesPage;
+        }
+
+        private void CanRedirectFaculties()
+        {
+            CurrentAdminPage = FacultiesPage;
+        }
+
+        private void CanRedirectStudents()
+        {
+            CurrentAdminPage = StudentsPage;
+        }
+
+        private void CanRedirectGroups()
+        {
+            CurrentAdminPage = GroupsPage;
+        }
+
+        private void CanRedirectTeachers()
+        {
+            CurrentAdminPage = TeachersPage;
+        }
+
+        private void CanRedirectSubjects()
+        {
+            CurrentAdminPage = SubjectsPage;
+        }
+
+        private void CanRedirectSpecialities()
+        {
+            CurrentAdminPage = SpecialitiesPage;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
