@@ -105,6 +105,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\RegexPattern.cs" />
+    <Compile Include="Enums\TypeUniversity.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.cs" />
@@ -119,8 +120,16 @@
     <Compile Include="Migrations\201903101938291_AddRequiredAttribute.Designer.cs">
       <DependentUpon>201903101938291_AddRequiredAttribute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.cs" />
+    <Compile Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.Designer.cs">
+      <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
+    <Compile Include="Models\Faculty.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Speciality.cs" />
+    <Compile Include="Models\University.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
@@ -267,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903101938291_AddRequiredAttribute.resx">
       <DependentUpon>201903101938291_AddRequiredAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.resx">
+      <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

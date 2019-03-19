@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using System.Windows.Input;
-//using GalaSoft.MvvmLight.Command;
 using System.ComponentModel;
 using System.Windows;
 using System.Runtime.CompilerServices;
