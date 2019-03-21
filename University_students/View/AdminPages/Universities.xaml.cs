@@ -22,5 +22,10 @@ namespace University_students.View.AdminPages
             InitializeComponent();
             DataContext = new ViewModel.AdminVM.UniversityVM();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // datagridUniversity.UpdateLayout();
+        }
     }
 }

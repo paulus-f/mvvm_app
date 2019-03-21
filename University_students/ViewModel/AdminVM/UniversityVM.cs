@@ -77,7 +77,7 @@ namespace University_students.ViewModel.AdminVM
         public UniversityVM()
         {
             db = new USDbContext();
-            _listUniversity = db.Universities.ToList();
+            AllUniversities = db.Universities.ToList();
         }
 
         public ICommand AddUniversityCommand
@@ -103,8 +103,7 @@ namespace University_students.ViewModel.AdminVM
             City = String.Empty;
             Name = String.Empty;
             db.SaveChanges();
-            _listUniversity.Add(newUniversity);
-            AllUniversities = _listUniversity;
+            AllUniversities = db.Universities.ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
