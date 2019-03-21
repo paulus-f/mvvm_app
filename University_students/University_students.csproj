@@ -105,7 +105,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\RegexPattern.cs" />
-    <Compile Include="Enums\TypeUniversity.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.cs" />
@@ -131,6 +130,7 @@
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\UniversityVM.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />

@@ -30,7 +30,6 @@ namespace University_students.ViewModel
             }
         }
 
-
         public UserViewModel()
         {
             Messenger.Default.Register<SendCurrentUserMessage>(this, (action) => ReceiveMessage(action));

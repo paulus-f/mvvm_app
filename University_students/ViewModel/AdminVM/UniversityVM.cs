@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using University_students.Models;
+using System.Collections.ObjectModel;
 
 namespace University_students.ViewModel.AdminVM
 {
@@ -18,11 +19,93 @@ namespace University_students.ViewModel.AdminVM
     {
         USDbContext db;
 
+        private string _login;
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged("Login");
+            }
+        }
+
+        private string _city;
+        public string City
+        {
+            get => _city;
+            set
+            {
+                _city = value;
+                OnPropertyChanged("City");
+            }
+        }
+
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        private string _typeUniversity;
+        public string TypeUniversity
+        {
+            get => _typeUniversity;
+            set
+            {
+                _typeUniversity = value;
+                OnPropertyChanged("TypeUniversity");
+            }
+        }
+
+        private List<University> _listUniversity;
+        public List<University> AllUniversities
+        {
+            get => _listUniversity;
+            set
+            {
+                _listUniversity = value;
+                OnPropertyChanged("AllUniversities");
+            }
+        }
+
         public UniversityVM()
         {
             db = new USDbContext();
+            _listUniversity = db.Universities.ToList();
         }
-        
+
+        public ICommand AddUniversityCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanAddUniversity()
+                );
+            }
+        }
+
+        private void CanAddUniversity()
+        {
+            University newUniversity = new University()
+            {
+                TypeUniversity = this.TypeUniversity,
+                City = this.City,
+                Name = this.Name
+            };
+            
+            db.Universities.Add(newUniversity);
+            City = String.Empty;
+            Name = String.Empty;
+            db.SaveChanges();
+            _listUniversity.Add(newUniversity);
+            AllUniversities = _listUniversity;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
