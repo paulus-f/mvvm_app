@@ -35,8 +35,17 @@ namespace University_students.ViewModel
             _currentControl = currentControl;
             StartUpPage = new View.StartUpPage();
             MainCurrentControl = StartUpPage;
-            Messenger.Default.Register<ChangeNavigationPageMessage> (this, (action) => ReceiveMessage(action));
+            Messenger.Default.Register<ChangeNavigationPageMessage>(this, (action) => ReceiveMessage(action));
+            Messenger.Default.Register<LogOutMessage>(this, (action) => ReceiveMessage(action));
         }
+
+        private object ReceiveMessage(LogOutMessage action)
+        {
+            _currentControl.Content = StartUpPage;
+            _currentControl.UpdateLayout();
+            return null;
+        }
+
 
         private object ReceiveMessage(ChangeNavigationPageMessage action)
         {

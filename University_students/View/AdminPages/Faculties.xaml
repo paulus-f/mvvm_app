@@ -4,11 +4,36 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View.AdminPages"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Faculties">
 
+
     <Grid>
-        <Label Content="Faculty" Foreground="#DD14B42A"></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Margin="10,0,10,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllFaculties}" Grid.RowSpan="3" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"/>
+                <DataGridTextColumn Binding="{Binding University.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddFacultyCommand}" Margin="65,10,37,61" Grid.Row="2" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="51,7,29,66" TextWrapping="Wrap" Grid.Row="1"/>
+        <Label Content="Name" Grid.Column="2" Margin="126,14,10,66" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+        <Label Content="Faculties" Margin="9,10,0,22" FontSize="48"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="University" Margin="10,32,32,40" ItemsSource="{Binding ListUniversity}"  VerticalAlignment="Stretch"/>
+        <Label Content="University" Grid.Column="1" Margin="63,32,10,40" RenderTransformOrigin="0.098,0.271"/>
     </Grid>
 </Page>

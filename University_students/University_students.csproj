@@ -106,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\RegexPattern.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
+    <Compile Include="Messager\LogOutMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.Designer.cs">
@@ -130,6 +131,12 @@
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\FacultyVM.cs" />
+    <Compile Include="ViewModel\AdminVM\GroupVM.cs" />
+    <Compile Include="ViewModel\AdminVM\SpecialityVM.cs" />
+    <Compile Include="ViewModel\AdminVM\StudentVM.cs" />
+    <Compile Include="ViewModel\AdminVM\SubjectVM.cs" />
+    <Compile Include="ViewModel\AdminVM\TeacherVM.cs" />
     <Compile Include="ViewModel\AdminVM\UniversityVM.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />

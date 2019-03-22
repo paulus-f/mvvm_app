@@ -30,7 +30,7 @@
         <Button Content="Students" Command="{Binding ChooseAdminPageCommand}" CommandParameter="student" Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
         <Button Content="Subjects" Command="{Binding ChooseAdminPageCommand}" CommandParameter="subject" Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
         <Label  Content="{Binding Login}" Grid.Column="6" Grid.Row="0" FontSize="12" Height="Auto" Background="#FF4AAE3F" Foreground="#DDFFFFFF"/>
-        <Button Content="Log Out" Grid.Column="7" Grid.Row="0" FontSize="12" Height="Auto" Background="#FFA2252A"/>
+        <Button Content="Log Out" Command="{Binding LogOutCommand}"  Grid.Column="7" Grid.Row="0" FontSize="12" Height="Auto" Background="#FFA2252A"/>
         <Frame 
             Grid.ColumnSpan="7" 
             Content="{Binding CurrentAdminPage}" 

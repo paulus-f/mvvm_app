@@ -1,12 +1,112 @@
 ﻿using System;
+using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using System.ComponentModel;
+using System.Windows;
+using System.Runtime.CompilerServices;
+using University_students.Models;
 
 namespace University_students.ViewModel.AdminVM
 {
-    class Faculty
+    public class FacultyVM : ViewModelBase, INotifyPropertyChanged
     {
+        USDbContext db = new USDbContext();
+
+        private University _selectedUniversityModel;
+
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        private List<Faculty> _listFaculties;
+        public List<Faculty> AllFaculties
+        {
+            get => _listFaculties;
+            set
+            {
+                _listFaculties = value;
+                OnPropertyChanged("AllFaculties");
+            }
+        }
+
+        private List<string> _listUniversity;
+        public List<string> ListUniversity
+        {
+            get => _listUniversity;
+            set
+            {
+                _listUniversity = value;
+                OnPropertyChanged("ListUniversity");
+            }
+        }
+
+        private string _selectedUniversity;
+        public string SelectedUniversity
+        {
+            get => _selectedUniversity;
+            set
+            {
+                _selectedUniversity = value;
+                _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                AllFaculties = _selectedUniversityModel.Faculties.ToList();
+                OnPropertyChanged("SelectedUniversity");
+            }
+        }
+
+        public FacultyVM()
+        {
+            ListUniversity = db.Universities.Select(university => university.Name).ToList();
+        }
+
+        public ICommand AddFacultyCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanAddFaculty()
+                );
+            }
+        }
+
+        private void CanAddFaculty()
+        {
+            if(_selectedUniversityModel == null)
+            {
+                return;
+            }
+
+            Faculty newFaculty = new Faculty()
+            {
+                University = this._selectedUniversityModel,
+                Name = this.Name
+            };
+
+            db.Faculties.Add(newFaculty);
+            Name = String.Empty;
+            db.SaveChanges();
+            AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
     }
 }
+
