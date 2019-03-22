@@ -22,7 +22,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="datagridUniversity" Margin="10,0,10,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" Grid.RowSpan="3" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid Margin="10,0,10,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" Grid.RowSpan="3" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}"/>
                 <DataGridTextColumn Binding="{Binding City}"/>
