@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.Designer.cs">
       <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903232327221_CreateTableSpeciality.cs" />
+    <Compile Include="Migrations\201903232327221_CreateTableSpeciality.Designer.cs">
+      <DependentUpon>201903232327221_CreateTableSpeciality.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.resx">
       <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903232327221_CreateTableSpeciality.resx">
+      <DependentUpon>201903232327221_CreateTableSpeciality.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

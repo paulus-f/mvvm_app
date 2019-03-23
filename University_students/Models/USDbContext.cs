@@ -13,5 +13,6 @@ namespace University_students.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<University> Universities { get; set; }
+        public DbSet<Speciality> Specialities { get; set; }
     }
 }
