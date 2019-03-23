@@ -138,59 +138,74 @@ namespace University_students.ViewModel
         public string Error
         {
             get => _error;
+            set
+            {
+                if (value != null)  IsEnabled = false;
+                _error = value;
+            }
         }
 
         public string this[string columnName] {
             get
             {
-                string msg = null;
-                IsEnabled = true;
                 Regex regexLogin = new Regex(RegexPattern.loginPattern);
                 Regex regexPassword = new Regex(RegexPattern.passwordPattern);
                 Regex regexFirstName = new Regex(RegexPattern.firstNamePattern);
                 Regex regexLastName = new Regex(RegexPattern.lastNamePattern);
-                if (Login == null) return msg;
-
+                Error= null;
+                if (Login == null)
+                {
+                    IsEnabled = false;
+                    return null;
+                }
+                IsEnabled = CheckField();
                 switch (columnName)
                 {
                     case "Login":
                         if (!regexLogin.IsMatch(Login))
                         {
-                            IsEnabled = false;
-                            msg = "Login is not validated";
+                            Error = "Login is not validated";
                         }
+                        
                         break;
                     case "Password":
                         if (!regexPassword.IsMatch(Password) || Password.Length < 6)
                         {
-                            IsEnabled = false;
-                            msg = "Password is not validated";
+                            Error = "Password is not validated";
                         }
                         break;
                     case "ConfirmedPassword":
                         if(Password != ConfirmedPassword)
                         {
-                            IsEnabled = false;
-                            msg = "Confirmed Password is not equal to Password";
+                            Error = "Confirmed Password is not equal to Password";
                         }
                         break;
                     case "FirstName":
                         if (!regexFirstName.IsMatch(FirstName))
                         {
-                            IsEnabled = false;
-                            msg = "First Name is not validated";
+                            Error = "First Name is not validated";
                         }
                         break;
                     case "LastName":
                         if (!regexLastName.IsMatch(LastName))
                         {
-                            IsEnabled = false;
-                            msg = "Last Name is not validated";
+                            Error = "Last Name is not validated";
                         }
                         break;
                 }
-                return msg;
+                return Error;
             }
+        }
+
+        private bool CheckField()
+        {
+            bool result = true;
+            if (String.IsNullOrEmpty(Login)) result = false;
+            if (String.IsNullOrEmpty(Password)) result = false;
+            if (String.IsNullOrEmpty(ConfirmedPassword)) result = false;
+            if (String.IsNullOrEmpty(FirstName)) result = false;
+            if (String.IsNullOrEmpty(LastName)) result = false;
+            return result;
         }
 
         private void CanUndoMessage()
