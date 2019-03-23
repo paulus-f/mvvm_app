@@ -166,7 +166,6 @@ namespace University_students.ViewModel
                         {
                             Error = "Login is not validated";
                         }
-                        
                         break;
                     case "Password":
                         if (!regexPassword.IsMatch(Password) || Password.Length < 6)

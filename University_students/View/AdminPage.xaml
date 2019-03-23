@@ -23,7 +23,7 @@
             <RowDefinition Height="209*"/>
         </Grid.RowDefinitions>
         <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}"  CommandParameter="university" Grid.Column="0" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="Auto"/>
+        <Button Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="Auto" Cursor="Pen"/>
         <Button Content="Specialities" Command="{Binding ChooseAdminPageCommand}" CommandParameter="speciality"  Grid.Column="2" Grid.Row="0"  FontSize="12" Height="Auto"/>
         <Button Content="Groups" Command="{Binding ChooseAdminPageCommand}" CommandParameter="group" Grid.Column="3" Grid.Row="0" Height="Auto" FontSize="12"/>
         <Button Content="Teachers" Command="{Binding ChooseAdminPageCommand}" CommandParameter="teacher" Grid.Column="4" Grid.Row="0" FontSize="12" Height="Auto"/>

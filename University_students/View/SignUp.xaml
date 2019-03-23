@@ -69,7 +69,7 @@
             <TextBlock Text="Confirmed Password" Grid.Row="6" Margin="14,10,39.333,10" Foreground="#FFF7F1F1" Grid.Column="1"/>
             <TextBox x:Name="txtConfirmedPasswordSignUp" Grid.Column="1" Grid.Row="6" Margin="135,3,10,10" MinWidth="100" Grid.ColumnSpan="2">
                 <TextBox.Text>
-                    <Binding Path="ConfirmedPassword" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
+                    <Binding Path="ConfirmedPassword" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
                         <Binding.ValidationRules >
                             <ExceptionValidationRule />
                         </Binding.ValidationRules>

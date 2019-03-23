@@ -15,7 +15,7 @@ using University_students.Models;
 
 namespace University_students.ViewModel
 {
-    class LoginViewModel : ViewModelBase, INotifyPropertyChanged
+    class LoginViewModel : ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
         USDbContext db;
 
@@ -24,6 +24,16 @@ namespace University_students.ViewModel
             db = new USDbContext();
         }
 
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged("IsEnabled");
+            }
+        }
 
         private bool _isActiveMessage;
         public bool IsActiveMessage
@@ -46,7 +56,7 @@ namespace University_students.ViewModel
                 OnPropertyChanged("Message");
             }
         }
-        //if (BCrypt.Net.BCrypt.Verify(password, passwordFromLocalDB) == true)
+
         private string _login;
         public string Login
         {
@@ -94,33 +104,42 @@ namespace University_students.ViewModel
         public string Error
         {
             get => _error;
+            set
+            {
+                if (value != null) IsEnabled = false;
+                _error = value;
+            }
         }
 
         public string this[string columnName]
         {
             get
             {
-                string msg = null;
                 Regex regexLogin = new Regex(RegexPattern.loginPattern);
                 Regex regexPassword = new Regex(RegexPattern.passwordPattern);
-                if (Login == null) return msg;
-
+                Error = null;
+                if (Login == null)
+                {
+                    IsEnabled = false;
+                    return null;
+                }
+                IsEnabled = CheckField();
                 switch (columnName)
                 {
                     case "Login":
                         if (!regexLogin.IsMatch(Login))
                         {
-                            msg = "Login is not validated";
+                            Error = "Login is not validated";
                         }
                         break;
                     case "Password":
-                        if (!regexPassword.IsMatch(Password) || Password.Length < 6)
+                        if (!regexPassword.IsMatch(Password))
                         {
-                            msg = "Password is not validated";
+                            Error = "Password is not validated";
                         }
                         break;
                 }
-                return msg;
+                return Error;
             }
         }
 
@@ -153,6 +172,13 @@ namespace University_students.ViewModel
             }
         }
 
+        private bool CheckField()
+        {
+            bool result = true;
+            if (String.IsNullOrEmpty(Login)) result = false;
+            if (String.IsNullOrEmpty(Password)) result = false;
+            return result;
+        }
         private object GoToUserPage(User user)
         {
             var msg = new ChangeNavigationPageMessage() { CurrentUser = user };
