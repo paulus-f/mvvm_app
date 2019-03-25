@@ -7,9 +7,11 @@ namespace University_students.Models
     public class Faculty
     {
         public int Id { get; set; }
-        [StringLength(450)]
-        [Index(IsUnique = true)]
+        [Required]
         public string Name { get; set; }
+        //add dean
+        //[Required]
+        //public string dean { get; set; }
         public int? UniversityId { get; set; }
         public virtual University University { get; set; }
         public virtual ICollection<Speciality> Specialites { get; set; }

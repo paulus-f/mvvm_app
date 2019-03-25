@@ -8,9 +8,106 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Groups">
 
+
     <Grid>
-        <Label Content="Gr" Foreground="#DD14B42A"></Label>
-        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620"/>
-        <Button  Content="Delete" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFDA4D46"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Grid.RowSpan="3" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Speciality" Binding="{Binding Speciality.Name}"/>
+                <DataGridTextColumn Width="150" Header="Number of group" Binding="{Binding NumberGroup}"/>
+                <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Groups" Margin="9,10,0,35" FontSize="36"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="10,45,32,40" ItemsSource="{Binding ListFaculties}"  VerticalAlignment="Stretch"/>
+        <Label Content="Faculty" Grid.Column="1" Margin="118,45,10,40" RenderTransformOrigin="0.098,0.271"/>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddSpecialityCommand}" Margin="43,46,59,26" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="43,18,37,62" TextWrapping="Wrap" Grid.Row="1"/>
+        <Label Content="Number" Grid.Column="2" Margin="118,18,18,62" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+        <TextBox Grid.Column="3" Text="{Binding CodeSpec}" Margin="43,70,37,10" TextWrapping="Wrap" Grid.Row="1"/>
+        <Label Content="First Year" Grid.Column="2" Margin="118,70,18,10" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="Faculty" Margin="10,10,32,72" ItemsSource="{Binding ListUniversities}"  VerticalAlignment="Stretch"/>
+        <Label Content="University" Grid.Column="1" Margin="118,10,10,72" RenderTransformOrigin="0.098,0.271"/>
+        <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFD8A620"/>
+        <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFDA4D46"/>
+        <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Grid.RowSpan="3" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="Speciality" Binding="{Binding Speciality.Name}"/>
+                    <DataGridTextColumn Width="150" Header="Number of group" Binding="{Binding NumberGroup}"/>
+                    <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="Groups" Margin="9,10,0,35" FontSize="36"/>
+            <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="10,45,32,40" ItemsSource="{Binding ListFaculties}"  VerticalAlignment="Stretch"/>
+            <Label Content="Faculty" Grid.Column="1" Margin="118,45,10,40" RenderTransformOrigin="0.098,0.271"/>
+            <Button Content="Add" Grid.Column="3" Command="{Binding AddSpecialityCommand}" Margin="43,46,59,26" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+            <TextBox Grid.Column="3" Text="{Binding Name}" Margin="43,18,37,62" TextWrapping="Wrap" Grid.Row="1"/>
+            <Label Content="Number" Grid.Column="2" Margin="118,18,18,62" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+            <TextBox Grid.Column="3" Text="{Binding CodeSpec}" Margin="43,70,37,10" TextWrapping="Wrap" Grid.Row="1"/>
+            <Label Content="First Year" Grid.Column="2" Margin="118,70,18,10" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+            <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="Faculty" Margin="10,10,32,72" ItemsSource="{Binding ListUniversities}"  VerticalAlignment="Stretch"/>
+            <Label Content="University" Grid.Column="1" Margin="118,10,10,72" RenderTransformOrigin="0.098,0.271"/>
+            <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFD8A620"/>
+            <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFDA4D46"/>
+            <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Grid.RowSpan="3" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="Speciality" Binding="{Binding Speciality.Name}"/>
+                        <DataGridTextColumn Width="150" Header="Number of group" Binding="{Binding NumberGroup}"/>
+                        <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Groups" Margin="9,10,0,35" FontSize="36"/>
+                <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="10,45,32,40" ItemsSource="{Binding ListFaculties}"  VerticalAlignment="Stretch"/>
+                <Label Content="Faculty" Grid.Column="1" Margin="118,45,10,40" RenderTransformOrigin="0.098,0.271"/>
+                <Button Content="Add" Grid.Column="3" Command="{Binding AddSpecialityCommand}" Margin="43,46,59,26" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+                <TextBox Grid.Column="3" Text="{Binding Name}" Margin="43,18,37,62" TextWrapping="Wrap" Grid.Row="1"/>
+                <Label Content="Number" Grid.Column="2" Margin="118,18,18,62" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+                <TextBox Grid.Column="3" Text="{Binding CodeSpec}" Margin="43,70,37,10" TextWrapping="Wrap" Grid.Row="1"/>
+                <Label Content="First Year" Grid.Column="2" Margin="118,70,18,10" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+                <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="Faculty" Margin="10,10,32,72" ItemsSource="{Binding ListUniversities}"  VerticalAlignment="Stretch"/>
+                <Label Content="University" Grid.Column="1" Margin="118,10,10,72" RenderTransformOrigin="0.098,0.271"/>
+                <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFD8A620"/>
+                <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFDA4D46"/>
+                <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedSpeciality, Mode=TwoWay}" Text="Faculty" Margin="43,0,32,85" ItemsSource="{Binding ListSpecialities}"  VerticalAlignment="Stretch" Grid.Row="2"/>
+                <Label Content="Speciality" Grid.Column="2" Margin="118,0,10,85" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
