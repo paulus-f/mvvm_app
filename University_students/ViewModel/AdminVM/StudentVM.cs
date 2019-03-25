@@ -15,6 +15,16 @@ namespace University_students.ViewModel.AdminVM
 {
     public class StudentVM : ViewModelBase, INotifyPropertyChanged
     {
+        private bool _isEnabledUD;
+        public bool IsEnabledUD
+        {
+            get => _isEnabledUD;
+            set
+            {
+                _isEnabledUD = value;
+                OnPropertyChanged("IsEnabledUD");
+            }
+        }
 
         public StudentVM()
         {

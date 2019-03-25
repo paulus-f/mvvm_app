@@ -32,6 +32,21 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private Speciality _selectedSpecialityDG;
+        public Speciality SelectedSpecialityDG
+        {
+            get => _selectedSpecialityDG;
+            set
+            {
+                _selectedSpecialityDG = value;
+                Name = value?.Name;
+                Qualification = value?.Qualification;
+                CodeSpec = value?.Code;
+                IsEnabledUD = true;
+                OnPropertyChanged("SelectedSpecialityDG");
+            }
+        }
+
         private List<Speciality> _specialities;
         public List<Speciality> Specialities
         {
@@ -100,6 +115,17 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private bool _isEnabledUD;
+        public bool IsEnabledUD
+        {
+            get => _isEnabledUD;
+            set
+            {
+                _isEnabledUD = value;
+                OnPropertyChanged("IsEnabledUD");
+            }
+        }
+
         private string _selectedFaculty;
         public string SelectedFaculty
         {
@@ -108,13 +134,14 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedFaculty = value;
                 _selectedFacultyModel = db?.Faculties.FirstOrDefault(f => f.Name == value);
-                Specialities = _selectedFacultyModel.Specialites.ToList();
+                Specialities = _selectedFacultyModel?.Specialites.ToList();
                 OnPropertyChanged("SelectedFaculty");
             }
         }
 
         public SpecialityVM()
         {
+            IsEnabledUD = false;
             ListUniversities = db.Universities.Select(university => university.Name).ToList();
         }
 
@@ -126,6 +153,47 @@ namespace University_students.ViewModel.AdminVM
                     () => CanAddSpeciality()
                 );
             }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteSpeciality()
+                );
+            }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUpdateSpeciality()
+                );
+            }
+        }
+
+        private void CanDeleteSpeciality()
+        {
+            db.Specialities.Remove(db.Specialities.FirstOrDefault(s => s.Id == SelectedSpecialityDG.Id));
+            db.SaveChanges();
+            Specialities = _selectedFacultyModel.Specialites.ToList();
+            SelectedSpecialityDG = null;
+            IsEnabledUD = false;
+        }
+
+        private void CanUpdateSpeciality()
+        {
+            var spec = db.Specialities.FirstOrDefault((f) => f.Id == SelectedSpecialityDG.Id);
+            spec.Name = Name;
+            spec.Qualification = Qualification;
+            spec.Code = CodeSpec;
+            db.SaveChanges();
+            Specialities = db?.Faculties.FirstOrDefault(f => f.Id == _selectedFacultyModel.Id).Specialites.ToList();
+            SelectedSpecialityDG = null;
+            IsEnabledUD = false;
         }
 
         private void CanAddSpeciality()

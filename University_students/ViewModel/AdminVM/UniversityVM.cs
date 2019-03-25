@@ -30,6 +30,32 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private University _selectedUniversityDG;
+        public University SelectedUniversityDG
+        {
+            get => _selectedUniversityDG;
+            set
+            {
+                _selectedUniversityDG = value;
+                Name = value?.Name;
+                City = value?.City;
+                TypeUniversity = value?.TypeUniversity;
+                IsEnabledUD = true;
+                OnPropertyChanged("SelectedUniversityDG");
+            }
+        }
+
+        private bool _isEnabledUD;
+        public bool IsEnabledUD
+        {
+            get => _isEnabledUD;
+            set
+            {
+                _isEnabledUD = value;
+                OnPropertyChanged("IsEnabledUD");
+            }
+        }
+
         private string _city;
         public string City
         {
@@ -88,6 +114,47 @@ namespace University_students.ViewModel.AdminVM
                     () => CanAddUniversity()
                 );
             }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteFaculty()
+                );
+            }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUpdateFaculty()
+                );
+            }
+        }
+
+        private void CanDeleteFaculty()
+        {
+            db.Universities.Remove(db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id));
+            db.SaveChanges();
+            AllUniversities = db.Universities.ToList();
+            SelectedUniversityDG = null;
+            IsEnabledUD = false;
+        }
+
+        private void CanUpdateFaculty()
+        {
+            var univ = db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id);
+            univ.Name = Name;
+            univ.City = City;
+            univ.TypeUniversity = TypeUniversity;
+            db.SaveChanges();
+            AllUniversities = db.Universities.ToList();
+            SelectedUniversityDG = null;
+            IsEnabledUD = false;
         }
 
         private void CanAddUniversity()

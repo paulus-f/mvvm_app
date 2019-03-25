@@ -20,6 +20,19 @@ namespace University_students.ViewModel.AdminVM
 
         private University _selectedUniversityModel;
 
+        private Faculty _selectedFacultyDG;
+        public Faculty SelectedFacultyDG
+        {
+            get => _selectedFacultyDG;
+            set
+            {
+                _selectedFacultyDG = value;
+                Name = value?.Name;
+                IsEnabledUD = true;
+                OnPropertyChanged("SelectedFacultyDG");
+            }
+        }
+
         private string _name;
         public string Name
         {
@@ -28,6 +41,17 @@ namespace University_students.ViewModel.AdminVM
             {
                 _name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        private bool _isEnabledUD;
+        public bool IsEnabledUD
+        {
+            get => _isEnabledUD;
+            set
+            {
+                _isEnabledUD = value;
+                OnPropertyChanged("IsEnabledUD");
             }
         }
 
@@ -68,6 +92,7 @@ namespace University_students.ViewModel.AdminVM
 
         public FacultyVM()
         {
+            IsEnabledUD = false;
             ListUniversity = db.Universities.Select(university => university.Name).ToList();
         }
 
@@ -79,6 +104,44 @@ namespace University_students.ViewModel.AdminVM
                     () => CanAddFaculty()
                 );
             }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteFaculty()
+                );
+            }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUpdateFaculty()
+                );
+            }
+        }
+
+        private void CanDeleteFaculty()
+        {
+            db.Faculties.Remove(db.Faculties.FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
+            db.SaveChanges();
+            AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+            SelectedFacultyDG = null;
+            IsEnabledUD = false;
+        }
+
+        private void CanUpdateFaculty()
+        {
+            db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id).Name = Name;
+            db.SaveChanges();
+            AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+            SelectedFacultyDG = null;
+            IsEnabledUD = false;
         }
 
         private void CanAddFaculty()
@@ -98,6 +161,8 @@ namespace University_students.ViewModel.AdminVM
             Name = String.Empty;
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+            SelectedFacultyDG = null;
+            IsEnabledUD = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

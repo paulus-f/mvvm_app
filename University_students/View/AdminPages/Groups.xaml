@@ -10,5 +10,7 @@
 
     <Grid>
         <Label Content="Gr" Foreground="#DD14B42A"></Label>
+        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620"/>
+        <Button  Content="Delete" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFDA4D46"/>
     </Grid>
 </Page>

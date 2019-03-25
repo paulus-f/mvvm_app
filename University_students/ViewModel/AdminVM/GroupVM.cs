@@ -20,6 +20,44 @@ namespace University_students.ViewModel.AdminVM
         {
         }
 
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteFaculty()
+                );
+            }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanUpdateFaculty()
+                );
+            }
+        }
+
+        private void CanDeleteFaculty()
+        {
+        //    db.Faculties.Remove(db.Faculties.FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
+        //    db.SaveChanges();
+        //    AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+        //    SelectedFacultyDG = null;
+        //    IsEnabledUD = false;
+        }
+
+        private void CanUpdateFaculty()
+        {
+            //db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id).Name = Name;
+            //db.SaveChanges();
+            //AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
+            //SelectedFacultyDG = null;
+            //IsEnabledUD = false;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

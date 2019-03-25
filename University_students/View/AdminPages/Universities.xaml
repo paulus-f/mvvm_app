@@ -22,11 +22,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Margin="10,0,10,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" Grid.RowSpan="3" IsReadOnly="True">
+        <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" SelectedItem="{Binding SelectedUniversityDG}" Grid.RowSpan="3" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}"/>
-                <DataGridTextColumn Binding="{Binding City}"/>
-                <DataGridTextColumn Binding="{Binding TypeUniversity}"/>
+                <DataGridTextColumn Width="130" Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="130" Header="City" Binding="{Binding City}"/>
+                <DataGridTextColumn Width="130" Header="Type" Binding="{Binding TypeUniversity}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" Margin="51,10,51,61" Grid.Row="2" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
@@ -40,6 +40,8 @@
         <TextBox Grid.Column="3" Text="{Binding Name}" Margin="40,59,40,13" TextWrapping="Wrap"/>
         <Label Content="Name" Grid.Column="2" Margin="94,73,64,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271"/>
         <Label Content="Type University" Grid.Column="2" Margin="94,58,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271"/>
-        <Label Content="Universities" Margin="23,19,10,13" Grid.ColumnSpan="2" FontSize="48"/>
+        <Label Content="Universities" Margin="23,10,10,35" Grid.ColumnSpan="2" FontSize="48"/>
+        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620"/>
+        <Button  Content="Delete" Grid.Column="1" Command="{Binding DeleteCommand}" MaxHeight="70" MaxWidth="220"  Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFDA4D46"/>
     </Grid>
 </Page>
