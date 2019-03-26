@@ -8,8 +8,37 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Students">
 
-    <Grid>
-        <Label Content="St" Foreground="#DD14B42A"></Label>
-
+    <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="4" SelectedItem="{Binding SelectedSubjectDG}" ItemsSource="{Binding ListSubjects}" Grid.RowSpan="3" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="80" Header="Subject" Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="130" Header="Number of hours" Binding="{Binding Hours}"/>
+                <DataGridTextColumn Width="100" Header="Smthing" Binding="{Binding FirstName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Students" Margin="9,10,0,45" FontSize="36"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="166,13,76,72" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
+        <Label Content="Faculty" Grid.Column="2" Margin="76,13,52,72" RenderTransformOrigin="0.098,0.271"/>
+        <Label Content="University" Grid.Column="1" Margin="10,10,118,72" RenderTransformOrigin="0.098,0.271"/>
+        <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,10" Background="#FFDA4D46"/>
+        <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="87,13,155,72" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="1" Margin="70,79,10,10" TextWrapping="Wrap" Text="{Binding SearchSubject}"/>
+        <Label Content="Search" Grid.Column="1" Margin="10,78,136,10" RenderTransformOrigin="0.509,0.308"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="166,45,76,40" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
+        <Label Content="Group" Grid.Column="2" Margin="76,45,52,40" RenderTransformOrigin="0.098,0.271"/>
+        <Label Content="Speciality" Grid.Column="1" Margin="10,42,118,40" RenderTransformOrigin="0.098,0.271"/>
+        <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="87,45,155,40" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
