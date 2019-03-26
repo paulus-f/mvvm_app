@@ -23,6 +23,8 @@ namespace University_students.View.AdminPages
         public Teachers()
         {
             InitializeComponent();
+            //DataContext = ViewModel.AdminVM.TeacherVM();
+
         }
     }
 }

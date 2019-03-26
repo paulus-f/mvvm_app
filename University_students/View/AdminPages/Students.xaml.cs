@@ -23,6 +23,7 @@ namespace University_students.View.AdminPages
         public Students()
         {
             InitializeComponent();
+            DataContext = new ViewModel.AdminVM.StudentVM();
         }
     }
 }
