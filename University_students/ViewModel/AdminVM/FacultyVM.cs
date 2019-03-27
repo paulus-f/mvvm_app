@@ -166,6 +166,7 @@ namespace University_students.ViewModel.AdminVM
             Faculty newFaculty = new Faculty()
             {
                 University = this._selectedUniversityModel,
+                Dean = this.Dean,
                 Name = this.Name
             };
 

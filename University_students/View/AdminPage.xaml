@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       >
-    <Grid  RenderTransformOrigin="0.498,0.493" Background="#FF692F7A">
+    <Grid  RenderTransformOrigin="0.498,0.493" Background="#FF898889">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
