@@ -132,10 +132,19 @@
     <Compile Include="Migrations\201903251933521_AddTableGroupsAndChangeUnique.Designer.cs">
       <DependentUpon>201903251933521_AddTableGroupsAndChangeUnique.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903270705045_AddDeanToFaculty.cs" />
+    <Compile Include="Migrations\201903270705045_AddDeanToFaculty.Designer.cs">
+      <DependentUpon>201903270705045_AddDeanToFaculty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903270712002_AddPulpitTable.cs" />
+    <Compile Include="Migrations\201903270712002_AddPulpitTable.Designer.cs">
+      <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Pulpit.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
@@ -300,6 +309,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903251933521_AddTableGroupsAndChangeUnique.resx">
       <DependentUpon>201903251933521_AddTableGroupsAndChangeUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270705045_AddDeanToFaculty.resx">
+      <DependentUpon>201903270705045_AddDeanToFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
+      <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

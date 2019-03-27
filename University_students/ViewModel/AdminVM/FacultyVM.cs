@@ -28,6 +28,7 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedFacultyDG = value;
                 Name = value?.Name;
+                Dean = value?.Dean;
                 IsEnabledUD = true;
                 OnPropertyChanged("SelectedFacultyDG");
             }
@@ -41,6 +42,17 @@ namespace University_students.ViewModel.AdminVM
             {
                 _name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        private string _dean;
+        public string Dean
+        {
+            get => _dean;
+            set
+            {
+                _dean = value;
+                OnPropertyChanged("Dean");
             }
         }
 
@@ -159,6 +171,7 @@ namespace University_students.ViewModel.AdminVM
 
             db.Faculties.Add(newFaculty);
             Name = String.Empty;
+            Dean = String.Empty;
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
             SelectedFacultyDG = null;
