@@ -16,5 +16,11 @@ namespace University_students.Models
         public DbSet<Speciality> Specialities { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Pulpit> Pulpits { get; set; }
+        public DbSet<TeacherSubject> TeacherSubjects { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TeacherSubject>().HasKey(sc => new { sc.UserId, sc.SubjectId});
+        }
     }
 }

@@ -140,12 +140,18 @@
     <Compile Include="Migrations\201903270712002_AddPulpitTable.Designer.cs">
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.cs" />
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Pulpit.cs" />
     <Compile Include="Models\Speciality.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\FacultyVM.cs" />
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

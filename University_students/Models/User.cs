@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using University_students.Enums;
 
@@ -17,6 +18,7 @@ namespace University_students.Models
         [Required]
         public string Password { get; set; }
         public Role TypeUser { get; set; }
+        public virtual IList<TeacherSubject> Subjects { get; set; }
     }
 
 }
