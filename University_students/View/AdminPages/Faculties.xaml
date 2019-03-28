@@ -56,6 +56,6 @@
         </ListBox>
         <TextBox Grid.Column="2" Margin="95,76,10,3" Grid.Row="2" TextWrapping="Wrap" Text="{Binding NamePulpit}"/>
         <Label Content="Name of pulpit" Grid.Column="2" Margin="0,76,105,3" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
-        <Button Content="Add Pulpit" Grid.Column="3" Command="{Binding AddPulpitCommand}" Margin="73,69,37,11" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431" FontSize="12"/>
+        <Button Content="Add Pulpit" Grid.Column="3" IsEnabled="{Binding IsEnabledUD}" Command="{Binding AddPulpitCommand}" Margin="73,69,37,11" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431" FontSize="12"/>
     </Grid>
 </Page>

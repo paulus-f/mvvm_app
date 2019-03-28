@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs">
       <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.cs" />
+    <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.Designer.cs">
+      <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx">
       <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903282246449_AddPulpitIdToTeacher.resx">
+      <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
