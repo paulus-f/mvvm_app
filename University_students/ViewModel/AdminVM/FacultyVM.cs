@@ -27,10 +27,33 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _selectedFacultyDG = value;
+                if(value != null) ListPulpit = db.Pulpits.Where(p => p.Faculty.Id == value.Id)?.ToList();
                 Name = value?.Name;
                 Dean = value?.Dean;
                 IsEnabledUD = true;
                 OnPropertyChanged("SelectedFacultyDG");
+            }
+        }
+
+        private List<Pulpit> _listPulpit;
+        public List<Pulpit> ListPulpit
+        {
+            get => _listPulpit;
+            set
+            {
+                _listPulpit = value;
+                OnPropertyChanged("ListPulpit");
+            }
+        }
+
+        private Pulpit _seletedPulpit;
+        public Pulpit SelectedPulpit
+        {
+            get => _seletedPulpit;
+            set
+            {
+                _seletedPulpit = value;
+                OnPropertyChanged("SelectedPulpit");
             }
         }
 
@@ -42,6 +65,17 @@ namespace University_students.ViewModel.AdminVM
             {
                 _name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        private string _namePulpit;
+        public string NamePulpit
+        {
+            get => _namePulpit;
+            set
+            {
+                _namePulpit = value;
+                OnPropertyChanged("NamePulpit");
             }
         }
 
@@ -85,6 +119,7 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _listUniversity = value;
+                ListPulpit = null;
                 OnPropertyChanged("ListUniversity");
             }
         }
@@ -108,6 +143,27 @@ namespace University_students.ViewModel.AdminVM
             ListUniversity = db.Universities.Select(university => university.Name).ToList();
         }
 
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteFaculty()
+                );
+            }
+        }
+
+        public ICommand AddPulpitCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanAddPulpit()
+                );
+            }
+        }
+
+
         public ICommand AddFacultyCommand
         {
             get
@@ -118,12 +174,12 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        public ICommand DeleteCommand
+        public ICommand DeletePulpitCommand
         {
             get
             {
-                return new RelayCommand(
-                    () => CanDeleteFaculty()
+                return new RelayCommand<object>(
+                    (param) => CanDeletePulpit((Pulpit)param)
                 );
             }
         }
@@ -135,6 +191,32 @@ namespace University_students.ViewModel.AdminVM
                 return new RelayCommand(
                     () => CanUpdateFaculty()
                 );
+            }
+        }
+
+        private void CanDeletePulpit(Pulpit param)
+        {
+            db.Pulpits.Remove(param);
+            db.SaveChanges();
+            ListPulpit = db.Pulpits.ToList();
+        }
+
+        private void CanAddPulpit()
+        {
+            if(NamePulpit != null)
+            {
+                Pulpit newPulpit = new Pulpit()
+                {
+                    Name = this.NamePulpit,
+                    Faculty = this.SelectedFacultyDG
+                };
+                db.Pulpits.Add(newPulpit);
+                db.SaveChanges();
+                ListPulpit = db.Pulpits.Where(p => p.Faculty.Id == _selectedFacultyDG.Id)?.ToList();
+            }
+            else
+            {
+                //smth
             }
         }
 

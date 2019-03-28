@@ -15,5 +15,6 @@ namespace University_students.Models
         public DbSet<University> Universities { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Pulpit> Pulpits { get; set; }
     }
 }
