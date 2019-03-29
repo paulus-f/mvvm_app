@@ -34,10 +34,12 @@ namespace University_students.ViewModel.AdminVM
                 LoginTeacher = value?.Login;
                 FirstNameTeacher = value?.FirstName;
                 LastNameTeacher = value?.LastName;
-                SelectedPulpit = value?.Pulpit;
+                SelectedUniversity = value?.Pulpit.Faculty.University.Name;
                 SelectedFaculty = value?.Pulpit.Faculty;
-                IsEnabledUD = true;
-                OnPropertyChanged("SelectedFacultyDG");
+                SelectedPulpit = value?.Pulpit;
+                if (value == null) IsEnabledUD = true;
+                else IsEnabledUD = false;
+                OnPropertyChanged("SelectedTeacherDG");
             }
         }
 
@@ -49,7 +51,7 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _listTeachers = value;
-                OnPropertyChanged("ListUsers");
+                OnPropertyChanged("ListTeachers");
             }
         }
 
@@ -74,8 +76,12 @@ namespace University_students.ViewModel.AdminVM
                 _selectedFaculty= value;
                 if (value != null)
                 {
-                    ListPulpits = db.Pulpits.Where(p => p.Faculty.Id == value.Id)?.ToList();
-                    ListTeachers = db.Users.Where(p => p.TypeUser == Enums.Role.Teacher && p.Pulpit.Faculty.Id == value.Id).ToList();
+                    ListPulpits = db.Pulpits.Join(db.Faculties, p => p.FacultyId, f => f.Id, (p,f) => p)?.ToList();
+                    ListTeachers = (from u in db.Users
+                                    join p in db.Pulpits on u.Id equals p.Id
+                                    join f in db.Faculties on p.Id equals f.Id
+                                    where u.TypeUser == Enums.Role.Teacher && f.Id == value.Id
+                                    select u).ToList();
                 }
                 OnPropertyChanged("SelectedFaculty");
             }
@@ -182,8 +188,11 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _selectedUniversity = value;
-                _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
-                ListFaculties = _selectedUniversityModel.Faculties.ToList();
+                if (value != null)
+                {
+                    _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                    ListFaculties = _selectedUniversityModel.Faculties.ToList();
+                }
                 OnPropertyChanged("SelectedUniversity");
             }
         }
@@ -210,7 +219,8 @@ namespace University_students.ViewModel.AdminVM
                     IsNet = CheckConnection();
                 }
             });
-            ListUniversities = db.Universities.Select(u => u.Name).ToList();            
+            ListUniversities = db.Universities.Select(u => u.Name).ToList();
+            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         private bool CheckConnection()
@@ -248,6 +258,51 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        public ICommand ResetCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanResetDG()
+                );
+            }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanDeleteTeacher()
+                );
+            }
+        }
+
+        private void CanDeleteTeacher()
+        {
+            db.Users.Remove(SelectedTeacherDG);
+            db.SaveChanges();
+            ListTeachers.Remove(SelectedTeacherDG);
+            SelectedTeacherDG = null;
+        }
+
+        private void CanResetDG()
+        {
+            SelectedTeacherDG = null;
+            SelectedPulpit = null;
+            SelectedFaculty = null;
+            ListFaculties = null;
+            ListPulpits = null;
+            SelectedTeacherDG = null;
+            FirstNameTeacher = null;
+            LastNameTeacher = null;
+            EmailTeacher = null;
+            LoginTeacher = null;
+            IsEnabledUD = false;
+            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
+            // ListSubjects = null;
+        }
+
         private void CanInviteTeacher()
         {
             if (LoginTeacher     != null &&
@@ -264,7 +319,8 @@ namespace University_students.ViewModel.AdminVM
                     FirstName = this.FirstNameTeacher,
                     LastName = this.LastNameTeacher,
                     Password = BCrypt.Net.BCrypt.HashPassword(password),
-                    Pulpit = this.SelectedPulpit
+                    Pulpit = this.SelectedPulpit,
+                    TypeUser = Enums.Role.Teacher
                 };
                 //newPulpit.Subjects.Add(selectedSub)
                 db.Users.Add(newTeacher);
@@ -301,8 +357,8 @@ namespace University_students.ViewModel.AdminVM
             message.Body = $"" +
                 $"<h1>Welcome to App University Student</h1>" +
                 $"<h2>You was added to database in app</h2>" +
-                $"<h3>Your login {LoginTeacher}</h3>" +
-                $"<h3>Your password {pw}</h3>" +
+                $"<h3>Your login: {LoginTeacher}</h3>" +
+                $"<h3>Your password: {pw}</h3>" +
                 $"";
             message.IsBodyHtml = true;
             smtp.EnableSsl = true;
