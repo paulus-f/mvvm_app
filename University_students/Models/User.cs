@@ -19,6 +19,8 @@ namespace University_students.Models
         public string Password { get; set; }
         public int? PulpitId { get; set; }
         public virtual Pulpit Pulpit { get; set; }
+        public int? GroupId { get; set; }
+        public virtual Group Group{ get; set; }
         public Role TypeUser { get; set; }
         public virtual IList<TeacherSubject> Subjects { get; set; }
     }

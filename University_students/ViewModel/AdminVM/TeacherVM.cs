@@ -37,7 +37,7 @@ namespace University_students.ViewModel.AdminVM
                 SelectedUniversity = value?.Pulpit.Faculty.University.Name;
                 SelectedFaculty = value?.Pulpit.Faculty;
                 SelectedPulpit = value?.Pulpit;
-                if (value == null) IsEnabledUD = true;
+                if (value != null) IsEnabledUD = true;
                 else IsEnabledUD = false;
                 OnPropertyChanged("SelectedTeacherDG");
             }

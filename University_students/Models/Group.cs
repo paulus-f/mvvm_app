@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace University_students.Models
@@ -13,6 +14,11 @@ namespace University_students.Models
         [Required]
         public int? SpecialityId { get; set; }
         public virtual Speciality Speciality { get; set; }
+        public virtual ICollection<User> Students { get; set; }
+        public Group()
+        {
+            Students = new List<User>();
+        }
 
     }
 }
