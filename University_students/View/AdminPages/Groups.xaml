@@ -57,10 +57,8 @@
                     <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Content="Faculty" Grid.Column="1" Margin="118,45,10,40" RenderTransformOrigin="0.098,0.271"/>
             <Button Content="Add" Grid.Column="3" Command="{Binding AddSpecialityCommand}" Margin="43,46,59,26" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
             <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="Faculty" Margin="10,10,32,72" ItemsSource="{Binding ListUniversities}"  VerticalAlignment="Stretch"/>
-            <Label Content="University" Grid.Column="1" Margin="118,10,10,72" RenderTransformOrigin="0.098,0.271"/>
             <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFD8A620"/>
             <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFDA4D46"/>
             <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
@@ -84,11 +82,9 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="10,50,32,35" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
-                <Label Content="Faculty" Grid.Column="1" Margin="118,45,10,40" RenderTransformOrigin="0.098,0.271"/>
                 <Button Content="Add" Grid.Column="3" Command="{Binding AddGroupCommand}" Margin="43,46,59,26" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
                 <Label Content="Number" Grid.Column="2" Margin="120,10,16,69" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
                 <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Margin="10,10,32,72" ItemsSource="{Binding ListUniversities}"  VerticalAlignment="Stretch"/>
-                <Label Content="University" Grid.Column="1" Margin="118,10,10,72" RenderTransformOrigin="0.098,0.271"/>
                 <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFD8A620"/>
                 <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" Background="#FFDA4D46"/>
                 <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedSpeciality, Mode=TwoWay}" Margin="50,10,25,76" ItemsSource="{Binding ListSpeciality}" DisplayMemberPath="Name" VerticalAlignment="Stretch" Grid.Row="1"/>

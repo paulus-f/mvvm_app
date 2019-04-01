@@ -25,7 +25,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn Width="*" Header="Group" Binding="{Binding Group.Name}"/>
+                <DataGridTextColumn Width="*" Header="Group" Binding="{Binding Group.NumberGroup}"/>
+                <DataGridTextColumn Width="*" Header="First Year" Binding="{Binding Group.FirstYear}"/>
                 <DataGridTextColumn Width="*" Header="Speciality" Binding="{Binding Group.Speciality.Name}"/>
                 <DataGridTextColumn Width="*" Header="Faculty" Binding="{Binding Group.Speciality.Faculty.Name}"/>
             </DataGrid.Columns>

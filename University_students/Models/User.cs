@@ -22,7 +22,11 @@ namespace University_students.Models
         public int? GroupId { get; set; }
         public virtual Group Group{ get; set; }
         public Role TypeUser { get; set; }
-        public virtual IList<TeacherSubject> Subjects { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
+        public User()
+        {
+            Subjects = new List<Subject>();
+        }
     }
 
 }

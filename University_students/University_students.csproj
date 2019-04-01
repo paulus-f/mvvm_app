@@ -141,9 +141,7 @@
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.cs" />
-    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs">
-      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs" />
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.cs" />
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.Designer.cs">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
@@ -151,6 +149,14 @@
     <Compile Include="Migrations\201903291752456_AddGroupToUser.cs" />
     <Compile Include="Migrations\201903291752456_AddGroupToUser.Designer.cs">
       <DependentUpon>201903291752456_AddGroupToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011726178_SomeFix.cs" />
+    <Compile Include="Migrations\201904011726178_SomeFix.Designer.cs">
+      <DependentUpon>201904011726178_SomeFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.cs" />
+    <Compile Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.Designer.cs">
+      <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
@@ -332,14 +338,18 @@
     <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx">
-      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx" />
     <EmbeddedResource Include="Migrations\201903282246449_AddPulpitIdToTeacher.resx">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903291752456_AddGroupToUser.resx">
       <DependentUpon>201903291752456_AddGroupToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011726178_SomeFix.resx">
+      <DependentUpon>201904011726178_SomeFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.resx">
+      <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

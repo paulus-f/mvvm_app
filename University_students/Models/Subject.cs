@@ -13,6 +13,10 @@ namespace University_students.Models
         public string Name { get; set; }
         [Required]
         public int Hour { get; set; }
-        public virtual IList<TeacherSubject> Teachers { get; set; }
+        public virtual ICollection<User> Teachers { get; set; }
+        public Subject()
+        {
+            Teachers = new List<User>();
+        }
     }
 }
