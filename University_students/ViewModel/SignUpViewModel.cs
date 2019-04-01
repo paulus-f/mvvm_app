@@ -9,10 +9,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using University_students.Messager;
 using University_students.Models;
+using University_students.Serializable;
 
 namespace University_students.ViewModel
 {
@@ -24,6 +26,7 @@ namespace University_students.ViewModel
         {
             _isEnabled = true;
             db = new USDbContext();
+            ListUniversities = db.Universities.ToList();
         }
 
         private bool _isActiveMessage;
@@ -47,6 +50,87 @@ namespace University_students.ViewModel
                 OnPropertyChanged("Message");
             }
         }
+
+        private List<University> _listUniversities;
+        public List<University> ListUniversities
+        {
+            get => _listUniversities;
+            set
+            {
+                _listUniversities = value;
+                OnPropertyChanged("ListUniversities");
+            }
+        }
+
+        private University _selectedUniversity;
+        public University SelectedUniversity
+        {
+            get => _selectedUniversity;
+            set
+            {
+                _selectedUniversity = value;
+                ListFaculties = value?.Faculties.ToList();
+                OnPropertyChanged("SelectedUniversity");
+            }
+        }
+
+        private List<Faculty> _listFaculties;
+        public List<Faculty> ListFaculties
+        {
+            get => _listFaculties;
+            set
+            {
+                _listFaculties = value;
+                OnPropertyChanged("ListFaculties");
+            }
+        }
+
+        private Faculty _selectedFaculty;
+        public Faculty SelectedFaculty
+        {
+            get => _selectedFaculty;
+            set
+            {
+                _selectedFaculty = value;
+                if (value != null)
+                    ListGroupsString =  ListGroupSer.ToListGroup((from g in db.Groups
+                                            join sp in db.Specialities on g.SpecialityId equals sp.Id
+                                            join f in db.Faculties on sp.FacultyId equals f.Id
+                                            where f.Id == value.Id
+                                            select g).ToList());
+                OnPropertyChanged("SelectedFaculty");
+            }
+        }
+
+        private List<Models.Group> _listGroups;
+        public List<Models.Group> ListGroups
+        {
+            get => _listGroups;
+            set => _listGroups = value;
+        }
+
+        private List<GroupString> _listGroupsString;
+        public List<GroupString> ListGroupsString
+        {
+            get => _listGroupsString;
+            set
+            {
+                _listGroupsString = value;
+                OnPropertyChanged("ListGroupsString");
+            }
+        }
+
+        private GroupString _selectedGroup;
+        public GroupString SelectedGroup
+        {
+            get => _selectedGroup;
+            set
+            {
+                _selectedGroup = value;
+                OnPropertyChanged("SelectedGroup");
+            }
+        }
+
 
         private bool _isEnabled;
         public bool IsEnabled
@@ -204,6 +288,7 @@ namespace University_students.ViewModel
             if (String.IsNullOrEmpty(ConfirmedPassword)) result = false;
             if (String.IsNullOrEmpty(FirstName)) result = false;
             if (String.IsNullOrEmpty(LastName)) result = false;
+            if (SelectedGroup == null) result = false;
             return result;
         }
 
@@ -233,7 +318,9 @@ namespace University_students.ViewModel
                 FirstName = _firstName,
                 LastName = _lastName,
                 TypeUser = Enums.Role.Students,
-                Password = BCrypt.Net.BCrypt.HashPassword(_password)
+                Password = BCrypt.Net.BCrypt.HashPassword(_password),
+                Group = SelectedGroup.Group
+
             };
             db.Users.Add(newUser);
             Login = String.Empty;
@@ -251,7 +338,7 @@ namespace University_students.ViewModel
             Messenger.Default.Send<ChangeNavigationPageMessage>(msg);
             return null;
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

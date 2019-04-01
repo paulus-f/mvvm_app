@@ -161,6 +161,8 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\University.cs" />
+    <Compile Include="Serializable\GroupString.cs" />
+    <Compile Include="Serializable\ListGroupSer.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\FacultyVM.cs" />
     <Compile Include="ViewModel\AdminVM\GroupVM.cs" />
