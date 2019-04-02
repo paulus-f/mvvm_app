@@ -19,6 +19,7 @@ namespace University_students.ViewModel.AdminVM
 
         private USDbContext db;
         private University _selectedUniversityModel;
+        private List<User> _tempResUsers;
 
         private User _selectedStudentDG;
         public User SelectedStudentDG
@@ -33,6 +34,18 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private string _searchUsers;
+        public string SearchUsers
+        {
+            get => _searchUsers;
+            set
+            {
+                _searchUsers = value;
+                if (value != String.Empty) ListStudents = _tempResUsers?.Where(st => st.FirstName.Contains(value) || st.LastName.Contains(value)).ToList();
+                else ListStudents = _tempResUsers.ToList();
+                OnPropertyChanged("SearchUsers");
+            }
+        }
 
         private List<User> _listStudents;
         public List<User> ListStudents
@@ -78,12 +91,13 @@ namespace University_students.ViewModel.AdminVM
                 if (value != null)
                 {
                     ListSpecialities = db.Faculties.Join(db.Specialities, f => f.Id, sp => sp.FacultyId, (f, sp) => sp)?.ToList();
-                    ListStudents = (from u in db.Users
+                    _tempResUsers = (from u in db.Users
                                     join g in db.Groups on u.GroupId equals g.Id
                                     join sp in db.Specialities on g.SpecialityId equals sp.Id
                                     join f in db.Faculties on sp.FacultyId equals f.Id
-                                    where u.TypeUser == Enums.Role.Teacher && f.Id == value.Id
+                                    where u.TypeUser == Enums.Role.Students && f.Id == value.Id
                                     select u).ToList();
+                    ListStudents = _tempResUsers;
                 }
                 OnPropertyChanged("SelectedFaculty");
             }
@@ -122,6 +136,14 @@ namespace University_students.ViewModel.AdminVM
                 {
                     _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
                     ListFaculties = _selectedUniversityModel.Faculties.ToList();
+                    _tempResUsers = (from u in db.Users
+                                     join g in db.Groups on u.GroupId equals g.Id
+                                     join sp in db.Specialities on g.SpecialityId equals sp.Id
+                                     join f in db.Faculties on sp.FacultyId equals f.Id
+                                     join un in db.Universities on f.UniversityId equals un.Id
+                                     where u.TypeUser == Enums.Role.Students
+                                     select u).ToList();
+                    ListStudents = _tempResUsers.ToList();
                 }
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -143,7 +165,8 @@ namespace University_students.ViewModel.AdminVM
         {
             db = new USDbContext();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
-            ListStudents = db.Users.Where( st => st.TypeUser == Enums.Role.Students).ToList();
+            _tempResUsers = db.Users.Where( st => st.TypeUser == Enums.Role.Students).ToList();
+            ListStudents = _tempResUsers.ToList();
         }
 
         public ICommand DeleteCommand
