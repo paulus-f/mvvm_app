@@ -197,7 +197,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
         private bool _isEnabledUD;
         public bool IsEnabledUD
         {

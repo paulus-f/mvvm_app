@@ -30,6 +30,18 @@ namespace University_students.ViewModel.AdminVM
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
+        private bool _isEnabledUD;
+        public bool IsEnabledUD
+        {
+            get => _isEnabledUD;
+            set
+            {
+                _isEnabledUD = value;
+                OnPropertyChanged("IsEnabledUD");
+            }
+        }
+
+
         private int [] _rangeHours;
         public int [] RangeHours
         {
@@ -108,10 +120,11 @@ namespace University_students.ViewModel.AdminVM
                 {
                     SelectedHours = value.Hour;
                     ListTeachers = db.Users
-                    .Where(u => u.Subjects.Any(s => s.Id != value.Id))
-                    .ToList();
+                        .Where(u => u.Subjects.All(s => s.Id != value.Id) && u.TypeUser == Enums.Role.Teacher)
+                        .ToList();
+                    Teachers = (List<User>)value?.Teachers.ToList();
+                    IsEnabledUD = true;
                 }
-                Teachers = (List<User>)value?.Teachers;
                 OnPropertyChanged("SelectedSubjectDG");
             }
         }
@@ -216,17 +229,43 @@ namespace University_students.ViewModel.AdminVM
             get
             {
                 return new RelayCommand(
-                    () => CanDeleteTeacher()
+                    () => CanDeleteSubject()
                 );
             }
         }
 
-        private void CanDeleteTeacher()
+        public ICommand UpdateCommand
         {
-            //db.Users.Remove(SelectedTeacherDG);
-            //db.SaveChanges();
-            //ListTeachers.Remove(SelectedTeacherDG);
-            //SelectedTeacherDG = null;
+            get
+            {
+                return new RelayCommand(
+                    () => CanUpdateSubject()
+                );
+            }
+        }
+
+        private void CanUpdateSubject()
+        {
+            var sub = db.Subjects.FirstOrDefault( s => s.Id == SelectedSubjectDG.Id);
+            sub.Name = Name;
+            sub.Hour = SelectedHours;
+            sub.Teachers = Teachers;
+            db.SaveChanges();
+            int pos = ListSubjects.IndexOf(SelectedSubjectDG);
+            ListSubjects[pos] = sub;
+            ListSubjects = ListSubjects.ToList();
+            SelectedSubjectDG = null;
+            IsEnabledUD = false;
+        }
+
+        private void CanDeleteSubject()
+        {
+            db.Subjects.Remove(SelectedSubjectDG);
+            db.SaveChanges();
+            ListSubjects.Remove(SelectedSubjectDG);
+            ListSubjects = ListSubjects.ToList();
+            SelectedSubjectDG = null;
+            IsEnabledUD = false;
         }
 
         private void CanAddSubject()

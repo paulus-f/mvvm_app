@@ -45,7 +45,7 @@
             <ListBox SelectedItem="{Binding DeleteTeacherFromSubject}" ItemsSource="{Binding Teachers, Mode=TwoWay}"  Grid.Column="2" Margin="10,51,10,43" Grid.Row="2" Grid.RowSpan="2"/>
             <Label Content="Teachers" Grid.Column="2" Margin="10,20,101,68" Grid.Row="2" RenderTransformOrigin="0.509,0.308" FontSize="10"/>
             <ComboBox ItemsSource="{Binding RangeHours}" SelectedItem="{Binding SelectedHours}" Grid.Column="3" Margin="10,50,70,35" Grid.Row="1" VerticalAlignment="Stretch"/>
-            <Button  Content="Reset" MaxHeight="70" MaxWidth="220" Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="0,0,5,10" Background="#FF206299" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
+            <Button  Content="Reset" MaxHeight="70" MaxWidth="220" Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="0,0,0,10" Background="#FF206299" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
         </Grid>
     </Grid>
 </Page>
