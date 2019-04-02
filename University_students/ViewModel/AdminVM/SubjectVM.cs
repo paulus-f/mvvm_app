@@ -22,9 +22,12 @@ namespace University_students.ViewModel.AdminVM
 
         public SubjectVM()
         {
-            db = new USDbContext();    
+            db = new USDbContext();
+            Teachers = new List<User>();
             RangeHours = Enumerable.Range(1, 100).ToArray();
+            ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
+            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         private int [] _rangeHours;
@@ -41,10 +44,10 @@ namespace University_students.ViewModel.AdminVM
         private int _selectedHours;
         public int SelectedHours
         {
-            get => SelectedHours;
+            get => _selectedHours;
             set
             {
-                SelectedHours = value;
+                _selectedHours = value;
                 OnPropertyChanged("SelectedHours");
             }
         }
@@ -52,10 +55,10 @@ namespace University_students.ViewModel.AdminVM
         private string _name;
         public string Name
         {
-            get => Name;
+            get => _name;
             set
             {
-                Name = value;
+                _name = value;
                 OnPropertyChanged("Name");
             }
         }
@@ -101,8 +104,14 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedSubjectDG = value;
                 Name = value?.Name;
-                SelectedHours = (int)value?.Hour;
-                //Teachers = (List<User>)value?.Teachers;
+                if (value != null)
+                {
+                    SelectedHours = value.Hour;
+                    ListTeachers = db.Users
+                    .Where(u => u.Subjects.Any(s => s.Id != value.Id))
+                    .ToList();
+                }
+                Teachers = (List<User>)value?.Teachers;
                 OnPropertyChanged("SelectedSubjectDG");
             }
         }
@@ -116,29 +125,30 @@ namespace University_students.ViewModel.AdminVM
                 _addTeacherToSubject = value;
                 if (value != null)
                 {
-                    _teachers.Add(value);
-                    Teachers = _teachers;
-                    _listTeachers.Remove(value);
-                    ListTeachers = _listTeachers;
+                    Teachers.Add(value);
+                    Teachers = Teachers.ToList();
+                    ListTeachers.Remove(value);
+                    ListTeachers = ListTeachers.ToList();
                 }
+                _addTeacherToSubject = null;
                 OnPropertyChanged("AddTeacherToSubject");
             }
         }
 
-        private User _deleteTeacherToSubject;
-        public User DeleteTeacherToSubject
+        private User _deleteTeacherFromSubject;
+        public User DeleteTeacherFromSubject
         {
-            get => _deleteTeacherToSubject;
+            get => _deleteTeacherFromSubject;
             set
             {
                 if (value != null)
                 {
-                    _listTeachers.Add(value);
-                    ListTeachers = _listTeachers;
-                    _teachers.Remove(value);
-                    Teachers = _teachers;
+                    ListTeachers.Add(value);
+                    ListTeachers = ListTeachers.ToList();
+                    Teachers.Remove(value);
+                    Teachers = Teachers.ToList();
                 }
-                _deleteTeacherToSubject = value;
+                _deleteTeacherFromSubject = null;
                 OnPropertyChanged("DeleteTeacherFromSubject");
             }
         }
@@ -181,7 +191,7 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        public ICommand InviteTeacherCommand
+        public ICommand AddSubjectCommand
         {
             get
             {
@@ -232,7 +242,8 @@ namespace University_students.ViewModel.AdminVM
                     Hour = this.SelectedHours
                 };
                 foreach(User u in this.Teachers)
-              //      newSubject.Teachers.Add(u);
+                    newSubject.Teachers.Add(u);
+                db.Subjects.Add(newSubject);
                 db.SaveChanges();
                 ListSubjects = db.Subjects.ToList();
             }
@@ -244,8 +255,12 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanResetDG()
         {
+            SelectedSubjectDG = null;
+            Teachers = new List<User>();
             ListFaculties = null;
-            // ListSubjects = null;
+            Name = null;
+            ListSubjects = db.Subjects.ToList();
+            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

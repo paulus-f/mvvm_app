@@ -27,6 +27,8 @@ namespace University_students.Models
         {
             Subjects = new List<Subject>();
         }
+
+        public override string ToString() => FirstName + " " + LastName;
     }
 
 }
