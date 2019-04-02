@@ -54,7 +54,7 @@
                 <Label Content="Teachers" Margin="9,10,0,45" FontSize="36"/>
                 <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="16,13,26,72" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
                 <Label Content="Faculty" Grid.Column="2" Margin="118,13,10,72" RenderTransformOrigin="0.098,0.271"/>
-                <Button Content="Invite" IsEnabled="{Binding IsNet}"  Grid.Column="2" Command="{Binding InviteTeacherCommand}" Margin="142,75,138,10" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431" Grid.ColumnSpan="2"/>
+                <Button Content="Invite" IsEnabled="{Binding IsNet}"  Grid.Column="2" Command="{Binding InviteTeacherCommand}" Margin="142,75,138,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
                 <Label Content="University" Grid.Column="1" Margin="10,10,118,72" RenderTransformOrigin="0.098,0.271"/>
                 <Button  Content="Reset" MaxHeight="70" MaxWidth="220"  Grid.Column="0" Command="{Binding ResetCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,10" Background="#FFD8A620"/>
                 <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,10" Background="#FFDA4D46"/>
@@ -62,11 +62,11 @@
                 <TextBox Grid.Column="3" Margin="54,10,26,79" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoginTeacher}"/>
                 <TextBox Grid.Column="3" Margin="54,50,26,39" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstNameTeacher}"/>
                 <TextBox Grid.Column="3" Margin="54,89,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastNameTeacher}"/>
-                <ListBox Grid.Column="2" Margin="13,56,52,43" Grid.Row="2" Grid.RowSpan="2"/>
-                <TextBox Grid.Column="2" Margin="76,23,10,66" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubject}" RenderTransformOrigin="-0.026,0.522"/>
-                <Label Content="Subjects" Grid.Column="2" Margin="13,20,133,66" Grid.Row="2" RenderTransformOrigin="-0.019,0.577"/>
-                <ListBox Grid.Column="3" Margin="10,56,10,43" Grid.Row="2" Grid.RowSpan="2"/>
-                <Label Content="Teacher's Subjects" Grid.Column="3" Margin="44,20,48,66" Grid.Row="2"/>
+                <ListBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding AddedSubject}" Grid.Column="2" Margin="10,51,10,48" Grid.Row="2" Grid.RowSpan="2"/>
+                <TextBox Grid.Column="2"  Margin="91,23,10,66" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubjects, Mode=TwoWay}" RenderTransformOrigin="-0.026,0.522" TextChanged="TextBox_TextChanged"/>
+                <Label Content="Subjects" Grid.Column="2" Margin="13,20,143,66" Grid.Row="2" RenderTransformOrigin="-0.019,0.577"/>
+                <ListBox ItemsSource="{Binding Subjects}" SelectedItem="{Binding DeletedSubject}" Grid.Column="3" Margin="10,51,10,43" Grid.Row="2" Grid.RowSpan="2"/>
+                <Label Content="Teacher's Subjects" Grid.Column="3" Margin="16,20,10,66" Grid.Row="2"/>
                 <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedPulpit, Mode=TwoWay}" Text="Pulpit" Margin="16,54,26,31" ItemsSource="{Binding ListPulpits}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
                 <Label Content="Pulpit" Grid.Column="2" Margin="118,54,10,31" RenderTransformOrigin="0.098,0.271"/>
                 <Grid Grid.Column="2" Grid.Row ="1">
@@ -85,7 +85,7 @@
                     <Label Content="Email Teacher" Margin="10,10,6,20" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
                     <Label Content="Last Name" Grid.Column="2" Margin="0,10,18,20" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
                     <Label Content="First Name" Grid.Column="2" Margin="0,20,18,10" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-                    <TextBox Margin="0,22,0,10" TextWrapping="Wrap" Text="{Binding EmailTeacher}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <TextBox Margin="10,22,5,10" TextWrapping="Wrap" Text="{Binding EmailTeacher}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
                     <Label Content="Login" Grid.Column="2" Margin="0,0,10,0" Grid.Row="3" Grid.ColumnSpan="2"/>
                 </Grid>
             </Grid>

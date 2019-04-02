@@ -18,5 +18,10 @@ namespace University_students.Models
         {
             Teachers = new List<User>();
         }
+
+        public override string ToString()
+        {
+            return Name + " --- Hours: " + Hour;
+        }
     }
 }

@@ -55,18 +55,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
-        private List<Subject> _listSubject;
-        public List<Subject> ListSubject
-        {
-            get => _listSubject;
-            set
-            {
-                _listSubject = value;
-                OnPropertyChanged("ListSubject");
-            }
-        }
-
         private Faculty _selectedFaculty;
         public Faculty SelectedFaculty
         {
@@ -95,6 +83,64 @@ namespace University_students.ViewModel.AdminVM
             {
                 _listPulpits = value;
                 OnPropertyChanged("ListPulpits");
+            }
+        }
+
+        private List<Subject> _listSubjects;
+        public List<Subject> ListSubjects
+        {
+            get => _listSubjects;
+            set
+            {
+                _listSubjects = value;
+                OnPropertyChanged("ListSubjects");
+            }
+        }
+
+        private List<Subject> _subjects;
+        public List<Subject> Subjects
+        {
+            get => _subjects;
+            set
+            {
+                _subjects = value;
+                OnPropertyChanged("Subjects");
+            }
+        }
+
+        private Subject _addedSubject;
+        public Subject AddedSubject
+        {
+            get => _addedSubject;
+            set
+            {
+                if (value != null)
+                {
+                    ListSubjects.Remove(value);
+                    Subjects.Add(value);
+                }
+                ListSubjects = ListSubjects.ToList();
+                Subjects = Subjects.ToList();
+                _addedSubject = null;
+                OnPropertyChanged("AddedSubject");
+            }
+        }
+
+        private Subject _deletedSubject;
+        public Subject DeletedSubject
+        {
+            get => _deletedSubject;
+            set
+            {
+                if (value != null)
+                {
+                    Subjects.Remove(value);
+                    ListSubjects.Add(value);
+                }
+                ListSubjects = ListSubjects.ToList();
+                Subjects = Subjects.ToList();
+                _deletedSubject = null;
+                OnPropertyChanged("DeletedSubject");
             }
         }
 
@@ -133,6 +179,18 @@ namespace University_students.ViewModel.AdminVM
             {
                 _emailTeacher = value;
                 OnPropertyChanged("EmailTeacher");
+            }
+        }
+
+        private string _searchSubjects;
+        public string SearchSubjects
+        {
+            get => _searchSubjects;
+            set
+            {
+                _searchSubjects = value;
+                if(value != null) ListSubjects = db.Subjects.Where(sub => sub.Name.Contains(value)).ToList();
+                OnPropertyChanged("SearchSubjects");
             }
         }
 
@@ -218,6 +276,8 @@ namespace University_students.ViewModel.AdminVM
                     IsNet = CheckConnection();
                 }
             });
+            _subjects = new List<Subject>();
+            ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
@@ -299,7 +359,7 @@ namespace University_students.ViewModel.AdminVM
             LoginTeacher = null;
             IsEnabledUD = false;
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
-            // ListSubjects = null;
+            Subjects = new List<Subject>();
         }
 
         private void CanInviteTeacher()
@@ -321,9 +381,16 @@ namespace University_students.ViewModel.AdminVM
                     Pulpit = this.SelectedPulpit,
                     TypeUser = Enums.Role.Teacher
                 };
-                //newPulpit.Subjects.Add(selectedSub)
+                newTeacher.Subjects = Subjects;
                 db.Users.Add(newTeacher);
                 db.SaveChanges();
+                SelectedTeacherDG = null;
+                FirstNameTeacher = null;
+                LastNameTeacher = null;
+                EmailTeacher = null;
+                LoginTeacher = null;
+                IsEnabledUD = false;
+                Subjects = new List<Subject>();
                 sendInviteToMail(password);
                 ListTeachers = db.Users.Where(p => p.TypeUser == Enums.Role.Teacher)?.ToList();
             }
