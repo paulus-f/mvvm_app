@@ -45,6 +45,28 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private DateTime _selectedFinishDate;
+        public DateTime SelectedFinishDate
+        {
+            get => _selectedFinishDate;
+            set
+            {
+                _selectedFinishDate = value;
+                OnPropertyChanged("SelectedFinishDate");
+            }
+        }
+
+        private DateTime _selectedStartDate;
+        public DateTime SelectedStartDate
+        {
+            get => _selectedStartDate;
+            set
+            {
+                _selectedStartDate = value;
+                OnPropertyChanged("SelectedStartDate");
+            }
+        }
+
         private bool _isEnabledUD;
         public bool IsEnabledUD
         {
@@ -63,6 +85,7 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _city = value;
+                CanAdd = CheckField();
                 OnPropertyChanged("City");
             }
         }
@@ -74,6 +97,7 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _name = value;
+                CanAdd = CheckField();
                 OnPropertyChanged("Name");
             }
         }
@@ -85,6 +109,7 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _typeUniversity = value;
+                CanAdd = CheckField();
                 OnPropertyChanged("TypeUniversity");
             }
         }
@@ -104,6 +129,8 @@ namespace University_students.ViewModel.AdminVM
         {
             db = new USDbContext();
             AllUniversities = db.Universities.ToList();
+            SelectedStartDate = DateTime.Today;
+            SelectedFinishDate = DateTime.Today;
         }
 
         public ICommand AddUniversityCommand
@@ -157,13 +184,40 @@ namespace University_students.ViewModel.AdminVM
             IsEnabledUD = false;
         }
 
+        private bool _canAdd;
+        public bool CanAdd
+        {
+            get => _canAdd;
+            set
+            {
+                _canAdd = value;
+                OnPropertyChanged("CanAdd");
+            }
+        }
+
+        private bool CheckField()
+        {
+            bool res = true;
+            if (String.IsNullOrEmpty(Name)) res = false;
+            if (String.IsNullOrEmpty(City)) res = false;
+            if (String.IsNullOrEmpty(TypeUniversity)) res = false;
+            return res;
+        }
+
         private void CanAddUniversity()
         {
+            Сertification newСertification = new Сertification()
+            {
+                EndDate = SelectedFinishDate,
+                StartDate = SelectedStartDate
+            };
+
             University newUniversity = new University()
             {
                 TypeUniversity = this.TypeUniversity,
                 City = this.City,
-                Name = this.Name
+                Name = this.Name,
+                Сertification = newСertification
             };
             
             db.Universities.Add(newUniversity);

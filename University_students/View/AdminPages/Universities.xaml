@@ -29,7 +29,7 @@
                 <DataGridTextColumn Width="130" Header="Type" Binding="{Binding TypeUniversity}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" Margin="51,10,51,61" Grid.Row="2" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="51,10,51,61" Grid.Row="2" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
         <ComboBox Grid.Column="3" Text="Type University" SelectedItem="{Binding TypeUniversity}" Margin="40,58,40,10" Grid.Row="1" VerticalAlignment="Stretch">
             <System:String>University</System:String>
             <System:String>Academy</System:String>
@@ -45,7 +45,7 @@
         <Button  Content="Delete" Grid.Column="1" Command="{Binding DeleteCommand}" MaxHeight="70" MaxWidth="220"  Height="Auto" RenderTransformOrigin="0.082,0.431" Margin="10,82,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFDA4D46"/>
         <Label Content="Start" Grid.Column="2" Margin="10,76,148,10" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
         <Label Content="Finish" Grid.Column="2" Margin="10,10,148,77" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
-        <DatePicker Grid.Column="2" Margin="94,77,10,10" Grid.Row="2"/>
-        <DatePicker Grid.Column="2" Margin="94,11,10,77" Grid.Row="3"/>
+        <DatePicker Text="{Binding SelectedStartDate}" Grid.Column="2" Margin="94,77,10,10" Grid.Row="2"/>
+        <DatePicker Text="{Binding SelectedFinishDate}" Grid.Column="2" Margin="94,11,10,77" Grid.Row="3"/>
     </Grid>
 </Page>
