@@ -158,6 +158,10 @@
     <Compile Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.Designer.cs">
       <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021711255_AddСertification.cs" />
+    <Compile Include="Migrations\201904021711255_AddСertification.Designer.cs">
+      <DependentUpon>201904021711255_AddСertification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -167,6 +171,7 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\University.cs" />
+    <Compile Include="Models\Сertification.cs" />
     <Compile Include="Serializable\GroupString.cs" />
     <Compile Include="Serializable\ListGroupSer.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
@@ -350,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.resx">
       <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021711255_AddСertification.resx">
+      <DependentUpon>201904021711255_AddСertification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
