@@ -14,6 +14,7 @@ namespace University_students.Models
         public string City { get; set; }
         [Required]
         public string TypeUniversity { get; set; }
+        [Required]
         public virtual Сertification Сertification { get; set; }
         public virtual ICollection<Faculty> Faculties { get; set; }
         public University()

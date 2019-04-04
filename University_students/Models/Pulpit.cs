@@ -10,6 +10,7 @@ namespace University_students.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        [ForeignKey("Faculty")]
         public int? FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
         public virtual ICollection<User> Teachers { get; set; }

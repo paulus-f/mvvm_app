@@ -14,6 +14,7 @@ namespace University_students.Models
         public string Code { get; set; }
         [Required]
         public string Qualification { get; set; }
+        [ForeignKey("Faculty")]
         public int? FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
         public virtual ICollection<Group> Groups { get; set; }

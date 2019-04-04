@@ -45,27 +45,97 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        private DateTime _selectedFinishDate;
-        public DateTime SelectedFinishDate
+        private DateTime _SelectedFirstAutumnStartDate;
+        public DateTime SelectedFirstAutumnStartDate
         {
-            get => _selectedFinishDate;
+            get => _SelectedFirstAutumnStartDate;
             set
             {
-                _selectedFinishDate = value;
-                OnPropertyChanged("SelectedFinishDate");
+                _SelectedFirstAutumnStartDate = value;
+                OnPropertyChanged("SelectedFirstAutumnStartDate");
             }
         }
 
-        private DateTime _selectedStartDate;
-        public DateTime SelectedStartDate
+        private DateTime _SelectedFirstAutumnFinishDate;
+        public DateTime SelectedFirstAutumnFinishDate
         {
-            get => _selectedStartDate;
+            get => _SelectedFirstAutumnFinishDate;
             set
             {
-                _selectedStartDate = value;
-                OnPropertyChanged("SelectedStartDate");
+                _SelectedFirstAutumnFinishDate = value;
+                OnPropertyChanged("SelectedFirstAutumnFinishDate");
             }
         }
+
+
+        private DateTime _SelectedLastAutumnStartDate;
+        public DateTime SelectedLastAutumnStartDate
+        {
+            get => _SelectedLastAutumnStartDate;
+            set
+            {
+                _SelectedLastAutumnStartDate = value;
+                OnPropertyChanged("SelectedLastAutumnStartDate");
+            }
+        }
+
+        private DateTime _SelectedLastAutumnFinishDate;
+        public DateTime SelectedLastAutumnFinishDate
+        {
+            get => _SelectedLastAutumnFinishDate;
+            set
+            {
+                _SelectedLastAutumnFinishDate = value;
+                OnPropertyChanged("SelectedLastAutumnFinishDate");
+            }
+        }
+
+        private DateTime _SelectedFirstSpringStartDate;
+        public DateTime SelectedFirstSpringStartDate
+        {
+            get => _SelectedFirstSpringStartDate;
+            set
+            {
+                _SelectedFirstSpringStartDate = value;
+                OnPropertyChanged("SelectedFirstSpringStartDate");
+            }
+        }
+
+        private DateTime _SelectedFirstSpringFinishDate;
+        public DateTime SelectedFirstSpringFinishDate
+        {
+            get => _SelectedFirstSpringFinishDate;
+            set
+            {
+                _SelectedFirstSpringFinishDate = value;
+                OnPropertyChanged("SelectedFirstSpringFinishDate");
+            }
+        }
+
+        private DateTime _SelectedLastSpringStartDate;
+        public DateTime SelectedLastSpringStartDate
+        {
+            get => _SelectedLastSpringStartDate;
+            set
+            {
+                _SelectedLastSpringStartDate = value;
+                OnPropertyChanged("SelectedLastSpringStartDate");
+            }
+        }
+
+        private DateTime _SelectedLastSpringFinishDate;
+        public DateTime SelectedLastSpringFinishDate
+        {
+            get => _SelectedLastSpringFinishDate;
+            set
+            {
+                _SelectedLastSpringFinishDate = value;
+                OnPropertyChanged("SelectedLastSpringFinishDate");
+            }
+        }
+
+
+
 
         private bool _isEnabledUD;
         public bool IsEnabledUD
@@ -129,8 +199,14 @@ namespace University_students.ViewModel.AdminVM
         {
             db = new USDbContext();
             AllUniversities = db.Universities.ToList();
-            SelectedStartDate = DateTime.Today;
-            SelectedFinishDate = DateTime.Today;
+            SelectedFirstAutumnStartDate = DateTime.Today;
+            SelectedFirstAutumnFinishDate = DateTime.Today;
+            SelectedFirstSpringFinishDate = DateTime.Today;
+            SelectedLastAutumnFinishDate = DateTime.Today;
+            SelectedLastSpringStartDate = DateTime.Today;
+            SelectedLastSpringFinishDate = DateTime.Today;
+            SelectedLastAutumnStartDate = DateTime.Today;
+            SelectedFirstSpringStartDate = DateTime.Today;
         }
 
         public ICommand AddUniversityCommand
@@ -165,6 +241,10 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteFaculty()
         {
+            if(SelectedUniversityDG.Сertification != null)
+            {
+                db.Сertifications.Remove(SelectedUniversityDG.Сertification);
+            }
             db.Universities.Remove(db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id));
             db.SaveChanges();
             AllUniversities = db.Universities.ToList();
@@ -204,12 +284,20 @@ namespace University_students.ViewModel.AdminVM
             return res;
         }
 
+        //SelectedFirstAutumnStartDate
+
         private void CanAddUniversity()
         {
             Сertification newСertification = new Сertification()
             {
-                EndDate = SelectedFinishDate,
-                StartDate = SelectedStartDate
+                FirstAutumnStartDate = SelectedFirstAutumnStartDate,
+                FirstAutumnEndDate = SelectedFirstAutumnFinishDate,
+                FirstSpringEndDate = SelectedFirstSpringFinishDate,
+                LastAutumnEndDate = SelectedLastAutumnFinishDate,
+                LastSpringStartDate =  SelectedLastSpringStartDate,
+                LastSpringEndDate = SelectedLastSpringFinishDate,
+                LastAutumnStartDate = SelectedLastAutumnStartDate,
+                FirstSpringStartDate  = SelectedFirstSpringStartDate
             };
 
             University newUniversity = new University()

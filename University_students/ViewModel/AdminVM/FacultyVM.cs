@@ -57,6 +57,20 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
+        private string _searchPuplpits;
+        public string SearchPuplpits
+        {
+            get => _searchPuplpits;
+            set
+            {
+                _searchPuplpits = value;
+                if (value != String.Empty) ListPulpit = db.Pulpits.Where(p => p.FacultyId == SelectedFacultyDG.Id && p.Name.Contains(value)).ToList();
+                else ListPulpit = new List<Pulpit>();
+                OnPropertyChanged("SearchPuplpits");
+            }
+        }
+
+
         private string _name;
         public string Name
         {

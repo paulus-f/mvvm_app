@@ -58,7 +58,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
         private List<Group> _listGroups;
         public List<Group> ListGroups
         {

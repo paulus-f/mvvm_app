@@ -8,6 +8,8 @@
         xmlns:vm="clr-namespace:University_students.ViewModel"
         xmlns:views="clr-namespace:University_students.View"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        MinHeight="500"
+        MinWidth="900"
         x:Name="mainWindow">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />

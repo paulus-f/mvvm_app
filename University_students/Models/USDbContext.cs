@@ -18,5 +18,16 @@ namespace University_students.Models
         public DbSet<Pulpit> Pulpits { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Сertification> Сertifications { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+              .HasOptional<Pulpit>(e => e.Pulpit)
+              .WithMany(s => s.Teachers)
+              .HasForeignKey(e => e.PulpitId)
+              .WillCascadeOnDelete(false);
+        }
     }
 }

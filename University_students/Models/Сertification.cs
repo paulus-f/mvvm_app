@@ -13,12 +13,34 @@ namespace University_students.Models
         [ForeignKey("University")]
         [Key]
         public int Id { get; set; }
+
         [Required]
         [Column(TypeName = "Date")]
-        public DateTime StartDate { get; set; }
+        public DateTime FirstAutumnStartDate { get; set; }
         [Required]
         [Column(TypeName = "Date")]
-        public DateTime EndDate { get; set; }
+        public DateTime FirstAutumnEndDate { get; set; }
+
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime LastAutumnStartDate { get; set; }
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime LastAutumnEndDate { get; set; }
+
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime FirstSpringStartDate { get; set; }
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime FirstSpringEndDate { get; set; }
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime LastSpringStartDate { get; set; }
+        [Required]
+        [Column(TypeName = "Date")]
+        public DateTime LastSpringEndDate { get; set; }
+
         public virtual University University { get; set; }
     }
 }

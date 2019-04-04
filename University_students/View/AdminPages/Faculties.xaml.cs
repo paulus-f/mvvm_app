@@ -25,5 +25,11 @@ namespace University_students.View.AdminPages
             InitializeComponent();
             DataContext = new ViewModel.AdminVM.FacultyVM();
         }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            var binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+        }
     }
 }

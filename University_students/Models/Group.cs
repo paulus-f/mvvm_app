@@ -12,11 +12,14 @@ namespace University_students.Models
         [Required]
         public int FirstYear { get; set; }
         [Required]
+        [ForeignKey("Speciality")]
         public int? SpecialityId { get; set; }
         public virtual Speciality Speciality { get; set; }
+        public virtual ICollection<User> Teachers { get; set; }
         public virtual ICollection<User> Students { get; set; }
         public Group()
         {
+            Teachers = new List<User>();
             Students = new List<User>();
         }
 
