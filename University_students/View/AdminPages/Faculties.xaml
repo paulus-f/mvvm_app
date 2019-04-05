@@ -4,11 +4,60 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View.AdminPages"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Faculties">
 
+
     <Grid>
-        <Label Content="Faculty" Foreground="#DD14B42A"></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dgFaculty" Margin="10" Grid.Row="1" AutoGenerateColumns="False"  Grid.ColumnSpan="2" ItemsSource="{Binding AllFaculties}" Grid.RowSpan="3" IsReadOnly="True" SelectedItem="{Binding SelectedFacultyDG}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="130" Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="130" Header="University" Binding="{Binding University.Name}"/>
+                <DataGridTextColumn Width="130" Header="Dean" Binding="{Binding Dean}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddFacultyCommand}" Margin="65,10,37,69" Grid.Row="2" Height="Auto" RenderTransformOrigin="0.082,0.431"/>
+        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="51,7,29,66" TextWrapping="Wrap" Grid.Row="1"/>
+        <Label Content="Name" Grid.Column="2" Margin="93,14,43,66" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+        <Label Content="Faculties" Margin="10,4,0,46" FontSize="48"/>
+        <ComboBox Grid.Column="2" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" Text="University" Margin="10,32,32,40" ItemsSource="{Binding ListUniversity}"  VerticalAlignment="Stretch"/>
+        <Label Content="University" Grid.Column="1" Margin="63,32,10,40" RenderTransformOrigin="0.098,0.271" FontSize="22"/>
+        <Button Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" Height="Auto" IsEnabled="{Binding IsEnabledUD}" MaxHeight="70" MaxWidth="220" RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" Background="#FFD8A620"/>
+        <Button Content="Delete" Grid.Column="1" Command="{Binding DeleteCommand}" Height="Auto" IsEnabled="{Binding IsEnabledUD}" MaxHeight="70" MaxWidth="220"  RenderTransformOrigin="0.082,0.431" Margin="10,77,10,0" Background="#FFDA4D46"/>
+        <TextBox Grid.Column="3" Text="{Binding Dean}" Margin="51,63,29,10" TextWrapping="Wrap" Grid.Row="1"/>
+        <Label Content="Dean(Full Name)" Grid.Column="2" Margin="93,70,10,10" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Path=ListPulpit}" SelectedItem="{Binding SelectedPulpit}" Margin="40,10,161,11" Grid.Row="3" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Delete" Grid.Column="0" Command="{Binding DataContext.DeletePulpitCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"/>
+                        <TextBlock Text="{Binding Name}" Grid.Column="1"></TextBlock >
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBox Grid.Column="2" Margin="100,76,5,3" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchPuplpits}" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox Grid.Column="3" Margin="51,20,29,60" Grid.Row="3" TextWrapping="Wrap" Text="{Binding NamePulpit}"/>
+        <Label Content="Name of pulpit" Grid.Column="3" Margin="65,0,40,88" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
+        <Label Content="Search" Grid.Column="2" Margin="40,76,109,3" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
+        <Button Content="Add Pulpit" Grid.Column="3" IsEnabled="{Binding IsEnabledUD}" Command="{Binding AddPulpitCommand}" Margin="73,69,37,11" Grid.Row="3" Height="Auto" RenderTransformOrigin="0.082,0.431" FontSize="12"/>
     </Grid>
 </Page>

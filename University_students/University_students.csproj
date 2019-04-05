@@ -104,9 +104,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomBoxes\ChoosingGroups.xaml.cs">
+      <DependentUpon>ChoosingGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
     <Compile Include="Data\RegexPattern.cs" />
-    <Compile Include="Enums\TypeUniversity.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
+    <Compile Include="Messager\LogOutMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.cs" />
     <Compile Include="Migrations\201903090934379_InitialCreate.Designer.cs">
@@ -124,13 +128,80 @@
     <Compile Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.Designer.cs">
       <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903232327221_CreateTableSpeciality.cs" />
+    <Compile Include="Migrations\201903232327221_CreateTableSpeciality.Designer.cs">
+      <DependentUpon>201903232327221_CreateTableSpeciality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903251933521_AddTableGroupsAndChangeUnique.cs" />
+    <Compile Include="Migrations\201903251933521_AddTableGroupsAndChangeUnique.Designer.cs">
+      <DependentUpon>201903251933521_AddTableGroupsAndChangeUnique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903270705045_AddDeanToFaculty.cs" />
+    <Compile Include="Migrations\201903270705045_AddDeanToFaculty.Designer.cs">
+      <DependentUpon>201903270705045_AddDeanToFaculty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903270712002_AddPulpitTable.cs" />
+    <Compile Include="Migrations\201903270712002_AddPulpitTable.Designer.cs">
+      <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.cs" />
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs" />
+    <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.cs" />
+    <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.Designer.cs">
+      <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903291752456_AddGroupToUser.cs" />
+    <Compile Include="Migrations\201903291752456_AddGroupToUser.Designer.cs">
+      <DependentUpon>201903291752456_AddGroupToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011726178_SomeFix.cs" />
+    <Compile Include="Migrations\201904011726178_SomeFix.Designer.cs">
+      <DependentUpon>201904011726178_SomeFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.cs" />
+    <Compile Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.Designer.cs">
+      <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021711255_AddСertification.cs" />
+    <Compile Include="Migrations\201904021711255_AddСertification.Designer.cs">
+      <DependentUpon>201904021711255_AddСertification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041817211_CorrectTables.cs" />
+    <Compile Include="Migrations\201904041817211_CorrectTables.Designer.cs">
+      <DependentUpon>201904041817211_CorrectTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904042010588_CorrectCertification.cs" />
+    <Compile Include="Migrations\201904042010588_CorrectCertification.Designer.cs">
+      <DependentUpon>201904042010588_CorrectCertification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904052015221_AddTeaching.cs" />
+    <Compile Include="Migrations\201904052015221_AddTeaching.Designer.cs">
+      <DependentUpon>201904052015221_AddTeaching.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904052059304_CorrectTeaching.cs" />
+    <Compile Include="Migrations\201904052059304_CorrectTeaching.Designer.cs">
+      <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Pulpit.cs" />
     <Compile Include="Models\Speciality.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Teaching.cs" />
     <Compile Include="Models\University.cs" />
+    <Compile Include="Models\Сertification.cs" />
+    <Compile Include="Serializable\GroupString.cs" />
+    <Compile Include="Serializable\ListGroupSer.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\FacultyVM.cs" />
+    <Compile Include="ViewModel\AdminVM\GroupVM.cs" />
+    <Compile Include="ViewModel\AdminVM\SpecialityVM.cs" />
+    <Compile Include="ViewModel\AdminVM\StudentVM.cs" />
+    <Compile Include="ViewModel\AdminVM\SubjectVM.cs" />
+    <Compile Include="ViewModel\AdminVM\TeacherVM.cs" />
+    <Compile Include="ViewModel\AdminVM\UniversityVM.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
@@ -179,6 +250,10 @@
     <Compile Include="View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomBoxes\ChoosingGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,6 +354,46 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903192246390_AddFacultyAndUniversityMigration.resx">
       <DependentUpon>201903192246390_AddFacultyAndUniversityMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903232327221_CreateTableSpeciality.resx">
+      <DependentUpon>201903232327221_CreateTableSpeciality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251933521_AddTableGroupsAndChangeUnique.resx">
+      <DependentUpon>201903251933521_AddTableGroupsAndChangeUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270705045_AddDeanToFaculty.resx">
+      <DependentUpon>201903270705045_AddDeanToFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
+      <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx" />
+    <EmbeddedResource Include="Migrations\201903282246449_AddPulpitIdToTeacher.resx">
+      <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903291752456_AddGroupToUser.resx">
+      <DependentUpon>201903291752456_AddGroupToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011726178_SomeFix.resx">
+      <DependentUpon>201904011726178_SomeFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011727446_CorrectAssociationsInSubjectAndUser.resx">
+      <DependentUpon>201904011727446_CorrectAssociationsInSubjectAndUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021711255_AddСertification.resx">
+      <DependentUpon>201904021711255_AddСertification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041817211_CorrectTables.resx">
+      <DependentUpon>201904041817211_CorrectTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904042010588_CorrectCertification.resx">
+      <DependentUpon>201904042010588_CorrectCertification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904052015221_AddTeaching.resx">
+      <DependentUpon>201904052015221_AddTeaching.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904052059304_CorrectTeaching.resx">
+      <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

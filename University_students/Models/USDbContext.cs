@@ -13,5 +13,22 @@ namespace University_students.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<University> Universities { get; set; }
+        public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Pulpit> Pulpits { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Сertification> Сertifications { get; set; }
+        public DbSet<Teaching> Teachings { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+              .HasOptional<Pulpit>(e => e.Pulpit)
+              .WithMany(s => s.Teachers)
+              .HasForeignKey(e => e.PulpitId)
+              .WillCascadeOnDelete(false);
+        }
     }
 }

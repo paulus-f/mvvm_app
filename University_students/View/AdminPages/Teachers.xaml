@@ -9,7 +9,87 @@
       Title="Teachers">
 
     <Grid>
-        <Label Content="Tea" Foreground="#DD14B42A"></Label>
-
+        <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Grid.RowSpan="3" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="Speciality" Binding="{Binding Speciality.Name}"/>
+                    <DataGridTextColumn Width="150" Header="Number of group" Binding="{Binding NumberGroup}"/>
+                    <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="220*"/>
+                    <ColumnDefinition Width="219*"/>
+                    <ColumnDefinition Width="161*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DataGrid Margin="10,10,0,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedTeacherDG}" ItemsSource="{Binding ListTeachers}" Grid.RowSpan="3" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="70" Header="Pulpit" Binding="{Binding Pulpit.Name}"/>
+                        <DataGridTextColumn Width="87" Header="University" Binding="{Binding Pulpit.Faculty.University.Name}"/>
+                        <DataGridTextColumn Width="92" Header="First Name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Width="89" Header="Last Name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Width="*" Header="Login" Binding="{Binding Login}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Teachers" Margin="9,10,0,45" FontSize="36"/>
+                <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="16,13,26,72" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
+                <Label Content="Faculty" Grid.Column="2" Margin="118,13,10,72" RenderTransformOrigin="0.098,0.271"/>
+                <Button Content="Invite" IsEnabled="{Binding IsNet}"  Grid.Column="2" Command="{Binding InviteTeacherCommand}" Margin="58,75,61,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
+                <Label Content="University" Grid.Column="1" Margin="10,10,118,72" RenderTransformOrigin="0.098,0.271"/>
+                <Button  Content="Reset" MaxHeight="70" MaxWidth="220"  Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFD8A620" VerticalAlignment="Top"/>
+                <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFDA4D46" VerticalAlignment="Top"/>
+                <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="87,13,10,0" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Top" Height="27"/>
+                <TextBox Grid.Column="3" Margin="54,10,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoginTeacher}" Height="24" VerticalAlignment="Top"/>
+                <TextBox Grid.Column="3" Margin="54,50,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstNameTeacher}" Height="24" VerticalAlignment="Top"/>
+                <TextBox Grid.Column="3" Margin="54,89,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastNameTeacher}" Height="24" VerticalAlignment="Top"/>
+                <ListBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding AddedSubject}" Grid.Column="2" Margin="10,51,10,48" Grid.Row="2" Grid.RowSpan="2"/>
+                <TextBox Grid.Column="2"  Margin="91,23,10,66" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubjects, Mode=TwoWay}" RenderTransformOrigin="-0.026,0.522" TextChanged="TextBox_TextChanged"/>
+                <Label Content="Subjects" Grid.Column="2" Margin="13,20,143,66" Grid.Row="2" RenderTransformOrigin="-0.019,0.577"/>
+                <ListBox ItemsSource="{Binding Subjects}" SelectedItem="{Binding DeletedSubject}" Grid.Column="3" Margin="10,51,10,43" Grid.Row="2" Grid.RowSpan="2"/>
+                <Label Content="Teacher's Subjects" Grid.Column="3" Margin="16,20,10,66" Grid.Row="2"/>
+                <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedPulpit, Mode=TwoWay}" Text="Pulpit" Margin="16,54,26,31" ItemsSource="{Binding ListPulpits}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
+                <Label Content="Pulpit" Grid.Column="2" Margin="118,54,10,31" RenderTransformOrigin="0.098,0.271"/>
+                <Grid Grid.Column="2" Grid.Row ="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="78*"/>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="55*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Email Teacher" Margin="10,10,6,20" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <Label Content="Last Name" Grid.Column="2" Margin="0,10,18,20" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <Label Content="First Name" Grid.Column="2" Margin="0,20,18,10" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <TextBox TextChanged="TextBox_TextChanged" Margin="10,22,5,10" TextWrapping="Wrap" Text="{Binding EmailTeacher}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <Label Content="Login" Grid.Column="2" Margin="0,0,10,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                </Grid>
+                <Button Content="Add groups to teacher" IsEnabled="{Binding IsEnabledUD}" Grid.Column="3" Click="openListGroups" Margin="16,75,10,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

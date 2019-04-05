@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using University_students.Enums;
 
@@ -16,7 +17,20 @@ namespace University_students.Models
         public string LastName { get; set; }
         [Required]
         public string Password { get; set; }
+        public int? PulpitId { get; set; }
+        public virtual Pulpit Pulpit { get; set; }
+        public int? GroupId { get; set; }
+        public virtual Group Group{ get; set; }
         public Role TypeUser { get; set; }
+        [Required]
+        public virtual Teaching Teaching { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
+        public User()
+        {
+            Subjects = new List<Subject>();
+        }
+
+        public override string ToString() => FirstName + " " + LastName;
     }
 
 }

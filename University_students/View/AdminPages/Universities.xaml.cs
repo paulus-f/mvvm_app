@@ -15,14 +15,12 @@ using System.Windows.Shapes;
 
 namespace University_students.View.AdminPages
 {
-    /// <summary>
-    /// Логика взаимодействия для Universities.xaml
-    /// </summary>
     public partial class Universities : Page
     {
         public Universities()
         {
             InitializeComponent();
+            DataContext = new ViewModel.AdminVM.UniversityVM();
         }
     }
 }

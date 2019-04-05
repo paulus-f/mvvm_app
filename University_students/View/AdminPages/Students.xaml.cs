@@ -23,6 +23,13 @@ namespace University_students.View.AdminPages
         public Students()
         {
             InitializeComponent();
+            DataContext = new ViewModel.AdminVM.StudentVM();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
         }
     }
 }

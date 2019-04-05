@@ -8,6 +8,8 @@
         xmlns:vm="clr-namespace:University_students.ViewModel"
         xmlns:views="clr-namespace:University_students.View"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        MinHeight="500"
+        MinWidth="900"
         x:Name="mainWindow">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
@@ -25,6 +27,12 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
                 <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
                     <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon Kind="Bell"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon Kind="Account"/>
                 </Button>
             </StackPanel>
         </Grid>
