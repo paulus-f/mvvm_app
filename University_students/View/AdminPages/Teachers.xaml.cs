@@ -23,13 +23,21 @@ namespace University_students.View.AdminPages
         public Teachers()
         {
             InitializeComponent();
-            DataContext = new ViewModel.AdminVM.TeacherVM();
+            vm = new ViewModel.AdminVM.TeacherVM();
+            DataContext = vm;
         }
+
+        private ViewModel.AdminVM.TeacherVM vm;
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
+        }
+
+        private void openListGroups(object sender, EventArgs e)
+        {
+            new CustomBoxes.ChoosingGroups(vm.SelectedTeacherDG).Show();
         }
     }
 }

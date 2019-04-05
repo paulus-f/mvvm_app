@@ -33,11 +33,10 @@
         <Label  Content="{Binding Login}" Grid.Column="7" Grid.Row="0" FontSize="12" Height="Auto" Background="#FF4AAE3F" Foreground="#DDFFFFFF"/>
         <Button Content="Log Out" Command="{Binding LogOutCommand}"  Grid.Column="8" Grid.Row="0" FontSize="12" Height="Auto" Background="#FFA2252A"/>
         <Frame 
-            Grid.ColumnSpan="8" 
+            Grid.ColumnSpan="9" 
             Content="{Binding CurrentAdminPage}" 
             NavigationUIVisibility="Hidden" 
-            Grid.Row="1" 
-            Margin="0,0,-1,0"
+            Grid.Row="1"
         />
     </Grid>
 </UserControl>

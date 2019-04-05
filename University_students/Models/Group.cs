@@ -15,13 +15,17 @@ namespace University_students.Models
         [ForeignKey("Speciality")]
         public int? SpecialityId { get; set; }
         public virtual Speciality Speciality { get; set; }
-        public virtual ICollection<User> Teachers { get; set; }
         public virtual ICollection<User> Students { get; set; }
+        public virtual ICollection<Teaching> Teachings { get; set; }
         public Group()
         {
-            Teachers = new List<User>();
-            Students = new List<User>();
+            Teachings = new List<Teaching>();
+            Students  = new List<User>();
         }
 
+        public override string ToString()
+        {
+            return $"{Speciality.Name}, Number: {NumberGroup}, FY: {FirstYear}";
+        }
     }
 }

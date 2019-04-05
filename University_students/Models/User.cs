@@ -22,12 +22,12 @@ namespace University_students.Models
         public int? GroupId { get; set; }
         public virtual Group Group{ get; set; }
         public Role TypeUser { get; set; }
+        [Required]
+        public virtual Teaching Teaching { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
-        public virtual ICollection<Group> Groups { get; set; }
         public User()
         {
             Subjects = new List<Subject>();
-            Groups = new List<Group>();
         }
 
         public override string ToString() => FirstName + " " + LastName;

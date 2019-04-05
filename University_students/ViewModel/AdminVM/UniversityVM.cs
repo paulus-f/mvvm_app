@@ -284,8 +284,6 @@ namespace University_students.ViewModel.AdminVM
             return res;
         }
 
-        //SelectedFirstAutumnStartDate
-
         private void CanAddUniversity()
         {
             Сertification newСertification = new Сertification()

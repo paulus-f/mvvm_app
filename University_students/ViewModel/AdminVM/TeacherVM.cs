@@ -34,8 +34,8 @@ namespace University_students.ViewModel.AdminVM
                 LoginTeacher = value?.Login;
                 FirstNameTeacher = value?.FirstName;
                 LastNameTeacher = value?.LastName;
-                SelectedUniversity = value?.Pulpit.Faculty.University.Name;
-                SelectedFaculty = value?.Pulpit.Faculty;
+                SelectedUniversity = value?.Pulpit?.Faculty.University.Name;
+                SelectedFaculty = value?.Pulpit?.Faculty;
                 SelectedPulpit = value?.Pulpit;
                 if (value != null) IsEnabledUD = true;
                 else IsEnabledUD = false;
@@ -339,10 +339,15 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteTeacher()
         {
-            db.Users.Remove(SelectedTeacherDG);
-            db.SaveChanges();
-            ListTeachers.Remove(SelectedTeacherDG);
-            SelectedTeacherDG = null;
+            using (var context = new USDbContext())
+            {
+                var deleted = context.Users.Where(t => t.Id == SelectedTeacherDG.Id).FirstOrDefault();
+                if (deleted.Teaching != null )context.Teachings.Remove(deleted.Teaching);
+                context.Users.Remove(deleted);
+                context.SaveChanges();
+                ListTeachers.Remove(SelectedTeacherDG);
+                SelectedTeacherDG = null;
+            }
         }
 
         private void CanResetDG()
@@ -371,6 +376,7 @@ namespace University_students.ViewModel.AdminVM
                 )
             {
                 string password = GenerateToken(10);
+                Teaching newTeaching = new Teaching() { };
 
                 User newTeacher = new User()
                 {
@@ -379,10 +385,12 @@ namespace University_students.ViewModel.AdminVM
                     LastName = this.LastNameTeacher,
                     Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Pulpit = this.SelectedPulpit,
+                    Teaching = newTeaching,
                     TypeUser = Enums.Role.Teacher
                 };
                 newTeacher.Subjects = Subjects;
                 db.Users.Add(newTeacher);
+                sendInviteToMail(password);
                 db.SaveChanges();
                 SelectedTeacherDG = null;
                 FirstNameTeacher = null;
@@ -391,7 +399,6 @@ namespace University_students.ViewModel.AdminVM
                 LoginTeacher = null;
                 IsEnabledUD = false;
                 Subjects = new List<Subject>();
-                sendInviteToMail(password);
                 ListTeachers = db.Users.Where(p => p.TypeUser == Enums.Role.Teacher)?.ToList();
             }
             else

@@ -18,6 +18,7 @@ namespace University_students.Models
         public DbSet<Pulpit> Pulpits { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Сertification> Сertifications { get; set; }
+        public DbSet<Teaching> Teachings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
