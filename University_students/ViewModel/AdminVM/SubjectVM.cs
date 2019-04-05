@@ -41,7 +41,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
         private int [] _rangeHours;
         public int [] RangeHours
         {

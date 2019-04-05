@@ -105,8 +105,6 @@ namespace University_students.CustomBoxes.ViewModel
                 OnPropertyChanged("TeacherGroups");
             }
         }
-        
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
