@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="University_students.View.TeacherPages.GroupsContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:University_students.View.TeacherPages"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Margin="5">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon Kind="Accessible"/>
+                </Button>
+                <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <ListBox  ItemTemplate="{StaticResource listTemplate}" 
+                ItemsSource="{Binding ListGroups}"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,0,0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <materialDesign:PackIcon Kind="Accessible" Margin="84,19,0,0" Height="62" Width="70"/>
+    </Grid>
+</UserControl>

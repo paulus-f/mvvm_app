@@ -27,6 +27,10 @@ namespace University_students.ViewModel
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;
+            GroupsContent = new View.TeacherPages.GroupsContent(_currentUser);
+            ExamsContent = new View.TeacherPages.ExamContent(_currentUser);
+            ReportsContent = new View.TeacherPages.ReportsContent(_currentUser);
+            SubjectsContent = new View.TeacherPages.SubjectsContent(_currentUser);
             return null;
         }
 
@@ -38,6 +42,61 @@ namespace University_students.ViewModel
             {
                 _currentUser = value;
                 OnPropertyChanged("CurrentUser");
+            }
+        }
+
+        private UserControl _GroupsContent;
+        public UserControl GroupsContent
+        {
+            get => _GroupsContent;
+            set
+            {
+                _GroupsContent = value;
+                OnPropertyChanged("GroupsContent");
+            }
+        }
+
+        private UserControl _CertificationContent;
+        public UserControl CertificationContent
+        {
+            get => _CertificationContent;
+            set
+            {
+                _CertificationContent = value;
+                OnPropertyChanged("CertificationContent");
+            }
+        }
+
+        private UserControl _SubjectsContent;
+        public UserControl SubjectsContent
+        {
+            get => _SubjectsContent;
+            set
+            {
+                _SubjectsContent = value;
+                OnPropertyChanged("SubjectsContent");
+            }
+        }
+
+        private UserControl _ReportsContent;
+        public UserControl ReportsContent
+        {
+            get => _ReportsContent;
+            set
+            {
+                _ReportsContent = value;
+                OnPropertyChanged("ReportsContent");
+            }
+        }
+
+        private UserControl _ExamsContent;
+        public UserControl ExamsContent
+        {
+            get => _ExamsContent;
+            set
+            {
+                _ExamsContent = value;
+                OnPropertyChanged("ExamsContent");
             }
         }
 

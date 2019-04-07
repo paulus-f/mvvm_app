@@ -209,6 +209,11 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SupportViewModel.cs" />
     <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="ViewModel\TeacherVM\CertificationVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\ExamVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\GroupsVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\ReportsVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\SubjectsVM.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
@@ -246,6 +251,21 @@
     </Compile>
     <Compile Include="View\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\CertificationContent.xaml.cs">
+      <DependentUpon>CertificationContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\ExamContent.xaml.cs">
+      <DependentUpon>ExamContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\GroupsContent.xaml.cs">
+      <DependentUpon>GroupsContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\ReportsContent.xaml.cs">
+      <DependentUpon>ReportsContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\SubjectsContent.xaml.cs">
+      <DependentUpon>SubjectsContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
@@ -321,6 +341,26 @@
     <Page Include="View\TeacherPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TeacherPages\CertificationContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\ExamContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\GroupsContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\ReportsContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\SubjectsContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserPage.xaml">
       <SubType>Designer</SubType>
@@ -429,7 +469,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\TeacherPages\" />
+    <Folder Include="ViewModel\StudentVM\" />
     <Folder Include="View\UserPages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

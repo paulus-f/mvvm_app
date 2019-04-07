@@ -10,7 +10,7 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
         MinHeight="500"
         MinWidth="900"
-        x:Name="mainWindow">
+        x:Name="mainWindow" Width="841.5">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
     </Window.Resources>

@@ -14,6 +14,7 @@ using System.Net;
 using University_students.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
+using System.Web;
 
 namespace University_students.ViewModel.AdminVM
 {
@@ -375,7 +376,7 @@ namespace University_students.ViewModel.AdminVM
                 EmailTeacher     != null
                 )
             {
-                string password = GenerateToken(10);
+                string password = CreateRandomPassword(10);
                 Teaching newTeaching = new Teaching() { };
 
                 User newTeacher = new User()
@@ -405,6 +406,20 @@ namespace University_students.ViewModel.AdminVM
             {
                 //smth
             }
+        }
+
+        private static string CreateRandomPassword(int passwordLength)
+        {
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            char[] chars = new char[passwordLength];
+            Random rd = new Random();
+
+            for (int i = 0; i < passwordLength; i++)
+            {
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+            }
+
+            return new string(chars);
         }
 
         private string GenerateToken(int length)
