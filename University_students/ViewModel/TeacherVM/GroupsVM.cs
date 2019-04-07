@@ -16,11 +16,31 @@ namespace University_students.ViewModel.TeacherVM
         public GroupsVM(User teacher)
         {
             db = new USDbContext();
-            _currentTeacher = teacher;
+            CurrentTeacher = teacher;
             ListGroups = teacher.Teaching.TaughtGroups.ToList();
         }
 
         private User _currentTeacher;
+        public User CurrentTeacher
+        {
+            get => _currentTeacher;
+            set
+            {
+                _currentTeacher = value;
+                OnPropertyChanged("CurrentTeacher");
+            }
+        }
+
+        private Group _SelectedGroup;
+        public Group SelectedGroup
+        {
+            get => _SelectedGroup;
+            set
+            {
+                _SelectedGroup = value;
+                OnPropertyChanged("SelectedGroup");
+            }
+        }
 
         private List<TaughtGroups> _ListGroups;
         public List<TaughtGroups> ListGroups

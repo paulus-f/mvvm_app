@@ -21,10 +21,10 @@ namespace University_students.View.TeacherPages
     /// </summary>
     public partial class CertificationContent : UserControl
     {
-        public CertificationContent(User teacher)
+        public CertificationContent(User teacher, Enums.TypeCertifiation tc)
         {
             InitializeComponent();
-            DataContext = new ViewModel.TeacherVM.CertificationVM(teacher);
+            DataContext = new ViewModel.TeacherVM.CertificationVM(teacher,tc);
         }
     }
 }

@@ -12,14 +12,15 @@ namespace University_students.ViewModel.TeacherVM
     class CertificationVM
     {
         USDbContext db;
-        public CertificationVM(User teacher)
+        Enums.TypeCertifiation _tc;
+        public CertificationVM(User teacher, Enums.TypeCertifiation tc)
         {
             db = new USDbContext();
-            _currentTeacher = teacher;
+            _tc = tc;
+            //_currentTeacher = teacher;
         }
 
-        private User _currentTeacher;
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

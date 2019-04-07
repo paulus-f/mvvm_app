@@ -235,6 +235,14 @@ namespace University_students.ViewModel.AdminVM
             univ.Name = Name;
             univ.City = City;
             univ.TypeUniversity = TypeUniversity;
+            univ.Сertification.FirstAutumnStartDate = SelectedFirstAutumnStartDate;
+            univ.Сertification.FirstAutumnEndDate = SelectedFirstAutumnFinishDate;
+            univ.Сertification.FirstSpringEndDate = SelectedFirstSpringFinishDate;
+            univ.Сertification.LastAutumnEndDate = SelectedLastAutumnFinishDate;
+            univ.Сertification.LastSpringStartDate = SelectedLastSpringStartDate;
+            univ.Сertification.LastSpringEndDate = SelectedLastSpringFinishDate;
+            univ.Сertification.LastAutumnStartDate = SelectedLastAutumnStartDate;
+            univ.Сertification.FirstSpringStartDate = SelectedFirstSpringStartDate;
             db.SaveChanges();
             AllUniversities = db.Universities.ToList();
             SelectedUniversityDG = null;

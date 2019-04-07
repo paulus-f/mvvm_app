@@ -16,9 +16,21 @@ namespace University_students.ViewModel.TeacherVM
         {
             db = new USDbContext();
             _currentTeacher = teacher;
+            ListSubjects = teacher.Subjects.ToList();
         }
 
         private User _currentTeacher;
+
+        private List<Subject> _ListSubjects;
+        public List<Subject> ListSubjects
+        {
+            get => _ListSubjects;
+            set
+            {
+                _ListSubjects = value;
+                OnPropertyChanged("ListSubjects");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

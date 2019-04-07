@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel Margin="5">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                <Button Click="onClickGroup" Command="{Binding DataContext.ViewGroupCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="Black" BorderBrush="{x:Null}" Foreground="White">
                     <materialDesign:PackIcon Kind="Accessible"/>
                 </Button>
                 <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
@@ -18,7 +18,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <ListBox  ItemTemplate="{StaticResource listTemplate}" 
+        <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,0,0">
             <ListBox.ItemsPanel>
@@ -27,6 +27,8 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <materialDesign:PackIcon Kind="Accessible" Margin="10,10,0,0" Height="62" Width="70"/>
+        <materialDesign:PackIcon Foreground="Black"  Kind="Accessibility" Margin="10,10,0,0" Height="113" Width="159"/>
+        <TextBlock Foreground="#212121" HorizontalAlignment="Left" Margin="172,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentTeacher.FirstName}" VerticalAlignment="Top" Height="43" Width="100"/>
+        <TextBlock Foreground="#212121" HorizontalAlignment="Left" Margin="303,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" VerticalAlignment="Top" Height="41" Width="93"/>
     </Grid>
 </UserControl>

@@ -88,7 +88,7 @@
                     <TextBox TextChanged="TextBox_TextChanged" Margin="10,22,5,10" TextWrapping="Wrap" Text="{Binding EmailTeacher}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
                     <Label Content="Login" Grid.Column="2" Margin="0,0,10,0" Grid.Row="3" Grid.ColumnSpan="2"/>
                 </Grid>
-                <Button Content="Add groups to teacher" IsEnabled="{Binding IsEnabledUD}" Grid.Column="3" Click="openListGroups" Margin="16,75,10,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
+                <Button Content="Add groups to teacher" IsEnabled="{Binding IsEnabledUD}" Grid.Column="3" Click="openListGroups" Margin="10,75,10,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
     </Grid>

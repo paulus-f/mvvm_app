@@ -107,8 +107,13 @@
     <Compile Include="CustomBoxes\ChoosingGroups.xaml.cs">
       <DependentUpon>ChoosingGroups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomBoxes\ListStudentsOfGroup.xaml.cs">
+      <DependentUpon>ListStudentsOfGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
+    <Compile Include="CustomBoxes\ViewModel\ListStudentsOfGroupVM.cs" />
     <Compile Include="Data\RegexPattern.cs" />
+    <Compile Include="Enums\TypeCertification.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
     <Compile Include="Messager\LogOutMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
@@ -266,6 +271,9 @@
     <Compile Include="View\TeacherPages\GroupsContent.xaml.cs">
       <DependentUpon>GroupsContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TeacherPages\NoCertification.xaml.cs">
+      <DependentUpon>NoCertification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TeacherPages\ReportsContent.xaml.cs">
       <DependentUpon>ReportsContent.xaml</DependentUpon>
     </Compile>
@@ -276,6 +284,10 @@
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomBoxes\ChoosingGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomBoxes\ListStudentsOfGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -356,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TeacherPages\GroupsContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\NoCertification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
