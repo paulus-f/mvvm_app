@@ -70,17 +70,19 @@ namespace University_students.CustomBoxes.ViewModel
                 {
                     var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
-                    tech.Teaching.TaughtGroups.Add(new TaughtGroups() {
-                        Subject = SelectedSub,
+                    var sub = db.Subjects.FirstOrDefault(s => s.Id == SelectedSub.Id);
+                    db.TaughtGroups.Add(new TaughtGroups()
+                    {
+                        Subject = sub,
                         Group = gr,
                         Teaching = tech.Teaching
                     });
-                    db.Groups.Attach(gr);
                     db.SaveChanges();
+                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
                     TeacherGroups = tech.Teaching.TaughtGroups.ToList();
                 }
-                _SelectedFromListGroups = null;
+                _SelectedFromListGroups = value;
                 OnPropertyChanged("SelectedFromListGroups");
             }
         }
