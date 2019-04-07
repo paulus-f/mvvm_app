@@ -5,17 +5,18 @@
         AllowsTransparency="True" 
         Background="Transparent" 
         WindowStartupLocation="CenterScreen"
-        MaxHeight="275.069"
+        MaxHeight="300"
         MaxWidth="502.103"
-        MinHeight="275.069"
+        MinHeight="300"
         MinWidth="502.103"
-        Title="ChoosingGroups" Height="276.069" Width="502.103">
+        Title="ChoosingGroups" Height="300" Width="502.103">
     <Border CornerRadius="55" BorderBrush="#99FFC0C0" BorderThickness="5" Background="Beige">
         <Grid Margin="0,-4,5,4">
-            <Button Content="Close" Click="closeBox" Margin="221,230,173,10" BorderBrush="#FFF71414" Background="#FFCF0D0D" Height="Auto"/>
-            <ListBox SelectedItem="{Binding SelectedTeacherGroup}" ItemsSource="{Binding TeacherGroups}" Height="182" VerticalAlignment="Top" Margin="10,36,228,0" Background="#FFF9E4B5"/>
-            <ListBox SelectedItem="{Binding SelectedFromListGroups}" ItemsSource="{Binding ListGroups}" Margin="276,36,10,47" Background="#FFF9E4B5" Grid.RowSpan="2"/>
+            <Button Content="Close" Click="closeBox" Margin="221,258,173,0" BorderBrush="#FFF71414" Background="#FFCF0D0D" Height="Auto"/>
+            <ListBox SelectedItem="{Binding SelectedTeacherGroup}" ItemsSource="{Binding TeacherGroups}" Height="182" VerticalAlignment="Top" Margin="10,61,228,0" Background="#FFF9E4B5"/>
+            <ListBox SelectedItem="{Binding SelectedFromListGroups}" ItemsSource="{Binding ListGroups}" Margin="276,61,10,47" Background="#FFF9E4B5"/>
             <Label Content="Teacher groups" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Width="96"/>
+            <ComboBox HorizontalAlignment="Left" SelectedItem="{Binding SelectedSub}" ItemsSource="{Binding ListSubs}" Margin="207,8,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
     </Border>
 </Window>

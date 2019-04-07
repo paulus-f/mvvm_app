@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201904052059304_CorrectTeaching.Designer.cs">
       <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904071319023_AddTaughtGroups.cs" />
+    <Compile Include="Migrations\201904071319023_AddTaughtGroups.Designer.cs">
+      <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="Models\Pulpit.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\TaughtGroups.cs" />
     <Compile Include="Models\Teaching.cs" />
     <Compile Include="Models\University.cs" />
     <Compile Include="Models\Сertification.cs" />
@@ -434,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904052059304_CorrectTeaching.resx">
       <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904071319023_AddTaughtGroups.resx">
+      <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -27,6 +27,6 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <materialDesign:PackIcon Kind="Accessible" Margin="84,19,0,0" Height="62" Width="70"/>
+        <materialDesign:PackIcon Kind="Accessible" Margin="10,10,0,0" Height="62" Width="70"/>
     </Grid>
 </UserControl>

@@ -17,13 +17,13 @@ namespace University_students.ViewModel.TeacherVM
         {
             db = new USDbContext();
             _currentTeacher = teacher;
-            ListGroups = teacher.Teaching.Groups.ToList();
+            ListGroups = teacher.Teaching.TaughtGroups.ToList();
         }
 
         private User _currentTeacher;
 
-        private List<Group> _ListGroups;
-        public List<Group> ListGroups
+        private List<TaughtGroups> _ListGroups;
+        public List<TaughtGroups> ListGroups
         {
             get => _ListGroups;
             set

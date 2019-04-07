@@ -14,10 +14,10 @@ namespace University_students.Models
         [Key]
         public int Id { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<TaughtGroups> TaughtGroups { get; set; }
         public Teaching()
         {
-            Groups = new List<Group>();
+            TaughtGroups = new List<TaughtGroups>();
         }
 
     }

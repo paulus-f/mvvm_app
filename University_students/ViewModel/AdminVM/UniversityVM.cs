@@ -219,16 +219,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    () => CanDeleteFaculty()
-                );
-            }
-        }
-
         public ICommand UpdateCommand
         {
             get
@@ -237,19 +227,6 @@ namespace University_students.ViewModel.AdminVM
                     () => CanUpdateFaculty()
                 );
             }
-        }
-
-        private void CanDeleteFaculty()
-        {
-            if(SelectedUniversityDG.Сertification != null)
-            {
-                db.Сertifications.Remove(SelectedUniversityDG.Сertification);
-            }
-            db.Universities.Remove(db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id));
-            db.SaveChanges();
-            AllUniversities = db.Universities.ToList();
-            SelectedUniversityDG = null;
-            IsEnabledUD = false;
         }
 
         private void CanUpdateFaculty()
