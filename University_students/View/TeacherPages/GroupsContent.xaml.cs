@@ -25,14 +25,14 @@ namespace University_students.View.TeacherPages
         {
             InitializeComponent();
             dc = new ViewModel.TeacherVM.GroupsVM(teacher);
-            DataContext = new ViewModel.TeacherVM.GroupsVM(teacher);
+            DataContext = dc;
         }
 
         private ViewModel.TeacherVM.GroupsVM dc;
 
         private void onClickGroup(object sender, RoutedEventArgs e)
         {
-            new CustomBoxes.ListStudentsOfGroup(dc.SelectedGroup).Show();
+            new CustomBoxes.ListStudentsOfGroup(dc.SelectedGroup.Group).Show();
         }
     }
 }

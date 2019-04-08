@@ -24,7 +24,7 @@ namespace University_students.CustomBoxes
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MouseDragMove;
-            DataContext = new ViewModel.ListStudentsOfGroupVM();
+            DataContext = new ViewModel.ListStudentsOfGroupVM(gr);
 
         }
 

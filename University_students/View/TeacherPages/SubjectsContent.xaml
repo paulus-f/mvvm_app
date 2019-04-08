@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel Margin="5">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontSize="24">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontSize="24">
                     <materialDesign:PackIcon Kind="Book"/>
                 </Button>
                 <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
@@ -18,7 +18,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <TextBlock Foreground="White" Margin="6,0,0,361" TextWrapping="Wrap" Text="My Subjects" FontSize="48" FontFamily="News706 BT"/>
+        <TextBlock Foreground="#FF040303" Margin="6,0,0,361" TextWrapping="Wrap" Text="My Subjects" FontSize="48" FontFamily="News706 BT" TextAlignment="Center"/>
         <ListBox ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListSubjects}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,0,0">

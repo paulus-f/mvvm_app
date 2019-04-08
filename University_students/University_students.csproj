@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201904071319023_AddTaughtGroups.Designer.cs">
       <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904082038050_ChangeRequiredInUser.cs" />
+    <Compile Include="Migrations\201904082038050_ChangeRequiredInUser.Designer.cs">
+      <DependentUpon>201904082038050_ChangeRequiredInUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -458,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904071319023_AddTaughtGroups.resx">
       <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904082038050_ChangeRequiredInUser.resx">
+      <DependentUpon>201904082038050_ChangeRequiredInUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -31,8 +31,8 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
-        private Group _SelectedGroup;
-        public Group SelectedGroup
+        private TaughtGroups _SelectedGroup;
+        public TaughtGroups SelectedGroup
         {
             get => _SelectedGroup;
             set

@@ -12,6 +12,24 @@
         Title="ChoosingGroups" Height="300" Width="502.103">
     <Border CornerRadius="55" BorderBrush="#99FFC0C0" BorderThickness="5" Background="Beige">
         <Grid Margin="0,-4,5,4">
+            <ListBox SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding ListStudents}" Margin="42,41,28,47">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
+                            <Button Content="Add Pass" Grid.Column="1" Command="{Binding DataContext.DeletePulpitCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"/>
+                            <Button Content="Add Work Out" Grid.Column="2" Command="{Binding DataContext.DeletePulpitCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Close" Click="closeBox" RenderTransformOrigin="1.37,1.552" Height="Auto" Margin="201,248,205,10" Background="#FFFF0C01" BorderBrush="#FFFF1717"/>
+            <Label Content="{Binding Group}" Margin="175,0,184,264"/>
         </Grid>
     </Border>
 </Window>
