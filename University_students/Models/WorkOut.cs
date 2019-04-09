@@ -15,5 +15,11 @@ namespace University_students.Models
         [StringLength(100)]
         public string Reason { get; set; }
         public virtual SubjectProgress SubjectProgress { get; set; }
+        public override string ToString()
+        {
+            string res = IsWorkOut ? "Is worked" : "Is not worked";
+            return res + $" Reason: {Reason}";
+        }
+
     }
 }

@@ -30,11 +30,10 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <DataGrid  CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Path=ListStudentProgress}"  Margin="10,190,0,51" Grid.RowSpan="2" HorizontalAlignment="Left" Width="303">
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Path=ListStudentProgress}"  Margin="10,190,0,51" Grid.RowSpan="2" HorizontalAlignment="Left" Width="303" MouseDown="OpenBackgroundStudent" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
-                <DataGridTextColumn Width="*" Header="Certification" Binding="{Binding }"/>
-                <DataGridTextColumn Width="*" Header="Valid Excuse " Binding="{Binding ValidExcuse}"/>
+                <DataGridTextColumn Width="*" Header="Valid Excuse" Binding="{Binding ValidExcuse}"/>
                 <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnvalidExcuse}"/>
             </DataGrid.Columns>
         </DataGrid>

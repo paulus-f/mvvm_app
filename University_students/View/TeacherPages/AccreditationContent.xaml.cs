@@ -21,10 +21,18 @@ namespace University_students.View.TeacherPages
     /// </summary>
     public partial class AccreditationContent : UserControl
     {
+        private ViewModel.TeacherVM.AccreditationVM dc;
+
         public AccreditationContent(User teacher)
         {
             InitializeComponent();
-            DataContext = new ViewModel.TeacherVM.AccreditationVM(teacher);
+            dc = new ViewModel.TeacherVM.AccreditationVM(teacher);
+            DataContext = dc;
+        }
+
+        private void OpenBackgroundStudent(object sender, MouseButtonEventArgs e)
+        {
+            new CustomBoxes.BackgroundStudentBox(dc.SelectedStudent.User, dc.SelectedStudent).Show();
         }
     }
 }

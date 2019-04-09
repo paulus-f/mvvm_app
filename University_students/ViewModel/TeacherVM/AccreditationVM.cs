@@ -29,7 +29,7 @@ namespace University_students.ViewModel.TeacherVM
             set
             {
                 ListStudentProgress = db.SubjectProgress
-                    .Where(sp => sp.TaughtGroups.Id == value.Id || sp.IsOffsetPassed == false)
+                    .Where(sp => sp.TaughtGroups.Id == value.Id && sp.IsOffsetPassed == false)
                     .ToList();
                 _SelectedGroup = value;
                 OnPropertyChanged("SelectedGroup");

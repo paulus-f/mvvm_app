@@ -104,12 +104,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomBoxes\BackgroundStudentBox.xaml.cs">
+      <DependentUpon>BackgroundStudentBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomBoxes\ChoosingGroups.xaml.cs">
       <DependentUpon>ChoosingGroups.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomBoxes\ListStudentsOfGroup.xaml.cs">
       <DependentUpon>ListStudentsOfGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomBoxes\ViewModel\BackgroundStudentVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ListStudentsOfGroupVM.cs" />
     <Compile Include="Data\RegexPattern.cs" />
@@ -300,6 +304,10 @@
     <Compile Include="View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomBoxes\BackgroundStudentBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomBoxes\ChoosingGroups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
