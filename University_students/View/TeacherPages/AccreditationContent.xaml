@@ -10,28 +10,43 @@
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel Margin="5">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="15" Height="15" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontSize="24">
-                    <materialDesign:PackIcon Kind="Book"/>
-                </Button>
-                <TextBlock FontSize="12" Text="{Binding}" HorizontalAlignment="Center" />
+                <materialDesign:PackIcon Kind="Accessible"/>
+                <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <TextBlock Foreground="#FF040303" Margin="6,3,615,417" TextWrapping="Wrap" Text="My Subjects" FontSize="24" FontFamily="News706 BT" TextAlignment="Center"/>
-        <ListBox ItemTemplate="{StaticResource listTemplate}" 
-                 ItemsSource="{Binding ListSubjects}"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="6,38,479,298">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="221*"/>
+            <RowDefinition Height="229*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Foreground="#FF040303" Margin="6,3,615,188" TextWrapping="Wrap" Text="My Subjects" FontSize="24" FontFamily="News706 BT" TextAlignment="Center"/>
+        <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
+                ItemsSource="{Binding ListGroups}"
+                Margin="0,42,479,54">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <DataGrid Margin="6,190,479,51"/>
-        <DataGrid Margin="326,38,10,51"/>
-        <Button Content="Add Report For Group" Margin="478,408,140,10" Height="Auto"/>
-        <TextBlock Foreground="#FF040303" Margin="66,167,555,265" TextWrapping="Wrap" Text="Without Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
-        <TextBlock Foreground="#FF040303" Margin="426,11,194,421" TextWrapping="Wrap" Text="With Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
+        <DataGrid  CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Path=ListStudentProgress}"  Margin="10,190,0,51" Grid.RowSpan="2" HorizontalAlignment="Left" Width="303">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
+                <DataGridTextColumn Width="*" Header="Certification" Binding="{Binding }"/>
+                <DataGridTextColumn Width="*" Header="Valid Excuse " Binding="{Binding ValidExcuse}"/>
+                <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnvalidExcuse}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Margin="0,38,10,51" Grid.RowSpan="2" HorizontalAlignment="Right" Width="444">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding }"/>
+                <DataGridTextColumn Width="150" Header="Qualification" Binding="{Binding }"/>
+                <DataGridTextColumn Width="100" Header="Code" Binding="{Binding }"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add Report For Group" Margin="478,187,140,10" Height="Auto" Grid.Row="1"/>
+        <TextBlock Foreground="#FF040303" Margin="66,167,555,36" TextWrapping="Wrap" Text="Without Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
+        <TextBlock Foreground="#FF040303" Margin="426,11,194,192" TextWrapping="Wrap" Text="With Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
     </Grid>
 </UserControl>

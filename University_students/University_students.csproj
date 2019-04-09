@@ -113,6 +113,8 @@
     <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ListStudentsOfGroupVM.cs" />
     <Compile Include="Data\RegexPattern.cs" />
+    <Compile Include="Enums\StateCertification.cs" />
+    <Compile Include="Enums\StateExam.cs" />
     <Compile Include="Enums\TypeCertifiation.cs" />
     <Compile Include="Enums\TypeAccreditation.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
@@ -207,6 +209,10 @@
     <Compile Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.cs" />
     <Compile Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.Designer.cs">
       <DependentUpon>201904091519263_AddTaughtGroupsToSubjectProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091747002_ChangeSubjectProgress.cs" />
+    <Compile Include="Migrations\201904091747002_ChangeSubjectProgress.Designer.cs">
+      <DependentUpon>201904091747002_ChangeSubjectProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
@@ -473,6 +479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.resx">
       <DependentUpon>201904091519263_AddTaughtGroupsToSubjectProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091747002_ChangeSubjectProgress.resx">
+      <DependentUpon>201904091747002_ChangeSubjectProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

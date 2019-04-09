@@ -17,9 +17,9 @@ namespace University_students.Models
         public virtual TaughtGroups TaughtGroups { get; set; }
 
         public bool IsOffsetPassed { get; set; }
-        public bool IsExamPassed { get; set; }
-        public bool IsStartCertifiationPassed { get; set; }
-        public bool IsFinishCertifiationPassed { get; set; }
+        public Enums.StateExam IsExamPassed { get; set; }
+        public Enums.StateCertification IsStartCertifiationPassed { get; set; }
+        public Enums.StateCertification IsFinishCertifiationPassed { get; set; }
         public int ValidExcuses { get; set; }
         public int UnValidExcuses { get; set; }
 
@@ -27,6 +27,52 @@ namespace University_students.Models
         public SubjectProgress()
         {
             WorkOuts = new List<WorkOut>();
+        }
+
+
+
+        public override string ToString()
+        {
+            string res = "";
+            switch(IsExamPassed)
+            {
+                case Enums.StateExam.Waiting:
+                    res += "Exam: Waiting ";
+                    break;
+                case Enums.StateExam.Passed:
+                    res += "Exam: Passed ";
+                    break;
+                case Enums.StateExam.Failed:
+                    res += "Exam: Failed ";
+                    break;
+            }
+
+            switch (IsStartCertifiationPassed)
+            {
+                case Enums.StateCertification.Failed:
+                    res += "1st cert.: Failed ";
+                    break;
+                case Enums.StateCertification.Passed:
+                    res += "1st cert.: Passed ";
+                    break;
+                case Enums.StateCertification.Waiting:
+                    res += "1st cert.: Waiting ";
+                    break;
+            }
+
+            switch (IsFinishCertifiationPassed)
+            {
+                case Enums.StateCertification.Failed:
+                    res += "1st cert.: Failed ";
+                    break;
+                case Enums.StateCertification.Passed:
+                    res += "1st cert.: Passed";
+                    break;
+                case Enums.StateCertification.Waiting:
+                    res += "1st cert.: Waiting ";
+                    break;
+            }
+            return res;
         }
     }
 }

@@ -149,7 +149,10 @@ namespace University_students.CustomBoxes.ViewModel
                     User = student,
                     UnValidExcuses = 0,
                     ValidExcuses = 0,
-                    TaughtGroups = tg
+                    TaughtGroups = tg,
+                    IsExamPassed = Enums.StateExam.Waiting,
+                    IsStartCertifiationPassed = Enums.StateCertification.Waiting,
+                    IsFinishCertifiationPassed = Enums.StateCertification.Waiting,
                 };
                 db.SubjectProgress.Add(newSP);
                 db.SaveChanges();

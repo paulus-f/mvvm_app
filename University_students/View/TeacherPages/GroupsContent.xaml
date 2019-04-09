@@ -16,11 +16,28 @@
                 <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="listTemplateSubject">
+            <StackPanel Margin="5">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="15" Height="15" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontSize="24">
+                    <materialDesign:PackIcon Kind="Book"/>
+                </Button>
+                <TextBlock FontSize="12" Text="{Binding}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,0,0">
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,353,10" HorizontalAlignment="Right" Width="447">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <ListBox ItemTemplate="{StaticResource listTemplateSubject}" 
+                 ItemsSource="{Binding ListSubjects}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="464,123,21,10">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
