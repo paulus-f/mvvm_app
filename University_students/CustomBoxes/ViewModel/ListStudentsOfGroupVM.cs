@@ -14,12 +14,15 @@ namespace University_students.CustomBoxes.ViewModel
     class ListStudentsOfGroupVM
     {
         private USDbContext db;
+        private TaughtGroups _tg;
 
-        public ListStudentsOfGroupVM(Group gr)
+        public ListStudentsOfGroupVM(TaughtGroups gr)
         {
             db = new USDbContext();
-            Group = gr;
-            ListStudents = gr?.Students.ToList();
+            _tg = gr;
+            Group = gr.Group;
+            Subject = gr.Subject;
+            ListStudents = gr?.Group?.Students.ToList();
         }
 
         private User _SelectedStudent;
@@ -44,6 +47,28 @@ namespace University_students.CustomBoxes.ViewModel
             }
         }
 
+        private Subject _Subject;
+        public Subject Subject
+        {
+            get => _Subject;
+            set
+            {
+                _Subject = value;
+                OnPropertyChanged("Subject");
+            }
+        }
+
+        private string _Reason;
+        public string Reason
+        {
+            get => _Reason;
+            set
+            {
+                _Reason = value;
+                OnPropertyChanged("Reason");
+            }
+        }
+
         private List<User> _ListStudents;
         public List<User> ListStudents
         {
@@ -55,12 +80,22 @@ namespace University_students.CustomBoxes.ViewModel
             }
         }
 
-        public ICommand AddPassCommand
+        public ICommand AddUnValidPassCommand
         {
             get
             {
                 return new RelayCommand<object>(
-                    (param) => CanAddPassToStudent((User)param)
+                    (param) => CanAddUnValidExcusesToStudent((User)param)
+                );
+            }
+        }
+
+        public ICommand AddValidPassCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => CanAddValidExcusesToStudent((User)param)
                 );
             }
         }
@@ -75,15 +110,56 @@ namespace University_students.CustomBoxes.ViewModel
             }
         }
 
-        private void CanAddPassToStudent(User st)
+        private void CanAddValidExcusesToStudent(User st)
         {
+            var result = CheckProgress(_tg.Subject, st);
+            db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id).ValidExcuses += 2;
+            db.SaveChanges();
+        }
 
+        private void CanAddUnValidExcusesToStudent(User st)
+        {
+            var result = CheckProgress(_tg.Subject, st);
+            db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id).UnValidExcuses += 2;
+            db.SaveChanges();
         }
 
         private void CanAddWorOutToStudent(User st)
         {
-
+            var result = CheckProgress(_tg.Subject, st);
+            var subjectProgress = db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id);
+            db.WorkOuts.Add(new WorkOut()
+            {
+                IsWorkOut = false,
+                Reason = this.Reason,
+                SubjectProgress = subjectProgress
+            });  
+            db.SaveChanges();
         }
+
+        private SubjectProgress CheckProgress(Subject sub, User st)
+        {
+            var subRes = st?.SubjectsProgress.FirstOrDefault(sp => sp.TaughtGroups.Id == _tg.Id);
+            if(subRes == null)
+            {
+                var student = db.Users.FirstOrDefault(u => u.Id == st.Id);
+                var tg = db.TaughtGroups.FirstOrDefault(u => u.Id == _tg.Id);
+                var newSP = new SubjectProgress()
+                {
+                    User = student,
+                    UnValidExcuses = 0,
+                    ValidExcuses = 0,
+                    TaughtGroups = tg
+                };
+                db.SubjectProgress.Add(newSP);
+                db.SaveChanges();
+                SelectedStudent = student;
+                return newSP;
+            }
+            return subRes;
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

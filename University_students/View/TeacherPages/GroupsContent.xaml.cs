@@ -32,7 +32,7 @@ namespace University_students.View.TeacherPages
 
         private void onClickGroup(object sender, RoutedEventArgs e)
         {
-            new CustomBoxes.ListStudentsOfGroup(dc.SelectedGroup.Group).Show();
+            new CustomBoxes.ListStudentsOfGroup(dc.SelectedGroup).Show();
         }
     }
 }

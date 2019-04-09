@@ -9,10 +9,10 @@ using University_students.Models;
 
 namespace University_students.ViewModel.TeacherVM
 {
-    class SubjectsVM
+    class AccreditationVM
     {
         USDbContext db;
-        public SubjectsVM(User teacher)
+        public AccreditationVM(User teacher)
         {
             db = new USDbContext();
             _currentTeacher = teacher;

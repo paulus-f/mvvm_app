@@ -20,16 +20,21 @@
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                            <Button Content="Add Pass" Grid.Column="1" Command="{Binding DataContext.DeletePulpitCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"/>
-                            <Button Content="Add Work Out" Grid.Column="2" Command="{Binding DataContext.DeletePulpitCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"/>
+                            <Button Content="Add Valid Excuse"  Grid.Column="1" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639"/>
+                            <Button Content="Add Unvalid Excuse" Grid.Column="2" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FFF32E1B"/>
+                            <Button Content="Add Work Out" Grid.Column="3" Command="{Binding DataContext.AddWorOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FFC9C90F"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Content="Close" Click="closeBox" RenderTransformOrigin="1.37,1.552" Height="Auto" Margin="201,248,205,10" Background="#FFFF0C01" BorderBrush="#FFFF1717"/>
-            <Label Content="{Binding Group}" Margin="175,0,184,264"/>
+            <Button Content="Close" Click="closeBox" RenderTransformOrigin="1.37,1.552" Height="Auto" Margin="359,248,47,10" Background="#FFFF0C01" BorderBrush="#FFFF1717"/>
+            <Label Content="{Binding Group}" Margin="122,10,237,254"/>
+            <Label Content="{Binding Subject}" Margin="250,10,109,254"/>
+            <TextBox Margin="205,245,154,13" TextWrapping="Wrap" Text="{Binding Reason}"/>
+            <Label Content="Reason for Work Out" Margin="58,251,307,7" RenderTransformOrigin="1.594,-0.919"/>
         </Grid>
     </Border>
 </Window>

@@ -19,12 +19,12 @@ namespace University_students.View.TeacherPages
     /// <summary>
     /// Логика взаимодействия для SubjectsContent.xaml
     /// </summary>
-    public partial class SubjectsContent : UserControl
+    public partial class AccreditationContent : UserControl
     {
-        public SubjectsContent(User teacher)
+        public AccreditationContent(User teacher)
         {
             InitializeComponent();
-            DataContext = new ViewModel.TeacherVM.SubjectsVM(teacher);
+            DataContext = new ViewModel.TeacherVM.AccreditationVM(teacher);
         }
     }
 }

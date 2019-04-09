@@ -19,6 +19,12 @@ namespace University_students.Models
         public virtual Subject Subject { get; set; }
         public virtual Group Group { get; set; }
         public virtual Teaching Teaching { get; set; }
+        public virtual ICollection<SubjectProgress> SubjectProgress { get; set; }
+
+        public TaughtGroups()
+        {
+            SubjectProgress = new List<SubjectProgress>();
+        }
 
         public override string ToString()
         {

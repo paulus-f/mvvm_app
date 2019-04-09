@@ -24,8 +24,10 @@ namespace University_students.Models
         public Role TypeUser { get; set; }
         public virtual Teaching Teaching { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<SubjectProgress> SubjectsProgress { get; set; }
         public User()
         {
+            SubjectsProgress = new List<SubjectProgress>();
             Subjects = new List<Subject>();
         }
 

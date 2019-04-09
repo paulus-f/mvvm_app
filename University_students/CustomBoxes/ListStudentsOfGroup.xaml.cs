@@ -20,7 +20,7 @@ namespace University_students.CustomBoxes
     /// </summary>
     public partial class ListStudentsOfGroup : Window
     {
-        public ListStudentsOfGroup(Group gr)
+        public ListStudentsOfGroup(TaughtGroups gr)
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MouseDragMove;

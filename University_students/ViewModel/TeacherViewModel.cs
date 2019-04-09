@@ -28,9 +28,7 @@ namespace University_students.ViewModel
         {
             CurrentUser = action.CurrentUser;
             GroupsContent = new View.TeacherPages.GroupsContent(_currentUser);
-            ExamsContent = new View.TeacherPages.ExamContent(_currentUser);
-            ReportsContent = new View.TeacherPages.ReportsContent(_currentUser);
-            SubjectsContent = new View.TeacherPages.SubjectsContent(_currentUser);
+            AccreditationContent = new View.TeacherPages.AccreditationContent(_currentUser);
             Models.Сertification certification = CurrentUser.Pulpit.Faculty.University.Сertification;
             if(certification.FirstAutumnStartDate >= DateTime.Today &&
                 certification.FirstAutumnEndDate <= DateTime.Today )
@@ -92,36 +90,14 @@ namespace University_students.ViewModel
             }
         }
 
-        private UserControl _SubjectsContent;
-        public UserControl SubjectsContent
+        private UserControl _AccreditationContent;
+        public UserControl AccreditationContent
         {
-            get => _SubjectsContent;
+            get => _AccreditationContent;
             set
             {
-                _SubjectsContent = value;
-                OnPropertyChanged("SubjectsContent");
-            }
-        }
-
-        private UserControl _ReportsContent;
-        public UserControl ReportsContent
-        {
-            get => _ReportsContent;
-            set
-            {
-                _ReportsContent = value;
-                OnPropertyChanged("ReportsContent");
-            }
-        }
-
-        private UserControl _ExamsContent;
-        public UserControl ExamsContent
-        {
-            get => _ExamsContent;
-            set
-            {
-                _ExamsContent = value;
-                OnPropertyChanged("ExamsContent");
+                _AccreditationContent = value;
+                OnPropertyChanged("AccreditationContent");
             }
         }
 
