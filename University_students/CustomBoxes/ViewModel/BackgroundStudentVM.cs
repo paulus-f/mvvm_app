@@ -79,9 +79,11 @@ namespace University_students.CustomBoxes.ViewModel
             }
         }
 
-        private void CanConfirmWorkOut(WorkOut wo)
+        private void CanConfirmWorkOut(WorkOut _wo)
         {
-
+            db.WorkOuts.FirstOrDefault(wo => wo.Id == _wo.Id).IsWorkOut = true;
+            db.SaveChanges();
+            ListWorkOut = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SubjectProgress.Id).WorkOuts.ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

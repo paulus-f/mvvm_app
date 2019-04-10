@@ -270,13 +270,13 @@ namespace University_students.ViewModel.AdminVM
         public TeacherVM()
         {
             db = new USDbContext();
-            var task = Task.Run(async () => {
-                for (; ; )
-                {
-                    await Task.Delay(1000);
-                    IsNet = CheckConnection();
-                }
-            });
+            //var task = Task.Run(async () => {
+            //    for (; ; )
+            //    {
+            //        await Task.Delay(1000);
+            //        IsNet = CheckConnection();
+            //    }
+            //});
             _subjects = new List<Subject>();
             ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();

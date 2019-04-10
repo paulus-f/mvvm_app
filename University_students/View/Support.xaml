@@ -23,7 +23,7 @@
             <TextBlock Text="Your email: " Grid.Row="1" Margin="13.667,10,61,10" Foreground="White" Grid.Column="1"/>
             <TextBox Text="{Binding Email}" Grid.Row="1" Grid.Column="2" Margin="3,3,10,10" MinWidth="100" Foreground="#FFFFC1C1"/>
             <TextBox Grid.Column="1" Foreground="White"  HorizontalAlignment="Left" Height="49" Margin="10,17,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Message}"  VerticalAlignment="Top" Width="336" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button Command="{Binding SupportCommand}" Content="Ok" Grid.Row="3" Grid.Column="2" Margin="103,21,10,2" Height="Auto"/>
+            <Button Click="CheckConnection" Command="{Binding SupportCommand}" Content="Ok" Grid.Row="3" Grid.Column="2" Margin="103,21,10,2" Height="Auto"/>
         </Grid>
     </Border>
 </Page>

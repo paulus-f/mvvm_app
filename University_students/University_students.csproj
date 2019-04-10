@@ -110,6 +110,9 @@
     <Compile Include="CustomBoxes\ChoosingGroups.xaml.cs">
       <DependentUpon>ChoosingGroups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomBoxes\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomBoxes\ListStudentsOfGroup.xaml.cs">
       <DependentUpon>ListStudentsOfGroup.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomBoxes\ChoosingGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomBoxes\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
