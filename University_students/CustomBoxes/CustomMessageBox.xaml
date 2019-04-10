@@ -13,7 +13,7 @@
     <Border CornerRadius="55" BorderBrush="#FFC77A0C" BorderThickness="5" Background="#FF271F10">
         <Grid Margin="0,-4,-5,-5">
             <Button Content="Close" Click="closeBox" Margin="76,108,78,10" BorderBrush="#FF0C0303" Background="#FFCF8607" Height="Auto" RenderTransformOrigin="0.5,0.5"/>
-            <Label x:Name="MessageLabel" Content="" Margin="34,25,53,46" Foreground="#FFA6621D" FontSize="24" FontFamily="Geometr706 BlkCn BT"/>
+            <TextBlock x:Name="MessageLabel" Text="" Margin="34,25,53,46" Foreground="#FFA6621D" FontSize="24" FontFamily="Geometr706 BlkCn BT" TextAlignment="Center" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
         </Grid>
     </Border>
 </Window>

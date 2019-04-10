@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using University_students.Models;
 
 namespace University_students.ViewModel.TeacherVM
@@ -30,6 +32,9 @@ namespace University_students.ViewModel.TeacherVM
             {
                 ListStudentProgress = db.SubjectProgress
                     .Where(sp => sp.TaughtGroups.Id == value.Id && sp.IsOffsetPassed == false)
+                    .ToList();
+                ListStudentProgressExam = db.SubjectProgress
+                    .Where(sp => sp.TaughtGroups.Id == value.Id && sp.IsOffsetPassed == true)
                     .ToList();
                 _SelectedGroup = value;
                 OnPropertyChanged("SelectedGroup");
@@ -76,8 +81,66 @@ namespace University_students.ViewModel.TeacherVM
             set
             {
                 _SelectedStudent = value;
+                IsSelectedOffset = true;
                 OnPropertyChanged("SelectedStudent");
             }
+        }
+
+        private SubjectProgress _SelectedStudentExam;
+        public SubjectProgress SelectedStudentExam
+        {
+            get => _SelectedStudentExam;
+            set
+            {
+                _SelectedStudentExam = value;
+                IsSelectedExam = true;
+                OnPropertyChanged("SelectedStudentExam");
+            }
+        }
+
+        private bool _IsSelectedOffset;
+        public bool IsSelectedOffset
+        {
+            get => _IsSelectedOffset;
+            set
+            {
+                _IsSelectedOffset = value;
+                OnPropertyChanged("IsSelectedOffset");
+            }
+        }
+
+        private bool _IsSelectedExam;
+        public bool IsSelectedExam
+        {
+            get => _IsSelectedExam;
+            set
+            {
+                _IsSelectedExam = value;
+                OnPropertyChanged("IsSelectedExam");
+            }
+        }
+
+        public ICommand AdmitingToExamCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanAdmitingToExam()
+                );
+            }
+        }
+        
+        private void CanAdmitingToExam()
+        {
+            var firstSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudent.Id);
+            firstSP.IsOffsetPassed = true;
+            db.SaveChanges();
+            ListStudentProgress = db.SubjectProgress
+                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == false)
+                .ToList();
+            ListStudentProgressExam = db.SubjectProgress
+                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == true)
+                .ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -17,35 +17,52 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="221*"/>
-            <RowDefinition Height="229*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="131*"/>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="#FF040303" Margin="6,3,615,188" TextWrapping="Wrap" Text="My Subjects" FontSize="24" FontFamily="News706 BT" TextAlignment="Center"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Foreground="#FF040303" Margin="6,3,615,0" TextWrapping="Wrap" Text="My Subjects" FontSize="24" FontFamily="News706 BT" TextAlignment="Center" Height="33" VerticalAlignment="Top"/>
         <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}"
-                Margin="0,42,479,54">
+                Margin="0,10,0,0" Height="140" VerticalAlignment="Top">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Path=ListStudentProgress}"  Margin="10,190,0,51" Grid.RowSpan="2" HorizontalAlignment="Left" Width="303" MouseDown="OpenBackgroundStudent" IsReadOnly="True">
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding Path=ListStudentProgress}"  Margin="10,1,10,10" MouseDown="OpenBackgroundStudent" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
-                <DataGridTextColumn Width="*" Header="Valid Excuse" Binding="{Binding ValidExcuse}"/>
-                <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnvalidExcuse}"/>
+                <DataGridTextColumn Width="*" Header="Valid Excuse" Binding="{Binding ValidExcuses}"/>
+                <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnValidExcuses}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Margin="0,38,10,51" Grid.RowSpan="2" HorizontalAlignment="Right" Width="444">
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudentExam}" ItemsSource="{Binding ListStudentProgressExam}" Margin="10,1,10,10" Grid.Row="1" Grid.Column="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding }"/>
-                <DataGridTextColumn Width="150" Header="Qualification" Binding="{Binding }"/>
-                <DataGridTextColumn Width="100" Header="Code" Binding="{Binding }"/>
+                <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
+                <DataGridTextColumn Width="*" Header="Valid Excuse" Binding="{Binding ValidExcuses}"/>
+                <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnValidExcuses}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add Report For Group" Margin="478,187,140,10" Height="Auto" Grid.Row="1"/>
-        <TextBlock Foreground="#FF040303" Margin="66,167,555,36" TextWrapping="Wrap" Text="Without Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
-        <TextBlock Foreground="#FF040303" Margin="426,11,194,192" TextWrapping="Wrap" Text="With Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center"/>
+        <TextBlock Foreground="#FF040303" Margin="0,156,69,0" TextWrapping="Wrap" Text="Without Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="173"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="63*"/>
+                <RowDefinition Height="31*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="154*"/>
+                <ColumnDefinition Width="113*"/>
+                <ColumnDefinition Width="133*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Report For Group" Margin="7,13,10,0" Height="38" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.245,0.408"/>
+            <Button IsEnabled="{Binding IsSelectedExam}" Content="send to retake" Margin="0,13,0,0" Height="38" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBlock Foreground="#FF040303" Margin="0,14,7,11" TextWrapping="Wrap" Text="With Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center" Grid.Column="2" Grid.Row="1"/>
+        </Grid>
+        <Button IsEnabled="{Binding IsSelectedOffset}" Content="Admit to the exam" Command="{Binding AdmitingToExamCommand}" Margin="0,155,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="152"/>
     </Grid>
 </UserControl>

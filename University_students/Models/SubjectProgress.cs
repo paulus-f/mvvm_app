@@ -29,7 +29,23 @@ namespace University_students.Models
             WorkOuts = new List<WorkOut>();
         }
 
-
+        public string ToResultExam()
+        {
+            string res = "";
+            switch (IsExamPassed)
+            {
+                case Enums.StateExam.Waiting:
+                    res += "Exam: Waiting ";
+                    break;
+                case Enums.StateExam.Passed:
+                    res += "Exam: Passed ";
+                    break;
+                case Enums.StateExam.Failed:
+                    res += "Exam: Failed ";
+                    break;
+            }
+            return res;
+        }
 
         public override string ToString()
         {

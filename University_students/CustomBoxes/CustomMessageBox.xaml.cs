@@ -23,7 +23,7 @@ namespace University_students.CustomBoxes
         {
             InitializeComponent();
             this.MouseLeftButtonDown += MouseDragMove;
-            MessageLabel.Content = msg;
+            MessageLabel.Text = msg;
         }
 
         private void closeBox(object sender, EventArgs e)

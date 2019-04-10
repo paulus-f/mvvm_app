@@ -54,7 +54,7 @@
                 <Label Content="Teachers" Margin="9,10,0,45" FontSize="36"/>
                 <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="16,13,26,72" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Stretch"/>
                 <Label Content="Faculty" Grid.Column="2" Margin="118,13,10,72" RenderTransformOrigin="0.098,0.271"/>
-                <Button Content="Invite" IsEnabled="{Binding IsNet}"  Grid.Column="2" Command="{Binding InviteTeacherCommand}" Margin="58,75,61,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
+                <Button Content="Invite" Grid.Column="2" Command="{Binding InviteTeacherCommand}" Margin="58,75,60,0" Grid.Row="3" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top" Click="CheckConnection"/>
                 <Label Content="University" Grid.Column="1" Margin="10,10,118,72" RenderTransformOrigin="0.098,0.271"/>
                 <Button  Content="Reset" MaxHeight="70" MaxWidth="220"  Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFD8A620" VerticalAlignment="Top"/>
                 <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFDA4D46" VerticalAlignment="Top"/>
