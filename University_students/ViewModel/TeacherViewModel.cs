@@ -30,23 +30,23 @@ namespace University_students.ViewModel
             GroupsContent = new View.TeacherPages.GroupsContent(_currentUser);
             AccreditationContent = new View.TeacherPages.AccreditationContent(_currentUser);
             Models.Сertification certification = CurrentUser.Pulpit.Faculty.University.Сertification;
-            if(certification.FirstAutumnStartDate >= DateTime.Today &&
-                certification.FirstAutumnEndDate <= DateTime.Today )
+            if(certification.FirstAutumnStartDate <= DateTime.Today &&
+                certification.FirstAutumnEndDate >= DateTime.Today )
             {
                 CertificationContent = new View.TeacherPages.CertificationContent(_currentUser, Enums.TypeCertifiation.FirstHalfStart);
             }
-            else if(certification.FirstSpringStartDate >= DateTime.Today &&
-                certification.FirstSpringEndDate <= DateTime.Today)
+            else if(certification.FirstSpringStartDate <= DateTime.Today &&
+                certification.FirstSpringEndDate >= DateTime.Today)
             {
                 CertificationContent = new View.TeacherPages.CertificationContent(_currentUser, Enums.TypeCertifiation.SecondHalfStart);
             }
-            else if(certification.LastAutumnStartDate>= DateTime.Today &&
-                certification.LastAutumnEndDate<= DateTime.Today)
+            else if(certification.LastAutumnStartDate <= DateTime.Today &&
+                certification.LastAutumnEndDate >= DateTime.Today)
             {
                 CertificationContent = new View.TeacherPages.CertificationContent(_currentUser, Enums.TypeCertifiation.FirstHalfFinish);
             }
-            else if(certification.LastSpringStartDate >= DateTime.Today &&
-                certification.LastSpringEndDate <= DateTime.Today)
+            else if(certification.LastSpringStartDate <= DateTime.Today &&
+                certification.LastSpringEndDate >= DateTime.Today)
             {
                 CertificationContent = new View.TeacherPages.CertificationContent(_currentUser, Enums.TypeCertifiation.SecondHalfFinish);
             }

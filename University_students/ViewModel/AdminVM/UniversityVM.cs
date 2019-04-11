@@ -40,6 +40,17 @@ namespace University_students.ViewModel.AdminVM
                 Name = value?.Name;
                 City = value?.City;
                 TypeUniversity = value?.TypeUniversity;
+                if (value != null)
+                {
+                    SelectedFirstAutumnStartDate = value.Сertification.FirstAutumnStartDate;
+                    SelectedFirstAutumnFinishDate = value.Сertification.FirstAutumnEndDate;
+                    SelectedFirstSpringFinishDate = value.Сertification.FirstSpringEndDate;
+                    SelectedLastAutumnFinishDate = value.Сertification.LastAutumnEndDate;
+                    SelectedLastSpringStartDate = value.Сertification.LastSpringStartDate;
+                    SelectedLastSpringFinishDate = value.Сertification.LastSpringEndDate;
+                    SelectedLastAutumnStartDate = value.Сertification.LastAutumnStartDate;
+                    SelectedFirstSpringStartDate = value.Сertification.FirstSpringStartDate;
+                }
                 IsEnabledUD = true;
                 OnPropertyChanged("SelectedUniversityDG");
             }

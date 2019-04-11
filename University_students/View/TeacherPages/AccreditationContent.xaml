@@ -41,7 +41,7 @@
                 <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnValidExcuses}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudentExam}" ItemsSource="{Binding ListStudentProgressExam}" Margin="10,1,10,10" Grid.Row="1" Grid.Column="1">
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudentExam}" ItemsSource="{Binding ListStudentProgressExam}" Margin="10,1,10,10" Grid.Row="1" Grid.Column="1" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
                 <DataGridTextColumn Width="*" Header="Valid Excuse" Binding="{Binding ValidExcuses}"/>
@@ -63,6 +63,6 @@
             <Button IsEnabled="{Binding IsSelectedExam}" Content="send to retake" Margin="0,13,0,0" Height="38" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
             <TextBlock Foreground="#FF040303" Margin="0,14,7,11" TextWrapping="Wrap" Text="With Admission" FontSize="16" FontFamily="News706 BT" TextAlignment="Center" Grid.Column="2" Grid.Row="1"/>
         </Grid>
-        <Button IsEnabled="{Binding IsSelectedOffset}" Content="Admit to the exam" Command="{Binding AdmitingToExamCommand}" Margin="0,155,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="152"/>
+        <Button IsEnabled="{Binding IsSelectedOffset}" Content="Admit to the exam" Command="{Binding AdmitingToExamCommand}" Margin="10,155,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="142"/>
     </Grid>
 </UserControl>
