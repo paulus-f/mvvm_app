@@ -107,7 +107,6 @@ namespace University_students.ViewModel
             {
                 return new RelayCommand<object>(
                     (param) => CanLogOut()
-
                 );
             }
         }

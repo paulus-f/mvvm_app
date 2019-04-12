@@ -18,7 +18,7 @@ namespace University_students.ViewModel.TeacherVM
             db = new USDbContext();
             CurrentTeacher = teacher;
             ListSubjects = teacher.Subjects.ToList();
-            ListGroups = teacher.Teaching.TaughtGroups.ToList();
+            ListGroups = teacher?.Teaching?.TaughtGroups.ToList();
         }
 
         private List<Subject> _ListSubjects;
@@ -31,7 +31,6 @@ namespace University_students.ViewModel.TeacherVM
                 OnPropertyChanged("ListSubjects");
             }
         }
-
 
         private User _currentTeacher;
         public User CurrentTeacher

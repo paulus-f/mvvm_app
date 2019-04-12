@@ -19,7 +19,7 @@ namespace University_students.ViewModel.TeacherVM
         {
             db = new USDbContext();
             _currentTeacher = teacher;
-            ListGroups = teacher.Teaching.TaughtGroups.ToList();
+            ListGroups = teacher?.Teaching?.TaughtGroups.ToList();
         }
 
         private User _currentTeacher;

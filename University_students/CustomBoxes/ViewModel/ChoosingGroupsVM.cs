@@ -52,6 +52,7 @@ namespace University_students.CustomBoxes.ViewModel
                     var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
                     tech.Teaching.TaughtGroups.Remove(gr);
                     db.SaveChanges();
+                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
                     TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
                 }

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using University_students.Models;
 
 namespace University_students.ViewModel.TeacherVM
@@ -36,6 +38,77 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
+        private List<SubjectProgress> _ListProgressStudents;
+        public List<SubjectProgress> ListProgressStudents
+        {
+            get => _ListProgressStudents;
+            set
+            {
+                _ListProgressStudents = value;
+                OnPropertyChanged("ListProgressStudents");
+            }
+        }
+
+        public ICommand AddFailCertificationCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => CanAddFailCertification((SubjectProgress)param)
+                );
+            }
+        }
+
+        private void CanAddFailCertification(SubjectProgress stProgress)
+        {
+            var firstSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == stProgress.Id);
+            switch(_tc)
+            {
+                case Enums.TypeCertifiation.FirstHalfFinish:
+                case Enums.TypeCertifiation.SecondHalfFinish:
+                    firstSP.IsFinishCertifiationPassed = Enums.StateCertification.Failed;
+                    break;
+                case Enums.TypeCertifiation.FirstHalfStart:
+                case Enums.TypeCertifiation.SecondHalfStart:
+                    firstSP.IsStartCertifiationPassed = Enums.StateCertification.Failed;
+                    break;
+            }
+            db.SaveChanges();
+            ListProgressStudents = db.SubjectProgress
+                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id)
+                .ToList();
+        }
+
+        public ICommand AddSuccessCertificationCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => CanAddSuccessCertification((SubjectProgress)param)
+                );
+            }
+        }
+
+        private void CanAddSuccessCertification(SubjectProgress stProgress)
+        {
+            var firstSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == stProgress.Id);
+            switch (_tc)
+            {
+                case Enums.TypeCertifiation.FirstHalfFinish:
+                case Enums.TypeCertifiation.SecondHalfFinish:
+                    firstSP.IsFinishCertifiationPassed = Enums.StateCertification.Passed;
+                    break;
+                case Enums.TypeCertifiation.FirstHalfStart:
+                case Enums.TypeCertifiation.SecondHalfStart:
+                    firstSP.IsStartCertifiationPassed = Enums.StateCertification.Passed;
+                    break;
+            }
+            db.SaveChanges();
+            ListProgressStudents = db.SubjectProgress
+                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id)
+                .ToList();
+        }
+
         private string _TypeCertifiation;
         public string TypeCertification
         {
@@ -47,6 +120,16 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
+        private SubjectProgress _SelectedProgressStudent;
+        public SubjectProgress SelectedProgressStudent
+        {
+            get => _SelectedProgressStudent;
+            set
+            {
+                _SelectedProgressStudent = value;
+                OnPropertyChanged("SelectedProgressStudent");
+            }
+        }
 
         private List<TaughtGroups> _ListGroups;
         public List<TaughtGroups> ListGroups
@@ -66,6 +149,12 @@ namespace University_students.ViewModel.TeacherVM
             set
             {
                 _SelectedGroup = value;
+                if (value != null)
+                {
+                    ListProgressStudents = db.SubjectProgress
+                        .Where(sp => sp.TaughtGroups.Id == value.Id)
+                        .ToList();
+                }
                 OnPropertyChanged("SelectedGroup");
             }
         }

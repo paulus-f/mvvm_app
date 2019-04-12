@@ -156,7 +156,7 @@ namespace University_students.CustomBoxes.ViewModel
                 };
                 db.SubjectProgress.Add(newSP);
                 db.SaveChanges();
-                SelectedStudent = student;
+                SelectedStudent = db.Users.FirstOrDefault(stud => stud.Id == student.Id);
                 return newSP;
             }
             return subRes;
