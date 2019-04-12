@@ -32,7 +32,8 @@ namespace University_students.View.TeacherPages
 
         private void onClickGroup(object sender, RoutedEventArgs e)
         {
-            new CustomBoxes.ListStudentsOfGroup(dc.SelectedGroup).Show();
+            TaughtGroups taughtGroups = ((Button)sender).CommandParameter as TaughtGroups;
+            new CustomBoxes.ListStudentsOfGroup(taughtGroups).Show();
         }
     }
 }

@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel Margin="5">
-                <Button Click="onClickGroup" Command="{Binding DataContext.ViewGroupCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="Black" BorderBrush="{x:Null}" Foreground="White">
+                <Button Click="onClickGroup" Command="{Binding DataContext.ViewGroupCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" CommandParameter="{Binding}" Width="25" Height="25" Background="Black" BorderBrush="{x:Null}" Foreground="White">
                     <materialDesign:PackIcon Kind="Accessible"/>
                 </Button>
                 <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />

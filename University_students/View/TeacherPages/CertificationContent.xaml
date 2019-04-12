@@ -40,7 +40,7 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <TextBlock Text="{Binding TypeCertifiation}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" TextAlignment="Center" FontFamily="Segoe UI Black"/>
+        <TextBlock Text="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" TextAlignment="Center" FontFamily="Segoe UI Black"/>
     </Grid>
 </UserControl>
 
