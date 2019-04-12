@@ -37,6 +37,7 @@ namespace University_students.ViewModel.TeacherVM
                     .Where(sp => sp.TaughtGroups.Id == value.Id && sp.IsOffsetPassed == true)
                     .ToList();
                 _SelectedGroup = value;
+                IsSelected = true;
                 OnPropertyChanged("SelectedGroup");
             }
         }
@@ -120,6 +121,47 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
+        private bool _IsSelected;
+        public bool IsSelected
+        {
+            get => _IsSelected;
+            set
+            {
+                _IsSelected = value;
+                OnPropertyChanged("IsSelected");
+            }
+        }
+
+        public ICommand AddFailExamCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanAddFailExam()
+                );
+            }
+        }
+
+        public ICommand CompleteExamCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanRetakeExam()
+                );
+            }
+        }
+
+        public ICommand CreateReportCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanCreateReport()
+                );
+            }
+        }
+
         public ICommand AdmitingToExamCommand
         {
             get
@@ -129,7 +171,23 @@ namespace University_students.ViewModel.TeacherVM
                 );
             }
         }
-        
+
+        private void CanAddFailExam()
+        {
+
+        }
+
+        private void CanRetakeExam()
+        {
+
+        }
+
+        private void CanCreateReport()
+        {
+            var tg = db.TaughtGroups.FirstOrDefault(t => t.Id == SelectedGroup.Id);
+            Services.TeacherDocs.CreateReport(tg);
+        }
+
         private void CanAdmitingToExam()
         {
             var firstSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudent.Id);

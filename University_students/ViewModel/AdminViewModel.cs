@@ -157,7 +157,7 @@ namespace University_students.ViewModel
         }
         void CanLogOut()
         {
-               var msg = new LogOutMessage() { Message = "LogOut"};
+            var msg = new LogOutMessage() { Message = "LogOut"};
             Messenger.Default.Send<LogOutMessage>(msg);
         }
 

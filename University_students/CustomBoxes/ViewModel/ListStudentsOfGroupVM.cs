@@ -139,7 +139,7 @@ namespace University_students.CustomBoxes.ViewModel
 
         private SubjectProgress CheckProgress(Subject sub, User st)
         {
-            var subRes = st?.SubjectsProgress.FirstOrDefault(sp => sp.TaughtGroups.Id == _tg.Id);
+            var subRes = db.SubjectProgress.FirstOrDefault(subPro => subPro.UserId == st.Id && subPro.TaughtGroupsId == _tg.Id);
             if(subRes == null)
             {
                 var student = db.Users.FirstOrDefault(u => u.Id == st.Id);
@@ -156,7 +156,9 @@ namespace University_students.CustomBoxes.ViewModel
                 };
                 db.SubjectProgress.Add(newSP);
                 db.SaveChanges();
+                ListStudents = db.Groups.FirstOrDefault(gr => gr.Id == Group.Id).Students.ToList();
                 SelectedStudent = db.Users.FirstOrDefault(stud => stud.Id == student.Id);
+
                 return newSP;
             }
             return subRes;

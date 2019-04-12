@@ -41,11 +41,12 @@ namespace University_students.ViewModel
 
         private object ReceiveMessage(LogOutMessage action)
         {
+            StartUpPage = new View.StartUpPage();
+            MainCurrentControl = StartUpPage;
             _currentControl.Content = StartUpPage;
             _currentControl.UpdateLayout();
             return null;
         }
-
 
         private object ReceiveMessage(ChangeNavigationPageMessage action)
         {
