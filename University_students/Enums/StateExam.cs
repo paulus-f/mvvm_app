@@ -4,6 +4,7 @@
     {
         Passed,
         Failed,
-        Waiting
+        Waiting,
+        Retake
     }
 }
