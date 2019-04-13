@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,5 +40,34 @@ namespace University_students.View.AdminPages
         {
             new CustomBoxes.ChoosingGroups(vm.SelectedTeacherDG).Show();
         }
+
+        private bool CheckConnection()
+        {
+            WebClient client = new WebClient();
+            try
+            {
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+        }
+
+        private void CheckConnection(object sender, RoutedEventArgs e)
+        {
+            if (CheckConnection())
+            {
+                vm.IsNet = true;
+                new CustomBoxes.CustomMessageBox("Complete").Show();
+            }
+            else
+            {
+                vm.IsNet = false;
+                new CustomBoxes.CustomMessageBox("Connection is fail").Show();
+            };
+        }
+        
     }
 }

@@ -30,17 +30,18 @@ namespace University_students.CustomBoxes.ViewModel
             db = new USDbContext();
             teacherUniversity = (int)teacher.Pulpit.Faculty.UniversityId;
             CurrentTeacher = teacher;
-            TeacherGroups = teacher.Teaching.Groups.ToList();
+            ListSubs = teacher.Subjects.ToList();
+            TeacherGroups = teacher.Teaching.TaughtGroups.ToList();
             ListGroups = (from gr in db.Groups
                           join sp in db.Specialities on gr.SpecialityId equals sp.Id
                           join f in db.Faculties on sp.FacultyId equals f.Id
                           join te in db.Teachings on teacher.Id equals te.Id
-                          where f.UniversityId == teacherUniversity && te.Groups.All(g => g.Id != gr.Id)
+                          where f.UniversityId == teacherUniversity
                           select gr).ToList();
         }
         
-        private Group _SelectedTeacherGroup;
-        public Group SelectedTeacherGroup
+        private TaughtGroups _SelectedTeacherGroup;
+        public TaughtGroups SelectedTeacherGroup
         {
             get => _SelectedTeacherGroup;
             set
@@ -48,13 +49,12 @@ namespace University_students.CustomBoxes.ViewModel
                 if (value != null)
                 {
                     var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
-                    var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
-                    tech.Teaching.Groups.Remove(gr);
+                    var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
+                    tech.Teaching.TaughtGroups.Remove(gr);
                     db.SaveChanges();
+                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
-                    TeacherGroups = CurrentTeacher.Teaching.Groups.ToList();
-                    ListGroups.Add(value);
-                    ListGroups = ListGroups.ToList();
+                    TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
                 }
                 _SelectedTeacherGroup = null;
                 OnPropertyChanged("SelectedTeacherGroup");
@@ -67,19 +67,23 @@ namespace University_students.CustomBoxes.ViewModel
             get => _SelectedFromListGroups;
             set
             {
-                if(value != null)
+                if(value != null && SelectedSub != null)
                 {
                     var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
-                    tech.Teaching.Groups.Add(value);
-                    db.Groups.Attach(gr);
+                    var sub = db.Subjects.FirstOrDefault(s => s.Id == SelectedSub.Id);
+                    db.TaughtGroups.Add(new TaughtGroups()
+                    {
+                        Subject = sub,
+                        Group = gr,
+                        Teaching = tech.Teaching
+                    });
                     db.SaveChanges();
+                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
-                    TeacherGroups = tech.Teaching.Groups.ToList();
-                    ListGroups.Remove(value);
-                    ListGroups = ListGroups.ToList();
+                    TeacherGroups = tech.Teaching.TaughtGroups.ToList();
                 }
-                _SelectedFromListGroups = null;
+                _SelectedFromListGroups = value;
                 OnPropertyChanged("SelectedFromListGroups");
             }
         }
@@ -95,8 +99,30 @@ namespace University_students.CustomBoxes.ViewModel
             }
         }
 
-        private List<Group> _TeacherGroups;
-        public List<Group> TeacherGroups
+        private List<Subject> _ListSubs;
+        public List<Subject> ListSubs
+        {
+            get => _ListSubs;
+            set
+            {
+                _ListSubs = value;
+                OnPropertyChanged("ListSubs");
+            }
+        }
+
+        private Subject _SelectedSub;
+        public Subject SelectedSub
+        {
+            get => _SelectedSub;
+            set
+            {
+                _SelectedSub = value;
+                OnPropertyChanged("SelectedSub");
+            }
+        }
+
+        private List<TaughtGroups> _TeacherGroups;
+        public List<TaughtGroups> TeacherGroups
         {
             get => _TeacherGroups;
             set
@@ -105,8 +131,6 @@ namespace University_students.CustomBoxes.ViewModel
                 OnPropertyChanged("TeacherGroups");
             }
         }
-        
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

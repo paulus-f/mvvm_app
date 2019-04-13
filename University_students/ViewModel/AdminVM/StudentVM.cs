@@ -180,7 +180,8 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteSpeciality()
         {
-            db.Users.Remove(_selectedStudentDG);
+            var deleteUser = db.Users.Include("SubjectsProgress.WorkOuts").FirstOrDefault(u => u.Id == _selectedStudentDG.Id);
+            db.Users.Remove(deleteUser);
             db.SaveChanges();
             ListStudents = db.Users.Where(st => st.TypeUser == Enums.Role.Students).ToList();
         }

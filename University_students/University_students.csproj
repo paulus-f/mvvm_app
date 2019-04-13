@@ -104,11 +104,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomBoxes\BackgroundStudentBox.xaml.cs">
+      <DependentUpon>BackgroundStudentBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomBoxes\ChoosingGroups.xaml.cs">
       <DependentUpon>ChoosingGroups.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomBoxes\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomBoxes\ListStudentsOfGroup.xaml.cs">
+      <DependentUpon>ListStudentsOfGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomBoxes\ViewModel\BackgroundStudentVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
+    <Compile Include="CustomBoxes\ViewModel\ListStudentsOfGroupVM.cs" />
     <Compile Include="Data\RegexPattern.cs" />
+    <Compile Include="Enums\StateCertification.cs" />
+    <Compile Include="Enums\StateExam.cs" />
+    <Compile Include="Enums\TypeCertifiation.cs" />
+    <Compile Include="Enums\TypeAccreditation.cs" />
     <Compile Include="Messager\ChangeNavigationPageMessage.cs" />
     <Compile Include="Messager\LogOutMessage.cs" />
     <Compile Include="Messager\SendCurrentUserMessage.cs" />
@@ -182,6 +197,30 @@
     <Compile Include="Migrations\201904052059304_CorrectTeaching.Designer.cs">
       <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904071319023_AddTaughtGroups.cs" />
+    <Compile Include="Migrations\201904071319023_AddTaughtGroups.Designer.cs">
+      <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904082038050_ChangeRequiredInUser.cs" />
+    <Compile Include="Migrations\201904082038050_ChangeRequiredInUser.Designer.cs">
+      <DependentUpon>201904082038050_ChangeRequiredInUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091255390_AddSubjectProgress.cs" />
+    <Compile Include="Migrations\201904091255390_AddSubjectProgress.Designer.cs">
+      <DependentUpon>201904091255390_AddSubjectProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091442159_AddWorkOut.cs" />
+    <Compile Include="Migrations\201904091442159_AddWorkOut.Designer.cs">
+      <DependentUpon>201904091442159_AddWorkOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.cs" />
+    <Compile Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.Designer.cs">
+      <DependentUpon>201904091519263_AddTaughtGroupsToSubjectProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091747002_ChangeSubjectProgress.cs" />
+    <Compile Include="Migrations\201904091747002_ChangeSubjectProgress.Designer.cs">
+      <DependentUpon>201904091747002_ChangeSubjectProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Secrets.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -189,11 +228,16 @@
     <Compile Include="Models\Pulpit.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\SubjectProgress.cs" />
+    <Compile Include="Models\TaughtGroups.cs" />
     <Compile Include="Models\Teaching.cs" />
     <Compile Include="Models\University.cs" />
+    <Compile Include="Models\WorkOut.cs" />
     <Compile Include="Models\Сertification.cs" />
     <Compile Include="Serializable\GroupString.cs" />
     <Compile Include="Serializable\ListGroupSer.cs" />
+    <Compile Include="Services\StudentsDocs.cs" />
+    <Compile Include="Services\TeacherDocs.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\FacultyVM.cs" />
     <Compile Include="ViewModel\AdminVM\GroupVM.cs" />
@@ -209,6 +253,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SupportViewModel.cs" />
     <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="ViewModel\TeacherVM\CertificationVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\GroupsVM.cs" />
+    <Compile Include="ViewModel\TeacherVM\AccreditationVM.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
@@ -247,10 +294,34 @@
     <Compile Include="View\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TeacherPages\CertificationContent.xaml.cs">
+      <DependentUpon>CertificationContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\GroupsContent.xaml.cs">
+      <DependentUpon>GroupsContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\NoCertification.xaml.cs">
+      <DependentUpon>NoCertification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeacherPages\AccreditationContent.xaml.cs">
+      <DependentUpon>AccreditationContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomBoxes\BackgroundStudentBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomBoxes\ChoosingGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomBoxes\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomBoxes\ListStudentsOfGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +392,22 @@
     <Page Include="View\TeacherPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TeacherPages\CertificationContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\GroupsContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\NoCertification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeacherPages\AccreditationContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserPage.xaml">
       <SubType>Designer</SubType>
@@ -395,6 +482,24 @@
     <EmbeddedResource Include="Migrations\201904052059304_CorrectTeaching.resx">
       <DependentUpon>201904052059304_CorrectTeaching.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904071319023_AddTaughtGroups.resx">
+      <DependentUpon>201904071319023_AddTaughtGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904082038050_ChangeRequiredInUser.resx">
+      <DependentUpon>201904082038050_ChangeRequiredInUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091255390_AddSubjectProgress.resx">
+      <DependentUpon>201904091255390_AddSubjectProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091442159_AddWorkOut.resx">
+      <DependentUpon>201904091442159_AddWorkOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091519263_AddTaughtGroupsToSubjectProgress.resx">
+      <DependentUpon>201904091519263_AddTaughtGroupsToSubjectProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091747002_ChangeSubjectProgress.resx">
+      <DependentUpon>201904091747002_ChangeSubjectProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -429,8 +534,37 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\TeacherPages\" />
+    <Folder Include="ViewModel\StudentVM\" />
     <Folder Include="View\UserPages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

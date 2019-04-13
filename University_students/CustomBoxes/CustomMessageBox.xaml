@@ -1,0 +1,19 @@
+﻿<Window x:Class="University_students.CustomBoxes.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStartupLocation="CenterScreen"
+        MaxHeight="150"
+        MaxWidth="250"
+        MinHeight="150"
+        MinWidth="250"
+        Title="ChoosingGroups" Height="150" Width="250">
+    <Border CornerRadius="55" BorderBrush="#FFC77A0C" BorderThickness="5" Background="#FF271F10">
+        <Grid Margin="0,-4,-5,-5">
+            <Button Content="Close" Click="closeBox" Margin="76,108,78,10" BorderBrush="#FF0C0303" Background="#FFCF8607" Height="Auto" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock x:Name="MessageLabel" Text="" Margin="34,25,53,46" Foreground="#FFA6621D" FontFamily="Geometr706 BlkCn BT" TextAlignment="Center" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16"/>
+        </Grid>
+    </Border>
+</Window>

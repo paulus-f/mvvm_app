@@ -19,6 +19,9 @@ namespace University_students.Models
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Сertification> Сertifications { get; set; }
         public DbSet<Teaching> Teachings { get; set; }
+        public DbSet<TaughtGroups> TaughtGroups { get; set; }
+        public DbSet<SubjectProgress> SubjectProgress { get; set; }
+        public DbSet<WorkOut> WorkOuts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

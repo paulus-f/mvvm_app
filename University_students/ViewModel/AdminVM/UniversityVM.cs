@@ -40,6 +40,17 @@ namespace University_students.ViewModel.AdminVM
                 Name = value?.Name;
                 City = value?.City;
                 TypeUniversity = value?.TypeUniversity;
+                if (value != null)
+                {
+                    SelectedFirstAutumnStartDate = value.Сertification.FirstAutumnStartDate;
+                    SelectedFirstAutumnFinishDate = value.Сertification.FirstAutumnEndDate;
+                    SelectedFirstSpringFinishDate = value.Сertification.FirstSpringEndDate;
+                    SelectedLastAutumnFinishDate = value.Сertification.LastAutumnEndDate;
+                    SelectedLastSpringStartDate = value.Сertification.LastSpringStartDate;
+                    SelectedLastSpringFinishDate = value.Сertification.LastSpringEndDate;
+                    SelectedLastAutumnStartDate = value.Сertification.LastAutumnStartDate;
+                    SelectedFirstSpringStartDate = value.Сertification.FirstSpringStartDate;
+                }
                 IsEnabledUD = true;
                 OnPropertyChanged("SelectedUniversityDG");
             }
@@ -219,16 +230,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return new RelayCommand(
-                    () => CanDeleteFaculty()
-                );
-            }
-        }
-
         public ICommand UpdateCommand
         {
             get
@@ -239,25 +240,20 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-        private void CanDeleteFaculty()
-        {
-            if(SelectedUniversityDG.Сertification != null)
-            {
-                db.Сertifications.Remove(SelectedUniversityDG.Сertification);
-            }
-            db.Universities.Remove(db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id));
-            db.SaveChanges();
-            AllUniversities = db.Universities.ToList();
-            SelectedUniversityDG = null;
-            IsEnabledUD = false;
-        }
-
         private void CanUpdateFaculty()
         {
             var univ = db.Universities.FirstOrDefault(u => u.Id == SelectedUniversityDG.Id);
             univ.Name = Name;
             univ.City = City;
             univ.TypeUniversity = TypeUniversity;
+            univ.Сertification.FirstAutumnStartDate = SelectedFirstAutumnStartDate;
+            univ.Сertification.FirstAutumnEndDate = SelectedFirstAutumnFinishDate;
+            univ.Сertification.FirstSpringEndDate = SelectedFirstSpringFinishDate;
+            univ.Сertification.LastAutumnEndDate = SelectedLastAutumnFinishDate;
+            univ.Сertification.LastSpringStartDate = SelectedLastSpringStartDate;
+            univ.Сertification.LastSpringEndDate = SelectedLastSpringFinishDate;
+            univ.Сertification.LastAutumnStartDate = SelectedLastAutumnStartDate;
+            univ.Сertification.FirstSpringStartDate = SelectedFirstSpringStartDate;
             db.SaveChanges();
             AllUniversities = db.Universities.ToList();
             SelectedUniversityDG = null;

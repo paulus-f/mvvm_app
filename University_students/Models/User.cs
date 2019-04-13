@@ -22,11 +22,12 @@ namespace University_students.Models
         public int? GroupId { get; set; }
         public virtual Group Group{ get; set; }
         public Role TypeUser { get; set; }
-        [Required]
         public virtual Teaching Teaching { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<SubjectProgress> SubjectsProgress { get; set; }
         public User()
         {
+            SubjectsProgress = new List<SubjectProgress>();
             Subjects = new List<Subject>();
         }
 

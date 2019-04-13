@@ -1,0 +1,36 @@
+namespace University_students.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddSubjectProgress : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.SubjectProgresses",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        IsOffsetPassed = c.Boolean(nullable: false),
+                        IsExamPassed = c.Boolean(nullable: false),
+                        IsStartCertifiationPassed = c.Boolean(nullable: false),
+                        IsFinishCertifiationPassed = c.Boolean(nullable: false),
+                        ValidExcuses = c.Int(nullable: false),
+                        UnValidExcuses = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.SubjectProgresses", "UserId", "dbo.Users");
+            DropIndex("dbo.SubjectProgresses", new[] { "UserId" });
+            DropTable("dbo.SubjectProgresses");
+        }
+    }
+}

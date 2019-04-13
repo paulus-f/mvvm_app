@@ -14,8 +14,10 @@ namespace University_students.Models
         [Required]
         public int Hour { get; set; }
         public virtual ICollection<User> Teachers { get; set; }
+        public virtual ICollection<TaughtGroups> TaughtGroups { get; set; }
         public Subject()
         {
+            TaughtGroups = new List<TaughtGroups>();
             Teachers = new List<User>();
         }
 

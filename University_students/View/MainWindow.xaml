@@ -9,21 +9,24 @@
         xmlns:views="clr-namespace:University_students.View"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
         MinHeight="500"
-        MinWidth="900"
-        x:Name="mainWindow">
+        MinWidth ="1000"
+        AllowsTransparency="True"
+        Background="Transparent" 
+        x:Name="mainWindow" Width="1000">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="157*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" />
-        <Grid x:Name="GridBarTitle" Background="#FF8522BD"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
+        <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Grid x:Name="GridBarTitle" Background="#F57C00"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
                 <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
                     <materialDesign:PackIcon Kind="Power"/>

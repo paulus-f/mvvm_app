@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,10 +22,41 @@ namespace University_students.View
     /// </summary>
     public partial class Support : Page
     {
+
+        private SupportViewModel dc;
         public Support()
         {
             InitializeComponent();
-            DataContext = new SupportViewModel();
+            dc = new SupportViewModel();
+            DataContext = dc;
+        }
+
+        private bool CheckConnection()
+        {
+            WebClient client = new WebClient();
+            try
+            {
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+        }
+
+        private void CheckConnection(object sender, RoutedEventArgs e)
+        {
+            if (CheckConnection())
+            {
+                dc.IsConnected = true;
+                new CustomBoxes.CustomMessageBox("Complete").Show();
+            }
+            else
+            {
+                dc.IsConnected = false;
+                new CustomBoxes.CustomMessageBox("Connection is fail").Show();
+            };
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Net;
 using University_students.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
+using System.Web;
 
 namespace University_students.ViewModel.AdminVM
 {
@@ -269,31 +270,10 @@ namespace University_students.ViewModel.AdminVM
         public TeacherVM()
         {
             db = new USDbContext();
-            var task = Task.Run(async () => {
-                for (; ; )
-                {
-                    await Task.Delay(1000);
-                    IsNet = CheckConnection();
-                }
-            });
             _subjects = new List<Subject>();
             ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
-        }
-
-        private bool CheckConnection()
-        {
-            WebClient client = new WebClient();
-            try
-            {
-                using (client.OpenRead("http://www.google.com"))
-                    return true;
-            }
-            catch (WebException)
-            {
-                return false;
-            }
         }
 
         private bool _isNet;
@@ -369,13 +349,15 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanInviteTeacher()
         {
-            if (LoginTeacher     != null &&
+            if (
+                IsNet            == true &&
+                LoginTeacher     != null &&
                 FirstNameTeacher != null &&
                 LastNameTeacher  != null &&
                 EmailTeacher     != null
                 )
             {
-                string password = GenerateToken(10);
+                string password = CreateRandomPassword(10);
                 Teaching newTeaching = new Teaching() { };
 
                 User newTeacher = new User()
@@ -405,6 +387,20 @@ namespace University_students.ViewModel.AdminVM
             {
                 //smth
             }
+        }
+
+        private static string CreateRandomPassword(int passwordLength)
+        {
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            char[] chars = new char[passwordLength];
+            Random rd = new Random();
+
+            for (int i = 0; i < passwordLength; i++)
+            {
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+            }
+
+            return new string(chars);
         }
 
         private string GenerateToken(int length)

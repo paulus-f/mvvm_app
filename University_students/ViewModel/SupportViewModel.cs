@@ -51,6 +51,17 @@ namespace University_students.ViewModel
             }
         }
 
+        private bool _IsConnected;
+        public bool IsConnected
+        {
+            get { return _IsConnected; }
+            set
+            {
+                _IsConnected = value;
+                OnPropertyChanged("IsConnected");
+            }
+        }
+
         public ICommand SupportCommand
         {
             get
@@ -63,16 +74,18 @@ namespace University_students.ViewModel
 
         private void CanSupport()
         {
-            from = new MailAddress(_email);
-            message = new MailMessage(from, to);
-            message.Subject = Secrets.SUBJECT_EMAIL;
-            message.Body = $"<h2>{_message}</h2>";
-            message.IsBodyHtml = true;
-            smtp.EnableSsl = true;
-            smtp.Send(message);
-            Email = String.Empty;
-            Message = String.Empty;
-            MessageBox.Show("Complete");
+            if (IsConnected)
+            {
+                from = new MailAddress(_email);
+                message = new MailMessage(from, to);
+                message.Subject = Secrets.SUBJECT_EMAIL;
+                message.Body = $"<h2>{_message}</h2>";
+                message.IsBodyHtml = true;
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+                Email = String.Empty;
+                Message = String.Empty;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

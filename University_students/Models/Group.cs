@@ -16,10 +16,10 @@ namespace University_students.Models
         public int? SpecialityId { get; set; }
         public virtual Speciality Speciality { get; set; }
         public virtual ICollection<User> Students { get; set; }
-        public virtual ICollection<Teaching> Teachings { get; set; }
+        public virtual ICollection<TaughtGroups> TaughtGroups { get; set; }
         public Group()
         {
-            Teachings = new List<Teaching>();
+            TaughtGroups = new List<TaughtGroups>();
             Students  = new List<User>();
         }
 

@@ -37,5 +37,11 @@ namespace University_students.CustomBoxes
         {
             this.DragMove();
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lb1.SelectedIndex = -1;
+            lb2.SelectedIndex = -1;
+        }
     }
 }
