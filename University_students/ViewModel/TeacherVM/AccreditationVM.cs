@@ -142,7 +142,7 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
-        public ICommand CompleteExamCommand
+        public ICommand RetakeExamCommand
         {
             get
             {
@@ -172,14 +172,35 @@ namespace University_students.ViewModel.TeacherVM
             }
         }
 
+        public ICommand MarkExamPassedCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanMarkExamPassed()
+                );
+            }
+        }
+
+        private void CanMarkExamPassed()
+        {
+            var subjectProgress = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudentExam.Id);
+            subjectProgress.IsExamPassed = Enums.StateExam.Passed;
+            UpdateGroup();
+        }
+
         private void CanAddFailExam()
         {
-
+            var subjectProgress = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudentExam.Id);
+            subjectProgress.IsExamPassed = Enums.StateExam.Failed;
+            UpdateGroup();
         }
 
         private void CanRetakeExam()
         {
-
+            var subjectProgress = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudentExam.Id);
+            subjectProgress.IsExamPassed = Enums.StateExam.Retake;
+            UpdateGroup();
         }
 
         private void CanCreateReport()
@@ -193,9 +214,14 @@ namespace University_students.ViewModel.TeacherVM
             var firstSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SelectedStudent.Id);
             firstSP.IsOffsetPassed = true;
             db.SaveChanges();
+            UpdateGroup();
+        }
+
+        private void UpdateGroup()
+        {
             ListStudentProgress = db.SubjectProgress
-                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == false)
-                .ToList();
+               .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == false)
+               .ToList();
             ListStudentProgressExam = db.SubjectProgress
                 .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == true)
                 .ToList();

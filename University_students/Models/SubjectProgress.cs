@@ -61,6 +61,9 @@ namespace University_students.Models
                 case Enums.StateExam.Failed:
                     res += "Exam: Failed ";
                     break;
+                case Enums.StateExam.Retake:
+                    res += "Exam: Retake ";
+                    break;
             }
 
             switch (IsStartCertifiationPassed)
