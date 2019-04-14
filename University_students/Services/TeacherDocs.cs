@@ -13,8 +13,11 @@ namespace University_students.Services
     {
         public static void CreateReport(TaughtGroups taughtGroups)
         {
+            CustomBoxes.CustomMessageBox msgbox = new CustomBoxes.CustomMessageBox("Waiting");
+            msgbox.Show();
             try
             {
+
                 Application appWord = new Application();
                 appWord.ShowAnimation = false;
                 appWord.Visible = false;
@@ -39,7 +42,6 @@ namespace University_students.Services
                     footerRange.Text = $"Университет: {taughtGroups.Teaching.User.Pulpit.Faculty.University.Name}";
                 }
 
-                
                 document.Content.SetRange(0, 0);
                 document.Content.Text = 
                       $"Преподаватель: {taughtGroups.Teaching.User}" 
@@ -114,9 +116,11 @@ namespace University_students.Services
                 appWord.Quit(ref missing, ref missing, ref missing);
                 appWord = null;
                 new CustomBoxes.CustomMessageBox("Complete").Show();
+                msgbox.Close();
             }
             catch (Exception ex)
             {
+                msgbox.Close();
                 new CustomBoxes.CustomMessageBox(ex.Message).Show();
             }
         }

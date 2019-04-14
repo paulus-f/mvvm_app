@@ -535,7 +535,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\StudentVM\" />
-    <Folder Include="View\UserPages\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

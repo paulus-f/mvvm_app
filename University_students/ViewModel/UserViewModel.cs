@@ -40,6 +40,22 @@ namespace University_students.ViewModel
             get => _currentUser?.Login;
         }
 
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => CanLogOut()
+                );
+            }
+        }
+
+        void CanLogOut()
+        {
+            var msg = new LogOutMessage() { Message = "LogOut" };
+            Messenger.Default.Send<LogOutMessage>(msg);
+        }
+
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;

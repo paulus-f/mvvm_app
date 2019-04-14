@@ -16,29 +16,24 @@
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="289*"/>
-            <ColumnDefinition Width="157*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" Grid.ColumnSpan="2" />
-        <Grid x:Name="GridBarTitle" Background="#F57C00"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
-                <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
-                    <materialDesign:PackIcon Kind="Power"/>
-                </Button>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
-                    <materialDesign:PackIcon Kind="Bell"/>
-                </Button>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
-                    <materialDesign:PackIcon Kind="Account"/>
-                </Button>
-            </StackPanel>
+    <Border CornerRadius="10" BorderBrush="#FF171005" BorderThickness="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="289*"/>
+                <ColumnDefinition Width="157*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" Grid.ColumnSpan="2" />
+            <Grid x:Name="GridBarTitle" Background="#F57C00"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
+                    <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
+                        <materialDesign:PackIcon Kind="Power"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
-
+    </Border>
 </Window>
