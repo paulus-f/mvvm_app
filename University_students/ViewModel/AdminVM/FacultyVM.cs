@@ -245,7 +245,9 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanUpdateFaculty()
         {
-            db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id).Name = Name;
+            var faculty = db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id);
+            faculty.Name = Name;
+            faculty.Dean = Dean;
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
             SelectedFacultyDG = null;
