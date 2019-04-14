@@ -110,12 +110,12 @@ namespace University_students.ViewModel
                 );
             }
         }
+
         void CanLogOut()
         {
             var msg = new LogOutMessage() { Message = "LogOut" };
             Messenger.Default.Send<LogOutMessage>(msg);
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

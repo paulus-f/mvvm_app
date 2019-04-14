@@ -13,8 +13,11 @@ namespace University_students.Services
     {
         public static void CreateReport(TaughtGroups taughtGroups)
         {
+            CustomBoxes.CustomMessageBox msgbox = new CustomBoxes.CustomMessageBox("Waiting");
+            msgbox.Show();
             try
             {
+
                 Application appWord = new Application();
                 appWord.ShowAnimation = false;
                 appWord.Visible = false;
@@ -27,7 +30,7 @@ namespace University_students.Services
                     headerRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                     headerRange.Font.ColorIndex = WdColorIndex.wdBlack;
                     headerRange.Font.Size = 25;
-                    headerRange.Text = $"Отчет за {DateTime.Today.ToString("MM.")}";
+                    headerRange.Text = $"Отчет за {DateTime.Today.ToString("dd.MM.yyyy")}";
                 }
 
                 foreach (Section wordSection in document.Sections)
@@ -39,7 +42,6 @@ namespace University_students.Services
                     footerRange.Text = $"Университет: {taughtGroups.Teaching.User.Pulpit.Faculty.University.Name}";
                 }
 
-                
                 document.Content.SetRange(0, 0);
                 document.Content.Text = 
                       $"Преподаватель: {taughtGroups.Teaching.User}" 
@@ -107,16 +109,18 @@ namespace University_students.Services
                     }
                     if (row.Index != 1) numStudent++;
                 }
-                object filename = $"qwe123_report.docx";
+                object filename = $"report.docx";
                 document.SaveAs2(ref filename);
                 document.Close(ref missing, ref missing, ref missing);
                 document = null;
                 appWord.Quit(ref missing, ref missing, ref missing);
                 appWord = null;
                 new CustomBoxes.CustomMessageBox("Complete").Show();
+                msgbox.Close();
             }
             catch (Exception ex)
             {
+                msgbox.Close();
                 new CustomBoxes.CustomMessageBox(ex.Message).Show();
             }
         }

@@ -119,6 +119,9 @@
     <Compile Include="CustomBoxes\ViewModel\BackgroundStudentVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ChoosingGroupsVM.cs" />
     <Compile Include="CustomBoxes\ViewModel\ListStudentsOfGroupVM.cs" />
+    <Compile Include="CustomBoxes\ViewWorkouts.xaml.cs">
+      <DependentUpon>ViewWorkouts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\RegexPattern.cs" />
     <Compile Include="Enums\StateCertification.cs" />
     <Compile Include="Enums\StateExam.cs" />
@@ -322,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomBoxes\ListStudentsOfGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomBoxes\ViewWorkouts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -535,7 +542,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\StudentVM\" />
-    <Folder Include="View\UserPages\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

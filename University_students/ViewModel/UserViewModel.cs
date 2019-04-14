@@ -35,14 +35,80 @@ namespace University_students.ViewModel
             Messenger.Default.Register<SendCurrentUserMessage>(this, (action) => ReceiveMessage(action));
         }
 
+        private bool _IsSelectedWorkOut;
+        public bool IsSelectedWorkOut
+        {
+            get => _IsSelectedWorkOut;
+            set
+            {
+                _IsSelectedWorkOut = value;
+                OnPropertyChanged("IsSelectedWorkOut");
+            }
+        }
+
+        private SubjectProgress _SelectedSubject;
+        public SubjectProgress SelectedSubject
+        {
+            get => _SelectedSubject;
+            set
+            {
+                _SelectedSubject = value;
+                IsSelectedWorkOut =  SelectedSubject.WorkOuts.Count != 0 ? true : false;
+                OnPropertyChanged("SelectedSubject");
+            }
+        }
+
         public string Login
         {
             get => _currentUser?.Login;
         }
 
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                return new RelayCommand<object>(
+                    (param) => CanLogOut()
+                );
+            }
+        }
+
+        void CanLogOut()
+        {
+            var msg = new LogOutMessage() { Message = "LogOut" };
+            Messenger.Default.Send<LogOutMessage>(msg);
+        }
+
+        public ICommand GenerateDocCommand
+        {
+            get
+            {
+                return new RelayCommand(
+                    () => CanGenerateDoc()
+                );
+            }
+        }
+
+        void CanGenerateDoc()
+        {
+            Services.StudentsDocs.CreateReport(SelectedSubject);
+        }
+
+        private string _UserUniversity;
+        public string UserUniversity
+        {
+            get => _UserUniversity;
+            set
+            {
+                _UserUniversity = "University: " + value;
+                OnPropertyChanged("UserUniversity");   
+            }
+        }
+
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;
+            UserUniversity = CurrentUser.Group.Speciality.Faculty.University.Name;
             return null;
         }
 

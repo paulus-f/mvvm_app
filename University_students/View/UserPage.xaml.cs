@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using University_students.Models;
 using University_students.ViewModel;
 
 namespace University_students.View
@@ -27,6 +28,11 @@ namespace University_students.View
             DataContext = new UserViewModel();
         }
 
-
+        private void dclickSubjectProgress(object sender, MouseButtonEventArgs e)
+        {
+            ItemsControl item = e.Source as ItemsControl;
+            UserViewModel subjectProgress = item.DataContext as UserViewModel;
+            new CustomBoxes.ViewWorkouts(subjectProgress.SelectedSubject, subjectProgress.SelectedSubject.User).Show();
+        }
     }
 }
