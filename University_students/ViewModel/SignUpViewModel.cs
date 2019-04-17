@@ -320,7 +320,6 @@ namespace University_students.ViewModel
                 TypeUser = Enums.Role.Students,
                 Password = BCrypt.Net.BCrypt.HashPassword(_password),
                 Group = SelectedGroup.Group
-
             };
             db.Users.Add(newUser);
             Login = String.Empty;

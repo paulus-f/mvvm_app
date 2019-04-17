@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -51,6 +52,7 @@ namespace University_students.ViewModel
             }
         }
 
+
         private bool _IsConnected;
         public bool IsConnected
         {
@@ -74,6 +76,18 @@ namespace University_students.ViewModel
 
         private void CanSupport()
         {
+            if(new Regex(RegexPattern.emailPattern).IsMatch(Email))
+            {
+                new CustomBoxes.CustomMessageBox("Email is not validated").Show();
+                return;
+            }
+
+            if(Message == String.Empty || Message == null)
+            {
+                new CustomBoxes.CustomMessageBox("Message empty").Show();
+                return;
+            }
+
             if (IsConnected)
             {
                 from = new MailAddress(_email);
