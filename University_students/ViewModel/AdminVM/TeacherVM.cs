@@ -15,6 +15,7 @@ using University_students.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace University_students.ViewModel.AdminVM
 {
@@ -351,6 +352,21 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanInviteTeacher()
         {
+            if (!new Regex(RegexPattern.emailPattern).IsMatch(EmailTeacher))
+            {
+                new CustomBoxes.CustomMessageBox("Email is not validated").Show();
+                return;
+            }
+            if (db.Users.FirstOrDefault(t => t.Login == LoginTeacher) != null)
+            {
+                new CustomBoxes.CustomMessageBox($"Teacher login {LoginTeacher} already exists").Show();
+                return;
+            }
+            if (SelectedPulpit == null)
+            {
+                new CustomBoxes.CustomMessageBox($"Select Pulpit").Show();
+                return;
+            }
             if (
                 IsNet            == true &&
                 LoginTeacher     != null &&
@@ -383,7 +399,6 @@ namespace University_students.ViewModel.AdminVM
                 LoginTeacher = null;
                 IsEnabledUD = false;
                 Subjects = new List<Subject>();
-                ListTeachers = db.Users.Where(p => p.TypeUser == Enums.Role.Teacher)?.ToList();
             }
             else
             {

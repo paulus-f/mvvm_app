@@ -59,9 +59,9 @@
                 <Button  Content="Reset" MaxHeight="70" MaxWidth="220"  Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFD8A620" VerticalAlignment="Top"/>
                 <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72,10,0" Background="#FFDA4D46" VerticalAlignment="Top"/>
                 <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="87,13,10,0" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Top" Height="27"/>
-                <TextBox Grid.Column="3" Margin="54,10,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoginTeacher}" Height="24" VerticalAlignment="Top"/>
+                <TextBox Grid.Column="3" Margin="54,10,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastNameTeacher}" Height="24" VerticalAlignment="Top"/>
                 <TextBox Grid.Column="3" Margin="54,50,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstNameTeacher}" Height="24" VerticalAlignment="Top"/>
-                <TextBox Grid.Column="3" Margin="54,89,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastNameTeacher}" Height="24" VerticalAlignment="Top"/>
+                <TextBox Grid.Column="3" Margin="54,89,26,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoginTeacher}" Height="24" VerticalAlignment="Top"/>
                 <ListBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding AddedSubject}" Grid.Column="2" Margin="10,51,10,48" Grid.Row="2" Grid.RowSpan="2"/>
                 <TextBox Grid.Column="2"  Margin="91,23,10,66" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubjects, Mode=TwoWay}" RenderTransformOrigin="-0.026,0.522" TextChanged="TextBox_TextChanged"/>
                 <Label Content="Subjects" Grid.Column="2" Margin="13,20,143,66" Grid.Row="2" RenderTransformOrigin="-0.019,0.577"/>

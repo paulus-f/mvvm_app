@@ -60,7 +60,6 @@ namespace University_students.View.AdminPages
             if (CheckConnection())
             {
                 vm.IsNet = true;
-                new CustomBoxes.CustomMessageBox("Complete").Show();
             }
             else
             {
