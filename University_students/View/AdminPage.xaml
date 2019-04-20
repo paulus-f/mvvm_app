@@ -23,15 +23,15 @@
             <RowDefinition Height="16*"/>
             <RowDefinition Height="209*"/>
         </Grid.RowDefinitions>
-        <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}"  CommandParameter="university" Grid.Column="0" Grid.Row="0" Background="#607D8B" FontSize="12" Height="Auto"/>
-        <Button Background="#607D8B" Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="Auto" Cursor="Pen"/>
-        <Button Background="#607D8B" Content="Specialities" Command="{Binding ChooseAdminPageCommand}" CommandParameter="speciality"  Grid.Column="2" Grid.Row="0"  FontSize="12" Height="Auto"/>
-        <Button Background="#607D8B" Content="Groups" Command="{Binding ChooseAdminPageCommand}" CommandParameter="group" Grid.Column="3" Grid.Row="0" Height="Auto" FontSize="12"/>
-        <Button Background="#607D8B" Content="Teachers" Command="{Binding ChooseAdminPageCommand}" CommandParameter="teacher" Grid.Column="4" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Background="#607D8B" Content="Students" Command="{Binding ChooseAdminPageCommand}" CommandParameter="student" Grid.Column="6" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Button Background="#607D8B" Content="Subjects" Command="{Binding ChooseAdminPageCommand}" CommandParameter="subject" Grid.Column="5" Grid.Row="0" FontSize="12" Height="Auto"/>
-        <Label  Content="{Binding Login}" Grid.Column="7" Grid.Row="0" FontSize="12" Height="Auto" Background="#FF4AAE3F" Foreground="#DDFFFFFF"/>
-        <Button Content="Log Out" Command="{Binding LogOutCommand}"  Grid.Column="8" Grid.Row="0" FontSize="12" Height="Auto" Background="#FFA2252A"/>
+        <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}"  CommandParameter="university" Grid.Column="0" Grid.Row="0" Background="#607D8B" FontSize="12" Height="32" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="32" Cursor="Pen" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Specialities" Command="{Binding ChooseAdminPageCommand}" CommandParameter="speciality"  Grid.Column="2" Grid.Row="0"  FontSize="12" Height="32" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Groups" Command="{Binding ChooseAdminPageCommand}" CommandParameter="group" Grid.Column="3" Grid.Row="0" Height="32" FontSize="12" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Teachers" Command="{Binding ChooseAdminPageCommand}" CommandParameter="teacher" Grid.Column="4" Grid.Row="0" FontSize="12" Height="32" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Students" Command="{Binding ChooseAdminPageCommand}" CommandParameter="student" Grid.Column="6" Grid.Row="0" FontSize="12" Height="32" VerticalAlignment="Top"/>
+        <Button Background="#607D8B" Content="Subjects" Command="{Binding ChooseAdminPageCommand}" CommandParameter="subject" Grid.Column="5" Grid.Row="0" FontSize="12" Height="32" VerticalAlignment="Top"/>
+        <Label  Content="{Binding Login}" Grid.Column="7" Grid.Row="0" FontSize="14" Height="32" Background="#FF4AAE3F" Foreground="#DDFFFFFF" FontWeight="Bold" VerticalAlignment="Top"/>
+        <Button Content="Log Out" Command="{Binding LogOutCommand}"  Grid.Column="8" Grid.Row="0" FontSize="12" Height="32" Background="#FFA2252A" VerticalAlignment="Top"/>
         <Frame 
             Grid.ColumnSpan="9" 
             Content="{Binding CurrentAdminPage}" 

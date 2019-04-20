@@ -27,7 +27,6 @@ namespace University_students.ViewModel.AdminVM
             RangeHours = Enumerable.Range(1, 100).ToArray();
             ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
-            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         private bool _isEnabledUD;
@@ -197,7 +196,12 @@ namespace University_students.ViewModel.AdminVM
                 if (value != null)
                 {
                     _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                    ListTeachers = db.Users
+                        .Where(t => t.TypeUser == Enums.Role.Teacher &&
+                                    t.Pulpit.Faculty.University.Name == value)
+                        .ToList();
                     ListFaculties = _selectedUniversityModel.Faculties.ToList();
+
                 }
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -259,7 +263,10 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteSubject()
         {
-            db.Subjects.Remove(SelectedSubjectDG);
+            var sub = db.Subjects
+                .Include("TaughtGroups")
+                .FirstOrDefault(s => s.Id == SelectedSubjectDG.Id);
+            db.Subjects.Remove(sub);
             db.SaveChanges();
             ListSubjects.Remove(SelectedSubjectDG);
             ListSubjects = ListSubjects.ToList();

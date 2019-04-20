@@ -7,10 +7,13 @@
         xmlns:local="clr-namespace:University_students"
         xmlns:vm="clr-namespace:University_students.ViewModel"
         xmlns:views="clr-namespace:University_students.View"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        mc:Ignorable="d" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
         MinHeight="500"
         MinWidth ="1000"
-        AllowsTransparency="True"
+        SizeToContent="Manual"
+        AllowsTransparency="False"
         Background="Transparent" 
         x:Name="mainWindow" Width="1000">
     <Window.Resources>

@@ -65,7 +65,9 @@ namespace University_students.ViewModel.AdminVM
             {
                 _searchPuplpits = value;
                 if (value != String.Empty) ListPulpit = db.Pulpits.Where(p => p.FacultyId == SelectedFacultyDG.Id && p.Name.Contains(value)).ToList();
-                else ListPulpit = new List<Pulpit>();
+                else ListPulpit = db.Pulpits
+                        .Where(p  => p.FacultyId == SelectedFacultyDG.Id)
+                        .ToList();
                 OnPropertyChanged("SearchPuplpits");
             }
         }
@@ -236,7 +238,10 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteFaculty()
         {
-            db.Faculties.Remove(db.Faculties.FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
+            db.Faculties.Remove(db.Faculties
+                .Include("Specialites.Groups.TaughtGroups")
+                .Include("Specialites.Groups.Students")
+                .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
             SelectedFacultyDG = null;

@@ -155,9 +155,12 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _selectedGroupsDG = value;
-                FirstYear = value.FirstYear;
-                NumberGroup = value.NumberGroup;
-                IsEnabledUD = true;
+                if (value != null)
+                {
+                    FirstYear = value.FirstYear;
+                    NumberGroup = value.NumberGroup;
+                    IsEnabledUD = true;
+                }
                 OnPropertyChanged("SelectedGroupsDG");
             }
         }

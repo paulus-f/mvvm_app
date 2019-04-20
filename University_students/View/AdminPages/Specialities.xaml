@@ -26,7 +26,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Width="150" Header="Qualification" Binding="{Binding Qualification}"/>
-                <DataGridTextColumn Width="100" Header="Code" Binding="{Binding CodeSpec}"/>
+                <DataGridTextColumn Width="100" Header="Code" Binding="{Binding Code}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Specialities" Margin="9,10,0,35" FontSize="36"/>

@@ -52,15 +52,17 @@ namespace University_students.ViewModel
             }
         }
 
-
-        private bool _IsConnected;
-        public bool IsConnected
+        private bool Ping()
         {
-            get { return _IsConnected; }
-            set
+            WebClient client = new WebClient();
+            try
             {
-                _IsConnected = value;
-                OnPropertyChanged("IsConnected");
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch (WebException)
+            {
+                return false;
             }
         }
 
@@ -76,7 +78,7 @@ namespace University_students.ViewModel
 
         private void CanSupport()
         {
-            if(new Regex(RegexPattern.emailPattern).IsMatch(Email))
+            if(!new Regex(RegexPattern.emailPattern).IsMatch(Email))
             {
                 new CustomBoxes.CustomMessageBox("Email is not validated").Show();
                 return;
@@ -88,7 +90,7 @@ namespace University_students.ViewModel
                 return;
             }
 
-            if (IsConnected)
+            if (Ping())
             {
                 from = new MailAddress(_email);
                 message = new MailMessage(from, to);
@@ -99,7 +101,10 @@ namespace University_students.ViewModel
                 smtp.Send(message);
                 Email = String.Empty;
                 Message = String.Empty;
+                new CustomBoxes.CustomMessageBox("Complete").Show();
             }
+            else new CustomBoxes.CustomMessageBox("Connection is fail").Show();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

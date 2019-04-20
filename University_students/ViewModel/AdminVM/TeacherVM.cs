@@ -65,7 +65,10 @@ namespace University_students.ViewModel.AdminVM
                 _selectedFaculty= value;
                 if (value != null)
                 {
-                    ListPulpits = db.Pulpits.Join(db.Faculties, p => p.FacultyId, f => f.Id, (p,f) => p)?.ToList();
+                    ListPulpits = db.Pulpits
+                        .Join(db.Faculties, p => p.FacultyId, f => f.Id, (p,f) => p)?
+                        .Where(p => p.FacultyId == value.Id)
+                        .ToList();
                     ListTeachers = (from u in db.Users
                                     join p in db.Pulpits on u.Id equals p.Id
                                     join f in db.Faculties on p.Id equals f.Id
@@ -273,7 +276,6 @@ namespace University_students.ViewModel.AdminVM
             _subjects = new List<Subject>();
             ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
-            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         private bool _isNet;
@@ -426,8 +428,8 @@ namespace University_students.ViewModel.AdminVM
             message.Body = $"" +
                 $"<h1>Welcome to App University Student</h1>" +
                 $"<h2>You was added to database in app</h2>" +
-                $"<h3>Your login: {LoginTeacher}</h3>" +
-                $"<h3>Your password: {pw}</h3>" +
+                $"<h3> Your login: {LoginTeacher} </h3>" +
+                $"<h3> Your password: {pw} </h3>" +
                 $"";
             message.IsBodyHtml = true;
             smtp.EnableSsl = true;
