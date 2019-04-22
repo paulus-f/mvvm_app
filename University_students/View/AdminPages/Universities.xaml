@@ -36,9 +36,9 @@
             <System:String>Institute</System:String>
         </ComboBox>
         <TextBox Grid.Column="3" Text="{Binding City}"  Margin="19,74,40,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top"/>
-        <Label Content="City" Grid.Column="2" Margin="109,73,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
-        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="19,0,40,73" TextWrapping="Wrap" Height="28" VerticalAlignment="Bottom"/>
-        <Label Content="Name" Grid.Column="2" Margin="109,0,10,73" RenderTransformOrigin="0.098,0.271" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="City" Grid.Column="2" Margin="0,73,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" HorizontalAlignment="Right" Width="131"/>
+        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="19,24,40,0" TextWrapping="Wrap" Height="28" VerticalAlignment="Top"/>
+        <Label Content="Name" Grid.Column="2" Margin="0,26,10,0" RenderTransformOrigin="0.098,0.271" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
         <Label Content="Type University" Grid.Column="2" Margin="109,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
         <Label Content="Universities" Margin="23,10,10,0" FontSize="36" Height="58" VerticalAlignment="Top"/>
         <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="27" RenderTransformOrigin="0.082,0.431" Margin="10,88,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620" VerticalAlignment="Top"/>
