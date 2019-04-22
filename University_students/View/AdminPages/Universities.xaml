@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:University_students.View.AdminPages"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="900"
+      d:DesignHeight="500" d:DesignWidth="1000"
       Title="Universities">
 
     <Grid>
@@ -17,10 +17,10 @@
             <ColumnDefinition Width="44*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
         <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" SelectedItem="{Binding SelectedUniversityDG}" Grid.RowSpan="3" IsReadOnly="True">
             <DataGrid.Columns>
@@ -29,37 +29,55 @@
                 <DataGridTextColumn Width="130" Header="Type" Binding="{Binding TypeUniversity}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="25,41,46,29" Grid.Row="1" Height="30" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Center"/>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="25,42,46,32" Grid.Row="1" Height="30" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Center"/>
         <ComboBox Grid.Column="3" Text="Type University" SelectedItem="{Binding TypeUniversity}" Margin="19,10,40,0" Grid.Row="1" VerticalAlignment="Top" Height="26">
             <System:String>University</System:String>
             <System:String>Academy</System:String>
             <System:String>Institute</System:String>
         </ComboBox>
-        <TextBox Grid.Column="3" Text="{Binding City}"  Margin="19,65,40,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top"/>
-        <Label Content="City" Grid.Column="2" Margin="94,64,76,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26"/>
-        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="19,24,40,0" TextWrapping="Wrap" Height="28" VerticalAlignment="Top"/>
-        <Label Content="Name" Grid.Column="2" Margin="94,29,64,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26"/>
-        <Label Content="Type University" Grid.Column="2" Margin="80,16,24,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26"/>
-        <Label Content="Universities" Margin="23,10,10,35" Grid.ColumnSpan="2" FontSize="36"/>
-        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="27" RenderTransformOrigin="0.082,0.431" Margin="10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620" VerticalAlignment="Bottom"/>
-        <Label Content="Start" Grid.Column="2" Margin="10,9,161,61" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
-        <Label Content="Finish" Grid.Column="2" Margin="10,56,156,21" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
-        <DatePicker SelectedDate="{Binding SelectedFirstAutumnStartDate}" Grid.Column="2" Margin="94,9,10,61" Grid.Row="2"/>
-        <DatePicker SelectedDate="{Binding SelectedFirstAutumnFinishDate}" Grid.Column="2" Margin="94,55,10,16" Grid.Row="2"/>
-        <Label Content="Start" Grid.Column="3" Margin="10,10,143,60" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
-        <Label Content="Finish" Grid.Column="3" Margin="10,55,143,16" RenderTransformOrigin="0.098,0.271" Grid.Row="2"/>
-        <DatePicker SelectedDate="{Binding SelectedLastAutumnStartDate}" Grid.Column="3" Margin="72,10,10,61" Grid.Row="2"/>
-        <DatePicker SelectedDate="{Binding SelectedLastAutumnFinishDate}" Grid.Column="3" Margin="72,56,10,16" Grid.Row="2"/>
-        <Label Content="Certification:  Autumn term" Grid.Column="2" Margin="10,73,10,2" RenderTransformOrigin="0.098,0.271" Grid.Row="1"/>
-        <Label Content="Start" Grid.Column="2" Margin="10,11,161,63" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
-        <Label Content="Finish" Grid.Column="2" Margin="10,65,161,10" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
-        <DatePicker SelectedDate="{Binding SelectedFirstSpringStartDate}" Grid.Column="2" Margin="94,10,10,62" Grid.Row="3"/>
-        <DatePicker SelectedDate="{Binding SelectedFirstSpringFinishDate}" Grid.Column="2" Margin="94,65,10,13" Grid.Row="3" Height="22" VerticalAlignment="Center"/>
-        <Label Content="Start" Grid.Column="3" Margin="19,10,143,63" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
-        <Label Content="Finish" Grid.Column="3" Margin="19,65,134,10" RenderTransformOrigin="0.098,0.271" Grid.Row="3"/>
-        <DatePicker SelectedDate="{Binding SelectedLastSpringStartDate}" Grid.Column="3" Margin="72,10,10,62" Grid.Row="3"/>
-        <DatePicker SelectedDate="{Binding SelectedLastSpringFinishDate}" Grid.Column="3" Margin="72,61,10,10" Grid.Row="3" RenderTransformOrigin="0.5,0.5"/>
-        <Label Content="Spring term" Grid.Column="2" Margin="94,87,67,90" RenderTransformOrigin="0.098,0.271" Grid.Row="2" Grid.RowSpan="2"/>
-        <Label Content="End Of Semester" Grid.Column="3" Margin="19,76,40,99" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Grid.RowSpan="2"/>
+        <TextBox Grid.Column="3" Text="{Binding City}"  Margin="19,74,40,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top"/>
+        <Label Content="City" Grid.Column="2" Margin="109,73,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
+        <TextBox Grid.Column="3" Text="{Binding Name}" Margin="19,0,40,73" TextWrapping="Wrap" Height="28" VerticalAlignment="Bottom"/>
+        <Label Content="Name" Grid.Column="2" Margin="109,0,10,73" RenderTransformOrigin="0.098,0.271" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="Type University" Grid.Column="2" Margin="109,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
+        <Label Content="Universities" Margin="23,10,10,0" FontSize="36" Height="58" VerticalAlignment="Top"/>
+        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="27" RenderTransformOrigin="0.082,0.431" Margin="10,88,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620" VerticalAlignment="Top"/>
+        <Label Content="Start" Grid.Column="3" Margin="10,10,0,0" RenderTransformOrigin="0.098,0.271" Grid.Row="2" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57" FontWeight="Bold"/>
+        <Label Content="Finish" Grid.Column="3" Margin="10,50,0,0" RenderTransformOrigin="0.098,0.271" Grid.Row="2" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57" FontWeight="Bold"/>
+        <DatePicker SelectedDate="{Binding SelectedLastAutumnStartDate}" Grid.Column="3" Margin="72,9,10,0" Grid.Row="2" Height="24" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding SelectedLastAutumnFinishDate}" Grid.Column="3" Margin="72,56,10,0" Grid.Row="2" Height="22" VerticalAlignment="Top"/>
+        <Label Content="Certification:  Autumn term" Grid.Column="2" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+        <Label Content="Start" Grid.Column="2" Margin="15,15,184,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="28" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Finish" Grid.Column="2" Margin="15,78,184,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="25" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker SelectedDate="{Binding SelectedFirstSpringStartDate}" Grid.Column="2" Margin="94,15,10,0" Grid.Row="3" Height="28" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding SelectedFirstSpringFinishDate}" Grid.Column="2" Margin="94,77,10,0" Grid.Row="3" Height="26" VerticalAlignment="Top"/>
+        <Label Content="Start" Grid.Column="3" Margin="10,16,152,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="27" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Finish" Grid.Column="3" Margin="10,77,152,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="25" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker SelectedDate="{Binding SelectedLastSpringStartDate}" Grid.Column="3" Margin="72,15,10,0" Grid.Row="3" Height="28" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding SelectedLastSpringFinishDate}" Grid.Column="3" Margin="75,74,10,0" Grid.Row="3" RenderTransformOrigin="0.5,0.5" Height="29" VerticalAlignment="Top">
+            <DatePicker.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.185"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DatePicker.RenderTransform>
+        </DatePicker>
+        <Label Content="Spring term" Grid.Column="2" Margin="51,140,88,-64" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="26" VerticalAlignment="Top"/>
+        <Label Content="The Second Certification" Grid.Column="3" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+        <Grid Grid.Column="2" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="43*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+            <DatePicker SelectedDate="{Binding SelectedFirstAutumnFinishDate}" Margin="94,50,10,0" Height="23" VerticalAlignment="Top"/>
+            <DatePicker SelectedDate="{Binding SelectedFirstAutumnStartDate}" Margin="94,10,10,0" Height="24" VerticalAlignment="Top"/>
+            <Label Content="Start" Margin="10,10,0,0" RenderTransformOrigin="0.098,0.271" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" FontWeight="Bold"/>
+            <Label Content="Finish" Margin="10,45,0,0" RenderTransformOrigin="0.098,0.271" Height="28" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="79"/>
+            <Label Content="Certification:  Spring term" Margin="10,0,10,2" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+        </Grid>
     </Grid>
 </Page>

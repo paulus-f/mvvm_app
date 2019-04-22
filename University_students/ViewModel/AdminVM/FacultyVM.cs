@@ -64,10 +64,14 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _searchPuplpits = value;
-                if (value != String.Empty) ListPulpit = db.Pulpits.Where(p => p.FacultyId == SelectedFacultyDG.Id && p.Name.Contains(value)).ToList();
-                else ListPulpit = db.Pulpits
-                        .Where(p  => p.FacultyId == SelectedFacultyDG.Id)
-                        .ToList();
+                if (SelectedFacultyDG != null)
+                    if (value != String.Empty) ListPulpit = db.Pulpits
+                            .Where(p => p.FacultyId == SelectedFacultyDG.Id && 
+                                        p.Name.Contains(value))
+                            .ToList();
+                    else ListPulpit = db.Pulpits
+                            .Where(p  => p.FacultyId == SelectedFacultyDG.Id)
+                            .ToList();
                 OnPropertyChanged("SearchPuplpits");
             }
         }

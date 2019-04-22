@@ -10,7 +10,7 @@
         mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
-        MinHeight="500"
+        MinHeight="600"
         MinWidth ="1000"
         SizeToContent="Manual"
         AllowsTransparency="False"
