@@ -18,10 +18,24 @@ namespace University_students.View
 {
     public partial class SignUp : Page
     {
+        private SignUpViewModel signUpViewModel;
         public SignUp()
         {
             InitializeComponent();
-            DataContext = new SignUpViewModel();
+            signUpViewModel = new SignUpViewModel();
+            DataContext = signUpViewModel;
+        }
+
+        private void Pass_Changed(object sender, RoutedEventArgs e)
+        {
+            if(signUpViewModel != null)
+                signUpViewModel.Password = pass?.Password;
+        }
+
+        private void PassCon_Changed(object sender, RoutedEventArgs e)
+        {
+            if(signUpViewModel != null)
+                signUpViewModel.ConfirmedPassword = passCon?.Password;
         }
     }
 }

@@ -216,7 +216,9 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeletePulpit(Pulpit param)
         {
-            db.Pulpits.Remove(param);
+            db.Pulpits.Remove(db.Pulpits
+                .Include("Teachers")
+                .FirstOrDefault(p => p.Id == param.Id));
             db.SaveChanges();
             ListPulpit = db.Pulpits.ToList();
         }

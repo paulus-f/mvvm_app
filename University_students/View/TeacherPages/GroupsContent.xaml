@@ -26,9 +26,17 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="193*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="199*"/>
+            <RowDefinition Height="251*"/>
+        </Grid.RowDefinitions>
         <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,123,353,10" HorizontalAlignment="Right" Width="447">
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10" Grid.Row="1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -37,15 +45,26 @@
         </ListBox>
         <ListBox ItemTemplate="{StaticResource listTemplateSubject}" 
                  ItemsSource="{Binding ListSubjects}"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="464,123,21,10">
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10" Grid.Column="1" Grid.Row="1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <materialDesign:PackIcon Foreground="Black"  Kind="Accessibility" Margin="10,10,0,0" Height="113" Width="159"/>
-        <TextBlock Foreground="#212121" HorizontalAlignment="Left" Margin="172,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentTeacher.FirstName}" VerticalAlignment="Top" Height="43" Width="100"/>
-        <TextBlock Foreground="#212121" HorizontalAlignment="Left" Margin="303,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" VerticalAlignment="Top" Height="41" Width="93"/>
+        <Grid Margin="0,0,247,72">
+            <Border Background="#FF322D2D" CornerRadius="60" Margin="3,0,-3,0" >
+                <materialDesign:PackIcon Foreground="#FFD37A10"  Kind="Accessibility" Height="Auto" Width="Auto" Margin="23,21,21,19" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF1F1919"/>
+            </Border>
+        </Grid>
+        <Grid Margin="0,0,231,130.5"/>
+        <Grid>
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="214,65.5,65,83" >
+                <TextBlock Foreground="#FFF1ECEC" Margin="24,10,25.5,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" Background="#FF4B4848"/>
+            </Border>
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="214,10,65,138.5" >
+                <TextBlock Foreground="#FFF1ECEC" Margin="25,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.FirstName}" Background="#FF4B4848"/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
