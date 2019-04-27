@@ -37,6 +37,6 @@
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Accreditation" Content="{Binding AccreditationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="White"/>
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Certification" Content="{Binding CertificationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="#FFFFF5F5"/>
         </TabControl>
-        <Button  Command="{Binding LogOutCommand}"  Content="Log Out" Height="23" Background="#FFF51C12" BorderBrush="#FFF34605" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
+        <Button  Command="{Binding LogOutCommand}"  Content="Log Out" Height="32" Background="#FFF51C12" BorderBrush="#FFF34605" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
     </Grid>
 </UserControl>
