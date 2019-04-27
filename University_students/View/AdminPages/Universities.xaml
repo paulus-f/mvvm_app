@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:University_students.View.AdminPages"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
       d:DesignHeight="500" d:DesignWidth="1000"
       Title="Universities">
 
@@ -29,24 +30,24 @@
                 <DataGridTextColumn Width="130" Header="Type" Binding="{Binding TypeUniversity}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="25,42,46,32" Grid.Row="1" Height="30" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Center"/>
+        <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="55.667,56.333,72,43.667" Grid.Row="1" Height="30" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Center" Background="#FF212121" BorderBrush="#FF212121"/>
         <ComboBox Grid.Column="3" Text="Type University" SelectedItem="{Binding TypeUniversity}" Margin="19,10,40,0" Grid.Row="1" VerticalAlignment="Top" Height="26">
             <System:String>University</System:String>
             <System:String>Academy</System:String>
             <System:String>Institute</System:String>
         </ComboBox>
         <TextBox Grid.Column="3" Text="{Binding City}"  Margin="19,74,40,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top"/>
-        <Label Content="City" Grid.Column="2" Margin="0,73,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" HorizontalAlignment="Right" Width="131"/>
+        <Label Content="City" Grid.Column="2" Margin="0,73,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold" HorizontalAlignment="Right" Width="131"/>
         <TextBox Grid.Column="3" Text="{Binding Name}" Margin="19,24,40,0" TextWrapping="Wrap" Height="28" VerticalAlignment="Top"/>
-        <Label Content="Name" Grid.Column="2" Margin="0,26,10,0" RenderTransformOrigin="0.098,0.271" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
-        <Label Content="Type University" Grid.Column="2" Margin="109,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFDCCBBE" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
+        <Label Content="Name" Grid.Column="2" Margin="0,26,10,0" RenderTransformOrigin="0.098,0.271" Background="#FF2B2828" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="131"/>
+        <Label Content="Type University" Grid.Column="2" Margin="109,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.271" Height="26" Background="#FF2B2828" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
         <Label Content="Universities" Margin="23,10,10,0" FontSize="36" Height="58" VerticalAlignment="Top"/>
-        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="27" RenderTransformOrigin="0.082,0.431" Margin="10,88,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620" VerticalAlignment="Top"/>
+        <Button  Content="Update" Grid.Column="0" Command="{Binding UpdateCommand}" MaxHeight="70" MaxWidth="220"  Height="27" RenderTransformOrigin="0.082,0.431" Margin="10,88,10,0" IsEnabled="{Binding IsEnabledUD}" Background="#FFD8A620" VerticalAlignment="Top" BorderBrush="#FFF3C321"/>
         <Label Content="Start" Grid.Column="3" Margin="10,10,0,0" RenderTransformOrigin="0.098,0.271" Grid.Row="2" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57" FontWeight="Bold"/>
         <Label Content="Finish" Grid.Column="3" Margin="10,50,0,0" RenderTransformOrigin="0.098,0.271" Grid.Row="2" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="57" FontWeight="Bold"/>
         <DatePicker SelectedDate="{Binding SelectedLastAutumnStartDate}" Grid.Column="3" Margin="72,9,10,0" Grid.Row="2" Height="24" VerticalAlignment="Top"/>
         <DatePicker SelectedDate="{Binding SelectedLastAutumnFinishDate}" Grid.Column="3" Margin="72,56,10,0" Grid.Row="2" Height="22" VerticalAlignment="Top"/>
-        <Label Content="Certification:  Autumn term" Grid.Column="2" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+        <Label Content="Certification:  Autumn term" Grid.Column="2" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
         <Label Content="Start" Grid.Column="2" Margin="15,15,184,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="28" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Finish" Grid.Column="2" Margin="15,78,184,0" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="25" VerticalAlignment="Top" FontWeight="Bold"/>
         <DatePicker SelectedDate="{Binding SelectedFirstSpringStartDate}" Grid.Column="2" Margin="94,15,10,0" Grid.Row="3" Height="28" VerticalAlignment="Top"/>
@@ -65,7 +66,7 @@
             </DatePicker.RenderTransform>
         </DatePicker>
         <Label Content="Spring term" Grid.Column="2" Margin="51,140,88,-64" RenderTransformOrigin="0.098,0.271" Grid.Row="3" Height="26" VerticalAlignment="Top"/>
-        <Label Content="The Second Certification" Grid.Column="3" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+        <Label Content="The Second Certification" Grid.Column="3" Margin="10,0,10,4" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Height="26" VerticalAlignment="Bottom" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
         <Grid Grid.Column="2" Grid.Row="2">
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
@@ -77,7 +78,7 @@
             <DatePicker SelectedDate="{Binding SelectedFirstAutumnStartDate}" Margin="94,10,10,0" Height="24" VerticalAlignment="Top"/>
             <Label Content="Start" Margin="10,10,0,0" RenderTransformOrigin="0.098,0.271" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" FontWeight="Bold"/>
             <Label Content="Finish" Margin="10,45,0,0" RenderTransformOrigin="0.098,0.271" Height="28" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="79"/>
-            <Label Content="Certification:  Spring term" Margin="10,0,10,2" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Foreground="#DDEEDEDE" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
+            <Label Content="Certification:  Spring term" Margin="10,0,10,2" RenderTransformOrigin="0.098,0.271" Grid.Row="1" Foreground="#FFEFEFF4" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF2B2828"/>
         </Grid>
     </Grid>
 </Page>

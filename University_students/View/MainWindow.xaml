@@ -14,8 +14,9 @@
         MinHeight="600"
         MinWidth ="1000"
         SizeToContent="Manual"
-        AllowsTransparency="False"
-        Background="Transparent" 
+        AllowsTransparency="True"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         x:Name="mainWindow" Width="1000">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />

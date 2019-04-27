@@ -1,4 +1,5 @@
 ﻿<Page x:Class="University_students.View.AdminPages.Subjects"
+      FontFamily="{DynamicResource MaterialDesignFont}"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -28,24 +29,24 @@
                     <DataGridTextColumn Width="*" Header="Number of hours" Binding="{Binding Hour}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Content="Subjects" Margin="9,10,0,45" FontSize="36"/>
+            <Label Content="Subjects" Margin="9,10,0,0" FontSize="36" Height="57.5" VerticalAlignment="Top"/>
             <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="10,10,45,0" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Top" Height="27"/>
             <Label Content="Faculty" Grid.Column="2" Margin="0,13,10,0" RenderTransformOrigin="0.098,0.271" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="76"/>
-            <Button Content="Add" Grid.Column="3" Command="{Binding AddSubjectCommand}" Margin="23,53,70,0" Height="28" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top"/>
+            <Button Content="Add" Grid.Column="2" Command="{Binding AddSubjectCommand}" Margin="0,83,10,0" Height="19.5" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Top" Background="#FF212121" FontSize="10" Grid.Row="1" BorderBrush="#FF1E252B" HorizontalAlignment="Right" Width="83"/>
             <Label Content="University" Grid.Column="1" Margin="5,10,0,0" RenderTransformOrigin="0.098,0.271" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
-            <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,0,0,10" Background="#FFD8A620" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="90"/>
-            <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,0,104,10" Background="#FFDA4D46" VerticalAlignment="Bottom"/>
-            <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="0,13,10,72" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="103"/>
+            <Button  Content="Update" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="0" Command="{Binding UpdateCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72.5,0,0" Background="#FFD8A620" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90"/>
+            <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Grid.Column="1" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,72.5,0,0" Background="#FFDA4D46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="99"/>
+            <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="0,13,10,0" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="103" Height="27.5"/>
             <TextBox Grid.Column="3" Text="{Binding Name}" Margin="10,18,70,0" Grid.Row="1" TextWrapping="Wrap" Height="24" VerticalAlignment="Top"/>
             <ListBox x:Name="Sele" Grid.Column="3" SelectedItem="{Binding AddTeacherToSubject}" ItemsSource="{Binding ListTeachers, Mode=TwoWay}" Margin="10,51,30,43" Grid.Row="2" Grid.RowSpan="2"/>
-            <TextBox Grid.Column="3" Margin="0,20,0,69" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubject}" HorizontalAlignment="Right" Width="83"/>
+            <TextBox Grid.Column="3" Margin="0,20,4,69" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubject}" HorizontalAlignment="Right" Width="83"/>
             <Label Content="Name" Grid.Column="2" Margin="0,18,10,0" Grid.Row="1" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" HorizontalAlignment="Right" Width="83" Height="24" VerticalAlignment="Top"/>
             <Label Content="Hours" Grid.Column="2" Margin="0,50,10,0" Grid.Row="1" RenderTransformOrigin="0.509,0.308" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" HorizontalAlignment="Right" Width="83" Height="24" VerticalAlignment="Top"/>
             <Label Content="Teacher Search" Grid.Column="3" Margin="0,20,0,0" Grid.Row="2" RenderTransformOrigin="0.509,0.308" FontSize="10" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" HorizontalAlignment="Left" Width="107" Height="24" VerticalAlignment="Top"/>
             <ListBox SelectedItem="{Binding DeleteTeacherFromSubject}" ItemsSource="{Binding Teachers, Mode=TwoWay}"  Grid.Column="2" Margin="10,51,10,43" Grid.Row="2" Grid.RowSpan="2"/>
             <Label Content="Teachers" Grid.Column="2" Margin="59,20,52,0" Grid.Row="2" RenderTransformOrigin="0.509,0.308" FontSize="10" Background="#FF464545" Foreground="#DDFFFFFF" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="24" VerticalAlignment="Top"/>
             <ComboBox ItemsSource="{Binding RangeHours}" SelectedItem="{Binding SelectedHours}" Grid.Column="3" Margin="10,50,70,0" Grid.Row="1" VerticalAlignment="Top" Height="28"/>
-            <Button  Content="Reset" MaxHeight="70" MaxWidth="220" Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="0,0,0,10" Background="#FF206299" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
+            <Button  Content="Reset" MaxHeight="70" MaxWidth="220" Grid.Column="0" Command="{Binding ResetCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="0,72.5,0,0" Background="#FF206299" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
         </Grid>
     </Grid>
 </Page>
