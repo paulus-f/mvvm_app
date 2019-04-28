@@ -23,7 +23,7 @@
             <RowDefinition Height="47*"/>
             <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
-        <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" SelectedItem="{Binding SelectedUniversityDG}" Grid.RowSpan="3" IsReadOnly="True">
+        <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" ItemsSource="{Binding AllUniversities}" SelectedItem="{Binding SelectedUniversityDG}" Grid.RowSpan="3" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="130" Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Width="130" Header="City" Binding="{Binding City}"/>

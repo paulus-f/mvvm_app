@@ -55,6 +55,16 @@ namespace University_students.View.AdminPages
             }
         }
 
+        private void ShowDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = true;
+        }
+
+        private void CloseDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+        }
+
         private void CheckConnection(object sender, RoutedEventArgs e)
         {
             if (CheckConnection())

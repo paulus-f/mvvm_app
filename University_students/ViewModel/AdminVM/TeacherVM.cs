@@ -70,11 +70,10 @@ namespace University_students.ViewModel.AdminVM
                         .Join(db.Faculties, p => p.FacultyId, f => f.Id, (p,f) => p)?
                         .Where(p => p.FacultyId == value.Id)
                         .ToList();
-                    ListTeachers = (from u in db.Users
-                                    join p in db.Pulpits on u.Id equals p.Id
-                                    join f in db.Faculties on p.Id equals f.Id
-                                    where u.TypeUser == Enums.Role.Teacher && f.Id == value.Id
-                                    select u).ToList();
+                    ListTeachers = db.Users
+                       .Include("Pulpit.Faculty")
+                       .Where(u => u.Pulpit.Faculty.University.Name == value.Name)
+                       .ToList();
                 }
                 OnPropertyChanged("SelectedFaculty");
             }
@@ -90,6 +89,18 @@ namespace University_students.ViewModel.AdminVM
                 OnPropertyChanged("ListPulpits");
             }
         }
+
+        private List<Pulpit> _UnivListPulpits;
+        public List<Pulpit> UnivListPulpits
+        {
+            get => _UnivListPulpits;
+            set
+            {
+                _UnivListPulpits = value;
+                OnPropertyChanged("UnivListPulpits");
+            }
+        }
+
 
         private List<Subject> _listSubjects;
         public List<Subject> ListSubjects
@@ -162,6 +173,26 @@ namespace University_students.ViewModel.AdminVM
                     ListTeachers = db.Users.Where(user => user.Pulpit.Id == value.Id).ToList();
                 }
                 OnPropertyChanged("SelectedPulpit");
+            }
+        }
+
+        private Pulpit _changePulpit;
+        public Pulpit ChangePulpit
+        {
+            get => _changePulpit;
+            set
+            {
+                _changePulpit = value;
+                if (value != null)
+                {
+                    var user = db.Users.FirstOrDefault(u => u.Id == SelectedTeacherDG.Id);
+                    var pulpit = db.Pulpits.FirstOrDefault(p => p.Id == value.Id);
+                    user.Pulpit = pulpit;
+                    new CustomBoxes.CustomMessageBox("OK").Show();
+                    CanResetDG();
+                    db.SaveChanges();
+                }
+                OnPropertyChanged("ChangePulpit");
             }
         }
 
@@ -255,6 +286,14 @@ namespace University_students.ViewModel.AdminVM
                 {
                     _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
                     ListFaculties = _selectedUniversityModel.Faculties.ToList();
+                    ListTeachers = db.Users
+                        .Include("Pulpit.Faculty.University")
+                        .Where(u => u.TypeUser == Enums.Role.Teacher)
+                        .ToList();
+                    UnivListPulpits = db.Pulpits
+                        .Include("Faculty.University")
+                        .Where(p => p.Faculty.University.Name == SelectedUniversity)
+                        .ToList();
                 }
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -325,7 +364,7 @@ namespace University_students.ViewModel.AdminVM
             using (var context = new USDbContext())
             {
                 var deleted = context.Users.Where(t => t.Id == SelectedTeacherDG.Id).FirstOrDefault();
-                if (deleted.Teaching != null )context.Teachings.Remove(deleted.Teaching);
+                if (deleted?.Teaching != null ) context.Teachings.Remove(deleted.Teaching);
                 context.Users.Remove(deleted);
                 context.SaveChanges();
                 ListTeachers.Remove(SelectedTeacherDG);

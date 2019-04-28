@@ -82,7 +82,7 @@
             <materialDesign:Snackbar IsActive="{Binding IsActiveMessage}" Grid.Row="7" HorizontalAlignment="Stretch" Margin="26.236,10,2.462,10" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
                 <materialDesign:SnackbarMessage Content="{Binding Message}" ActionContent="X" ActionCommand="{Binding UndoCommand}" Margin="11,0,4,0" Height="49" />
             </materialDesign:Snackbar>
-            <ComboBox   DisplayMemberPath="Name"  SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.Column="2" Margin="10,4,10,10" Grid.Row="2"/>
+            <ComboBox DisplayMemberPath="Name"  SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.Column="2" Margin="10,4,10,10" Grid.Row="2"/>
             <ComboBox DisplayMemberPath="Name" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" ItemsSource="{Binding ListFaculties}" Grid.Column="2" Margin="10,4,10,10" Grid.Row="3" VerticalAlignment="Stretch"/>
             <ComboBox DisplayMemberPath="GroupStr" SelectedValue="{Binding SelectedGroup, Mode=TwoWay}" ItemsSource="{Binding ListGroupsString}"   Grid.Column="2" Margin="10,3,10,10" Grid.Row="4" VerticalAlignment="Stretch"/>
             <PasswordBox  x:Name="pass" Grid.Column="1" Margin="135,10,10,0" Grid.Row="5" VerticalAlignment="Top" Password="efeds&#xD;&#xA;" Grid.ColumnSpan="2" Foreground="WhiteSmoke" Height="30.624" PasswordChanged="Pass_Changed"/>
