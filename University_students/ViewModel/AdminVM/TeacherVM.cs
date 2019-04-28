@@ -363,11 +363,11 @@ namespace University_students.ViewModel.AdminVM
         {
             using (var context = new USDbContext())
             {
-                var deleted = context.Users.Where(t => t.Id == SelectedTeacherDG.Id).FirstOrDefault();
-                if (deleted?.Teaching != null ) context.Teachings.Remove(deleted.Teaching);
+                var deleted = context.Users.Include("Teaching.TaughtGroups").Where(t => t.Id == SelectedTeacherDG.Id).FirstOrDefault();
                 context.Users.Remove(deleted);
                 context.SaveChanges();
                 ListTeachers.Remove(SelectedTeacherDG);
+                ListTeachers = ListTeachers.ToList();
                 SelectedTeacherDG = null;
             }
         }

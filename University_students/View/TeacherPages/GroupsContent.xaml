@@ -52,17 +52,17 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <Grid Margin="0,0,247,72">
+        <Grid HorizontalAlignment="Left" Width="167" Height="127" VerticalAlignment="Top">
             <Border Background="#FF322D2D" CornerRadius="60" Margin="3,0,-3,0" >
                 <materialDesign:PackIcon Foreground="#FFD37A10"  Kind="Accessibility" Height="Auto" Width="Auto" Margin="23,21,21,19" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF1F1919"/>
             </Border>
         </Grid>
         <Grid Margin="0,0,231,130.5"/>
         <Grid>
-            <Border Background="#FF322D2D" CornerRadius="30" Margin="214,65.5,65,83" >
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="0,138.5,48,10" HorizontalAlignment="Right" Width="165" >
                 <TextBlock Foreground="#FFF1ECEC" Margin="24,10,25.5,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" Background="#FF4B4848"/>
             </Border>
-            <Border Background="#FF322D2D" CornerRadius="30" Margin="214,10,65,138.5" >
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="10,138.5,0,10" HorizontalAlignment="Left" Width="169.5" >
                 <TextBlock Foreground="#FFF1ECEC" Margin="25,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.FirstName}" Background="#FF4B4848"/>
             </Border>
         </Grid>

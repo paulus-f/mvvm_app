@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       >
 
-    <Grid HorizontalAlignment="Left" Width="800" Height="450" VerticalAlignment="Top">
+    <Grid Height="450" VerticalAlignment="Top">
         <TextBlock Foreground="Black" Margin="0,0,0,308" TextWrapping="Wrap" FontSize="48" FontFamily="Sitka Small" TextAlignment="Center" Text="On this moment there is not certification in university" Background="#FFBFBCBC">
             <TextBlock.Effect>
                 <DropShadowEffect/>
             </TextBlock.Effect>
         </TextBlock>
-        <Calendar SelectionMode="None"  x:Name="calendar" Margin="252.5,142,267.5,0" RenderTransformOrigin="0.5,0.5" Background="#FFB7DBF3" Foreground="#DD000000" BorderBrush="#FFAC2B2B">
+        <Calendar SelectionMode="None"  x:Name="calendar" Margin="252.5,142,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFB7DBF3" Foreground="#DD000000" BorderBrush="#FFAC2B2B" HorizontalAlignment="Left" Width="280">
             <Calendar.BlackoutDates/>
         </Calendar>
     </Grid>

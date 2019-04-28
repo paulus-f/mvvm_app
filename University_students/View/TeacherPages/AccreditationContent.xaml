@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Foreground="#FF040303" Margin="6,3,615,0" TextWrapping="Wrap" Text="My Subjects" FontSize="24" FontFamily="News706 BT" TextAlignment="Center" Height="33" VerticalAlignment="Top"/>
         <Grid Margin="10,10,10,4">
-            <Border CornerRadius="30" Background="#FF666666" Margin="0,0,0,38" >
+            <Border CornerRadius="20" Background="#FF666666" Margin="0,0,0,38" >
                 <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}">
                     <ListBox.ItemsPanel>
