@@ -33,8 +33,8 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Margin="2,0,-2,0" Background="#212121">
-        <TabControl Background="#FF616161" Margin="0,1,0,-1">
+    <Grid Margin="2,0,-2,0" Background="#FF9800">
+        <TabControl Background="White" Margin="0,1,0,-1">
             <TabItem Style="{StaticResource TabItemText}"  Background="#212121" Header="Profile" Content="{Binding GroupsContent}" FontWeight="Bold" Foreground="#FFFBFBFB" BorderBrush="#FFFF9800"/>
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Accreditation" Content="{Binding AccreditationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="White"/>
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Certification" Content="{Binding CertificationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="#FFFFF5F5"/>

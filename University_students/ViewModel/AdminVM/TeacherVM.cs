@@ -286,10 +286,6 @@ namespace University_students.ViewModel.AdminVM
                 {
                     _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
                     ListFaculties = _selectedUniversityModel.Faculties.ToList();
-                    ListTeachers = db.Users
-                        .Include("Pulpit.Faculty.University")
-                        .Where(u => u.TypeUser == Enums.Role.Teacher)
-                        .ToList();
                     UnivListPulpits = db.Pulpits
                         .Include("Faculty.University")
                         .Where(p => p.Faculty.University.Name == SelectedUniversity)

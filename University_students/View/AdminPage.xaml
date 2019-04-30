@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       >
-    <Grid  RenderTransformOrigin="0.498,0.493" Background="#616161">
+    <Grid  RenderTransformOrigin="0.498,0.493" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -25,7 +25,7 @@
             <RowDefinition Height="23*"/>
             <RowDefinition Height="427*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Grid.ColumnSpan="9" VerticalAlignment="Top" Height="30" Grid.RowSpan="2" Background="#FF9E9E9E">
+        <Menu Grid.Row="0" Grid.ColumnSpan="9" VerticalAlignment="Top" Height="30" Grid.RowSpan="2" Background="#FF9800">
             <Button Content="Universities" Command="{Binding ChooseAdminPageCommand}"  CommandParameter="university" Background="#FF212121" FontSize="12" Height="32" VerticalAlignment="Top" BorderBrush="#FF3B4044" BorderThickness="0" HorizontalAlignment="Left" Width="88.889"/>
             <Button Background="#FF212121" Content="Faculties" Command="{Binding ChooseAdminPageCommand}" CommandParameter="faculty" Grid.Column="1" Grid.Row="0" FontSize="12" Height="32" Cursor="Hand" VerticalAlignment="Top" BorderBrush="#FF3B4044"/>
             <Button Background="#FF212121" Content="Specialities" Command="{Binding ChooseAdminPageCommand}" CommandParameter="speciality"  Grid.Column="2" Grid.Row="0"  FontSize="11" Height="32" VerticalAlignment="Top" BorderBrush="#FF3B4044"/>

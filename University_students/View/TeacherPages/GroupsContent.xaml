@@ -59,10 +59,10 @@
         </Grid>
         <Grid Margin="0,0,231,130.5"/>
         <Grid>
-            <Border Background="#FF322D2D" CornerRadius="30" Margin="0,138.5,48,10" HorizontalAlignment="Right" Width="165" >
-                <TextBlock Foreground="#FFF1ECEC" Margin="24,10,25.5,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" Background="#FF4B4848"/>
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="0,138.5,64.5,0" HorizontalAlignment="Right" Width="165" Height="50.5" VerticalAlignment="Top" >
+                <TextBlock Foreground="#FFF1ECEC" Margin="24,10,0,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.LastName}" Background="#FF4B4848" HorizontalAlignment="Left" Width="115.5"/>
             </Border>
-            <Border Background="#FF322D2D" CornerRadius="30" Margin="10,138.5,0,10" HorizontalAlignment="Left" Width="169.5" >
+            <Border Background="#FF322D2D" CornerRadius="30" Margin="10,138.5,0,0" HorizontalAlignment="Left" Width="169.5" Height="50.5" VerticalAlignment="Top" >
                 <TextBlock Foreground="#FFF1ECEC" Margin="25,10" TextWrapping="Wrap" Text="{Binding CurrentTeacher.FirstName}" Background="#FF4B4848"/>
             </Border>
         </Grid>
