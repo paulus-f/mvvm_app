@@ -277,7 +277,8 @@ namespace University_students.ViewModel.AdminVM
         private void CanAddSubject()
         {
             if ( Name != null &&
-                 Teachers != null
+                 Teachers != null &&
+                 SelectedHours != 0
                 )
             {
 
@@ -292,10 +293,7 @@ namespace University_students.ViewModel.AdminVM
                 db.SaveChanges();
                 ListSubjects = db.Subjects.ToList();
             }
-            else
-            {
-                //smth
-            }
+            else new CustomBoxes.CustomMessageBox("Fill all fields").Show();
         }
 
         private void CanResetDG()

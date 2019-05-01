@@ -199,6 +199,7 @@ namespace University_students.ViewModel.AdminVM
         {
             if (SelectedSpeciality == null)
             {
+                new CustomBoxes.CustomMessageBox("Fill all fields").Show();
                 return;
             }
             Group newGroup = new Group()

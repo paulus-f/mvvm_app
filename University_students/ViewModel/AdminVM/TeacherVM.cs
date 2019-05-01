@@ -435,10 +435,7 @@ namespace University_students.ViewModel.AdminVM
                 IsEnabledUD = false;
                 Subjects = new List<Subject>();
             }
-            else
-            {
-                //smth
-            }
+            else new CustomBoxes.CustomMessageBox("Fill all fields").Show();
         }
 
         private static string CreateRandomPassword(int passwordLength)

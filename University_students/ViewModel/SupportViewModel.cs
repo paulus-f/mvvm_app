@@ -28,6 +28,7 @@ namespace University_students.ViewModel
             to = new MailAddress(Secrets.EMAIL_TO);
             smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials =  new NetworkCredential(Secrets.EMAIL_TO, Secrets.PASSWORD);
+            Message = "Message";
         }
 
         private string _email;

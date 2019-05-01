@@ -126,6 +126,11 @@ namespace University_students.CustomBoxes.ViewModel
 
         private void CanAddWorOutToStudent(User st)
         {
+            if(Reason == null || Reason == String.Empty)
+            {
+                new CustomBoxes.CustomMessageBox("Fill resaion").Show();
+                return;
+            }
             var result = CheckProgress(_tg.Subject, st);
             var subjectProgress = db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id);
             db.WorkOuts.Add(new WorkOut()

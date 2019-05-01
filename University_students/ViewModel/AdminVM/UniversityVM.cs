@@ -282,6 +282,14 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanAddUniversity()
         {
+            if (Name == null || Name == String.Empty ||
+                City == null || City == String.Empty ||
+                TypeUniversity == null)
+            {
+                new CustomBoxes.CustomMessageBox("Fill all fields").Show();
+                return;
+            }
+
             Сertification newСertification = new Сertification()
             {
                 FirstAutumnStartDate = SelectedFirstAutumnStartDate,

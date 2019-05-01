@@ -236,10 +236,7 @@ namespace University_students.ViewModel.AdminVM
                 db.SaveChanges();
                 ListPulpit = db.Pulpits.Where(p => p.Faculty.Id == _selectedFacultyDG.Id)?.ToList();
             }
-            else
-            {
-                //smth
-            }
+            else new CustomBoxes.CustomMessageBox("Fill all fields").Show();
         }
 
         private void CanDeleteFaculty()
@@ -267,11 +264,14 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanAddFaculty()
         {
-            if(_selectedUniversityModel == null)
+            
+            if( _selectedUniversityModel == null ||
+                Dean == null || Dean == String.Empty ||
+                Name == null || Name == String.Empty)
             {
+                new CustomBoxes.CustomMessageBox("Fill all field").Show();
                 return;
             }
-
             Faculty newFaculty = new Faculty()
             {
                 University = this._selectedUniversityModel,
