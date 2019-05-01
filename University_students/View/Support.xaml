@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:University_students.View"
       mc:Ignorable="d" 
       Title="Support" Height="222.825" Width="396">
-    <Border BorderBrush="#412C84" Background="#212121" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
+    <Border BorderBrush="#FF212121" Background="#212121" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
         <Grid x:Name="SupportLayer" Background="#212121" Margin="10,10,10,9" RenderTransformOrigin="0.499,0.423">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="18*"/>
