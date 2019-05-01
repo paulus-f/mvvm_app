@@ -160,13 +160,13 @@ namespace University_students.ViewModel
                 }
                 else
                 {
-                    Message = "Login or Password is not correctly";
+                    Message = "Login or Password isn't correctly";
                     IsActiveMessage = true;
                 }
             }
             else
             {
-                Message = "User is don't exist";
+                Message = "User don't exist";
                 IsActiveMessage = true;
             }
         }

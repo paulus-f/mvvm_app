@@ -33,12 +33,15 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Margin="2,0,-2,0" Background="#FF9800">
-        <TabControl Background="White" Margin="0,1,0,-1">
+    <Grid Margin="0,0,-2,0" Background="#FF9800">
+        <TabControl Margin="0,1,0,-1">
+            <TabControl.Background>
+                <ImageBrush ImageSource="/University_students;component/Resources/img6.jpg" Stretch="UniformToFill"/>
+            </TabControl.Background>
             <TabItem Style="{StaticResource TabItemText}"  Background="#212121" Header="Profile" Content="{Binding GroupsContent}" FontWeight="Bold" Foreground="#FFFBFBFB" BorderBrush="#FFFF9800"/>
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Accreditation" Content="{Binding AccreditationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="White"/>
             <TabItem Style="{StaticResource TabItemText}"  Background="#FF9800" Header="Certification" Content="{Binding CertificationContent}" FontWeight="Bold" BorderBrush="#FFFF9800" Foreground="#FFFFF5F5"/>
         </TabControl>
-        <Button  Command="{Binding LogOutCommand}"  Content="Log Out" Height="28" Background="#FFF51C12" BorderBrush="#FFF34605" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
+        <Button  Command="{Binding LogOutCommand}"  Content="Log Out" Height="29" Background="#FFF51C12" BorderBrush="#FFF34605" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Right" Width="78"/>
     </Grid>
 </UserControl>

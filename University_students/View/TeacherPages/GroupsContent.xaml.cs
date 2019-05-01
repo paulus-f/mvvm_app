@@ -35,5 +35,6 @@ namespace University_students.View.TeacherPages
             TaughtGroups taughtGroups = ((Button)sender).CommandParameter as TaughtGroups;
             new CustomBoxes.ListStudentsOfGroup(taughtGroups).Show();
         }
+
     }
 }

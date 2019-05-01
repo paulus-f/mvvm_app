@@ -34,5 +34,15 @@ namespace University_students.View.TeacherPages
         {
             new CustomBoxes.BackgroundStudentBox(dc.SelectedStudent.User, dc.SelectedStudent).Show();
         }
+
+        private void OpenBackgroundStudentExam(object sender, MouseButtonEventArgs e)
+        {
+            new CustomBoxes.BackgroundStudentBox(dc.SelectedStudentExam.User, dc.SelectedStudentExam).Show();
+        }
+
+        private void FullInfoExam(object sender, MouseButtonEventArgs e)
+        {
+            new CustomBoxes.CustomMessageBox(dc.SelectedStudentExam.ToString()).Show();
+        }
     }
 }

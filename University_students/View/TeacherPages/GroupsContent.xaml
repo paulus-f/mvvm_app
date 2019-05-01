@@ -9,12 +9,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
-            <StackPanel Margin="5">
-                <Button Click="onClickGroup" Command="{Binding DataContext.ViewGroupCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" CommandParameter="{Binding}" Width="25" Height="25" Background="Black" BorderBrush="{x:Null}" Foreground="White">
+            <Button MinHeight="50" MinWidth="300" Click="onClickGroup" Command="{Binding DataContext.ViewGroupCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="Black" BorderBrush="{x:Null}" Foreground="White">
+                <Grid>
                     <materialDesign:PackIcon Kind="Accessible"/>
-                </Button>
-                <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
-            </StackPanel>
+                    <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
         </DataTemplate>
         <DataTemplate x:Key="listTemplateSubject">
             <StackPanel Margin="5">
