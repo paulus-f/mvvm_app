@@ -21,7 +21,7 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                            <Button Content="Confirm Work Out"  Grid.Column="1" Command="{Binding DataContext.ConfirmWorkOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639"/>
+                            <Button Content="Confirm Work Out"  Grid.Column="1" Command="{Binding DataContext.ConfirmWorkOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639" BorderBrush="#FF0AB639"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

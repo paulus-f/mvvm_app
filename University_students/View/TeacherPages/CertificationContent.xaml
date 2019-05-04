@@ -53,8 +53,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                        <Button Content="Fail"  Grid.Column="2" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639"/>
-                        <Button Content="Succes" Grid.Column="4" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FFF32E1B"/>
+                        <Button Content="Fail" Grid.Column="2" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639" BorderBrush="#FF0AB639"/>
+                        <Button Content="Succes" Grid.Column="4" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FFF32E1B" BorderBrush="#FFF32E1B"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

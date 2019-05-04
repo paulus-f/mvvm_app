@@ -322,12 +322,28 @@ namespace University_students.ViewModel
                 Group = SelectedGroup.Group
             };
             db.Users.Add(newUser);
+            db.SaveChanges();
+
+            foreach (TaughtGroups tg in SelectedGroup.Group.TaughtGroups)
+            {
+                var newSP = new SubjectProgress()
+                {
+                    User = newUser,
+                    UnValidExcuses = 0,
+                    ValidExcuses = 0,
+                    TaughtGroups = tg,
+                    IsExamPassed = Enums.StateExam.Waiting,
+                    IsStartCertifiationPassed = Enums.StateCertification.Waiting,
+                    IsFinishCertifiationPassed = Enums.StateCertification.Waiting,
+                };
+                db.SubjectProgress.Add(newSP);
+            }
+            db.SaveChanges();
             Login = String.Empty;
             FirstName = String.Empty;
             LastName = String.Empty;
             Password = String.Empty;
             ConfirmedPassword = String.Empty;
-            db.SaveChanges();
             GoToUserPage(newUser);
         }
 
