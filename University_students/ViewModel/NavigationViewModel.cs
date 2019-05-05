@@ -15,8 +15,6 @@ namespace University_students.ViewModel
     class NavigationViewModel
     {
         private UserControl StartUpPage;
-        private UserControl AdminPage;
-        private UserControl UserPage;
         private ContentControl _currentControl;
         
         private UserControl _mainCurrentControl;
