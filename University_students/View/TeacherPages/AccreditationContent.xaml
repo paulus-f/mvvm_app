@@ -46,7 +46,7 @@
                 <DataGridTextColumn Width="*" Header="Unvalid Excuse" Binding="{Binding UnValidExcuses}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid MouseDown="OpenBackgroundStudentExam" MouseDoubleClick="FullInfoExam" AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudentExam}" ItemsSource="{Binding ListStudentProgressExam}" Margin="10,1,10,10" Grid.Row="1" Grid.Column="1" IsReadOnly="True">
+        <DataGrid MouseDown="OpenBackgroundStudentExam" AutoGenerateColumns="False" SelectedItem="{Binding SelectedStudentExam}" ItemsSource="{Binding ListStudentProgressExam}" Margin="10,1,10,10" Grid.Row="1" Grid.Column="1" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Full Name" Binding="{Binding User}"/>
                 <DataGridTextColumn Width="*" Header="State Exam" Binding="{Binding }"/>

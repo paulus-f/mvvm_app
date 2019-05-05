@@ -39,7 +39,21 @@ namespace University_students.ViewModel.AdminVM
                 SelectedUniversity = value?.Pulpit?.Faculty.University.Name;
                 SelectedFaculty = value?.Pulpit?.Faculty;
                 SelectedPulpit = value?.Pulpit;
-                if (value != null) IsEnabledUD = true;
+                Subjects = value?.Subjects.ToList();
+                if (value != null) {
+                    List<Subject> ResultSubjects  = new List<Subject>();
+                    foreach (var sub in ListSubjects)
+                    {
+                        bool isFind = false;
+                        foreach (var teach in sub.Teachers)
+                        {
+                            if (teach.Login == value.Login) isFind = true;                                
+                        }
+                        if (!isFind) ResultSubjects.Add(sub);
+                    }
+                    IsEnabledUD = true;
+                    ListSubjects = ResultSubjects;
+                }
                 else IsEnabledUD = false;
                 OnPropertyChanged("SelectedTeacherDG");
             }
@@ -134,6 +148,9 @@ namespace University_students.ViewModel.AdminVM
                 {
                     ListSubjects.Remove(value);
                     Subjects.Add(value);
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == SelectedTeacherDG.Id);
+                    teacher.Subjects.Add(value);
+                    db.SaveChanges();
                 }
                 ListSubjects = ListSubjects.ToList();
                 Subjects = Subjects.ToList();
@@ -152,6 +169,9 @@ namespace University_students.ViewModel.AdminVM
                 {
                     Subjects.Remove(value);
                     ListSubjects.Add(value);
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == SelectedTeacherDG.Id);
+                    teacher.Subjects.Remove(value);
+                    db.SaveChanges();
                 }
                 ListSubjects = ListSubjects.ToList();
                 Subjects = Subjects.ToList();
@@ -382,11 +402,17 @@ namespace University_students.ViewModel.AdminVM
             LoginTeacher = null;
             IsEnabledUD = false;
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
+            ListSubjects = db.Subjects.ToList();
             Subjects = new List<Subject>();
         }
 
         private void CanInviteTeacher()
         {
+            if(EmailTeacher == null)
+            {
+                new CustomBoxes.CustomMessageBox("Fill fields").Show();
+                return;
+            }
             if (!new Regex(RegexPattern.emailPattern).IsMatch(EmailTeacher))
             {
                 new CustomBoxes.CustomMessageBox("Email is not validated").Show();

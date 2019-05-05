@@ -53,10 +53,14 @@ namespace University_students.ViewModel
             set
             {
                 _SelectedSubject = value;
+                SelectedSubjectCertification = value?.ToResultCertifications();
                 IsSelectedWorkOut =  SelectedSubject.WorkOuts.Count != 0 ? true : false;
                 OnPropertyChanged("SelectedSubject");
+                OnPropertyChanged("SelectedSubjectCertification");
             }
         }
+
+        public string SelectedSubjectCertification { get; set; }
 
         public string Login
         {

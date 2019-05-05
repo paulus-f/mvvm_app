@@ -113,14 +113,18 @@ namespace University_students.CustomBoxes.ViewModel
         private void CanAddValidExcusesToStudent(User st)
         {
             var result = CheckProgress(_tg.Subject, st);
-            db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id).ValidExcuses += 2;
+            var selectedSP  = db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id);
+            selectedSP.ValidExcuses += 2;
+            new CustomBoxes.CustomMessageBox($"Was added 2h. Total unvalid passes {selectedSP.ValidExcuses}").Show();
             db.SaveChanges();
         }
 
         private void CanAddUnValidExcusesToStudent(User st)
         {
             var result = CheckProgress(_tg.Subject, st);
-            db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id).UnValidExcuses += 2;
+            var selectedSP = db.SubjectProgress.FirstOrDefault(sp => sp.Id == result.Id);
+            selectedSP.UnValidExcuses += 2;
+            new CustomBoxes.CustomMessageBox($"Was added 2h. Total unvalid passes {selectedSP.UnValidExcuses}").Show();
             db.SaveChanges();
         }
 
@@ -128,7 +132,7 @@ namespace University_students.CustomBoxes.ViewModel
         {
             if(Reason == null || Reason == String.Empty)
             {
-                new CustomBoxes.CustomMessageBox("Fill resaion").Show();
+                new CustomBoxes.CustomMessageBox("Fill reason").Show();
                 return;
             }
             var result = CheckProgress(_tg.Subject, st);
@@ -138,7 +142,8 @@ namespace University_students.CustomBoxes.ViewModel
                 IsWorkOut = false,
                 Reason = this.Reason,
                 SubjectProgress = subjectProgress
-            });  
+            });
+            new CustomBoxes.CustomMessageBox("Work Out was added").Show();
             db.SaveChanges();
         }
 

@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View"
-      Background="{DynamicResource MaterialDesignPaper}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -34,7 +35,9 @@
             <Button Background="#FF212121" Content="Students" Command="{Binding ChooseAdminPageCommand}" CommandParameter="student" Grid.Column="6" Grid.Row="0" FontSize="12" Height="32" VerticalAlignment="Top" BorderBrush="#FF3B4044"/>
             <Button Background="#FF212121" Content="Subjects" Command="{Binding ChooseAdminPageCommand}" CommandParameter="subject" Grid.Column="5" Grid.Row="0" FontSize="12" Height="32" VerticalAlignment="Top" BorderBrush="#FF3B4044"/>
             <Label  Content="{Binding Login}" Grid.Column="7" Grid.Row="0" FontSize="14" Height="32" Background="#FF4CAF50" Foreground="#DDFFFFFF" FontWeight="Bold" VerticalAlignment="Top"/>
-            <Button Content="Log Out" Command="{Binding LogOutCommand}"  Grid.Column="8" Grid.Row="0" FontSize="12" Height="32" Background="#FFB81818" VerticalAlignment="Top" BorderBrush="#FFF32121"/>
+            <Button Command="{Binding LogOutCommand}"  Grid.Column="8" Grid.Row="0" FontSize="12" Height="32" Background="#00B81818" VerticalAlignment="Top" BorderBrush="#00F32121">
+                <materialDesign:PackIcon Kind="LogoutVariant" Background="#FFE20505" Width="20" Height="20"/>
+            </Button>
         </Menu>
         <Frame 
             Grid.ColumnSpan="9" 

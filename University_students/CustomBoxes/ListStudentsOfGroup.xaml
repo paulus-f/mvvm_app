@@ -11,7 +11,7 @@
         MinHeight="300"
         MinWidth="502.103"
         Title="ChoosingGroups" Height="300" Width="502.103">
-    <Border CornerRadius="55" BorderBrush="#99FFC0C0" BorderThickness="5" Background="Beige">
+    <Border CornerRadius="55" BorderBrush="#FF1B1B1C" BorderThickness="5" Background="#FFDEDEDE">
         <Grid Margin="0,-4,5,4">
             <ListBox SelectedItem="{Binding SelectedStudent}" ItemsSource="{Binding ListStudents}" Margin="42,41,28,47">
                 <ListBox.ItemTemplate>
@@ -27,13 +27,13 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                            <Button Grid.Column="2" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#00707070">
+                            <Button ToolTip="Add valid pass"  Grid.Column="2" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#00707070">
                                 <materialDesign:PackIcon Kind="Add" Background="#FF297C17"/>
                             </Button>
-                            <Button Grid.Column="4" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00F32E1B" BorderBrush="#00707070">
+                            <Button ToolTip="Add unvalid pass" Grid.Column="4" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00F32E1B" BorderBrush="#00707070">
                                 <materialDesign:PackIcon Kind="Add" Background="#FFDC2514"/>
                             </Button>
-                            <Button Grid.Column="6" Command="{Binding DataContext.AddWorOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00C9C90F" BorderBrush="#00707070">
+                            <Button ToolTip="Add workout" Grid.Column="6" Command="{Binding DataContext.AddWorOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00C9C90F" BorderBrush="#00707070">
                                 <materialDesign:PackIcon Kind="Clipboard" Background="#FFA6A606" />
                             </Button>
                         </Grid>

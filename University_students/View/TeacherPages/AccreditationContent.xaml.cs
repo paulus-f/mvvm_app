@@ -41,11 +41,5 @@ namespace University_students.View.TeacherPages
             if(dc.SelectedStudentExam != null )
                 new CustomBoxes.BackgroundStudentBox(dc.SelectedStudentExam.User, dc.SelectedStudentExam).Show();
         }
-
-        private void FullInfoExam(object sender, MouseButtonEventArgs e)
-        {
-            if(dc.SelectedStudentExam != null )
-                new CustomBoxes.CustomMessageBox(dc.SelectedStudentExam.ToString()).Show();
-        }
     }
 }

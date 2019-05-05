@@ -55,7 +55,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding User}" Grid.Column="0"></TextBlock >
-                        <Button Grid.Column="2" MinHeight="15" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#FF0AB639">
+                        <Button Grid.Column="2" MinHeight="15" Command="{Binding DataContext.AddSuccessCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#FF0AB639">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -65,7 +65,7 @@
                                 <Label Grid.Column="1" Content="Success"/>
                             </Grid>
                         </Button>
-                        <Button Grid.Column="4" MinHeight="15" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00F32E1B" BorderBrush="#FFF32E1B">
+                        <Button Grid.Column="4" MinHeight="15" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00F32E1B" BorderBrush="#FFF32E1B">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
