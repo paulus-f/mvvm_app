@@ -47,6 +47,37 @@ namespace University_students.Models
             return res;
         }
 
+        public string ToResultCertifications()
+        {
+            string res = " --- Start Certifiation --- ";
+            switch (IsStartCertifiationPassed)
+            {
+                case Enums.StateCertification.Failed:
+                    res += "Certification: Failed ";
+                    break;
+                case Enums.StateCertification.Passed:
+                    res += "Certification: Passed ";
+                    break;
+                case Enums.StateCertification.Waiting:
+                    res += "Certification: Waiting ";
+                    break;
+            }
+            res += " --- Finish Certifiation --- ";
+            switch (IsFinishCertifiationPassed)
+            {
+                case Enums.StateCertification.Failed:
+                    res += "Certification: Failed";
+                    break;
+                case Enums.StateCertification.Passed:
+                    res += "Certification: Passed ";
+                    break;
+                case Enums.StateCertification.Waiting:
+                    res += "Certification: Waiting ";
+                    break;
+            }
+            return res;
+        }
+
         public override string ToString()
         {
             string res = "";

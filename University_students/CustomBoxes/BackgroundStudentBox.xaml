@@ -1,6 +1,7 @@
 ﻿<Window x:Class="University_students.CustomBoxes.BackgroundStudentBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         WindowStyle="None" 
         AllowsTransparency="True" 
         Background="Transparent" 
@@ -17,11 +18,14 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="10"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                            <Button Content="Confirm Work Out"  Grid.Column="1" Command="{Binding DataContext.ConfirmWorkOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639" BorderBrush="#FF0AB639"/>
+                            <Button Grid.Column="2" Command="{Binding DataContext.ConfirmWorkOutCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" BorderBrush="#000AB639" Background="#00DDDDDD">
+                                <materialDesign:PackIcon Kind="Approve" Background="#FF297C17"/>
+                            </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -32,17 +32,20 @@ namespace University_students.View.TeacherPages
 
         private void OpenBackgroundStudent(object sender, MouseButtonEventArgs e)
         {
-            new CustomBoxes.BackgroundStudentBox(dc.SelectedStudent.User, dc.SelectedStudent).Show();
+            if(dc.SelectedStudent != null )
+                new CustomBoxes.BackgroundStudentBox(dc.SelectedStudent.User, dc.SelectedStudent).Show();
         }
 
         private void OpenBackgroundStudentExam(object sender, MouseButtonEventArgs e)
         {
-            new CustomBoxes.BackgroundStudentBox(dc.SelectedStudentExam.User, dc.SelectedStudentExam).Show();
+            if(dc.SelectedStudentExam != null )
+                new CustomBoxes.BackgroundStudentBox(dc.SelectedStudentExam.User, dc.SelectedStudentExam).Show();
         }
 
         private void FullInfoExam(object sender, MouseButtonEventArgs e)
         {
-            new CustomBoxes.CustomMessageBox(dc.SelectedStudentExam.ToString()).Show();
+            if(dc.SelectedStudentExam != null )
+                new CustomBoxes.CustomMessageBox(dc.SelectedStudentExam.ToString()).Show();
         }
     }
 }
