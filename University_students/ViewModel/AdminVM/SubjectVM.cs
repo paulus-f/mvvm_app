@@ -114,13 +114,16 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedSubjectDG = value;
                 Name = value?.Name;
+                Teachers = new List<User>();
+                ListTeachers = new List<User>();
                 if (value != null)
                 {
+                    var sub = db.Subjects.FirstOrDefault(sb => sb.Id == value.Id);
                     SelectedHours = value.Hour;
                     ListTeachers = db.Users
                         .Where(u => u.Subjects.All(s => s.Id != value.Id) && u.TypeUser == Enums.Role.Teacher)
                         .ToList();
-                    Teachers = (List<User>)value?.Teachers.ToList();
+                    Teachers = sub.Teachers.ToList();
                     IsEnabledUD = true;
                 }
                 OnPropertyChanged("SelectedSubjectDG");
@@ -134,12 +137,17 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _addTeacherToSubject = value;
-                if (value != null)
+                if (value != null && SelectedSubjectDG != null)
                 {
                     Teachers.Add(value);
                     Teachers = Teachers.ToList();
+                    // fix bug
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
+                    teacher.Subjects.Add(SelectedSubjectDG);
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was added");
                     ListTeachers.Remove(value);
                     ListTeachers = ListTeachers.ToList();
+                    db.SaveChanges();
                 }
                 _addTeacherToSubject = null;
                 OnPropertyChanged("AddTeacherToSubject");
@@ -156,8 +164,12 @@ namespace University_students.ViewModel.AdminVM
                 {
                     ListTeachers.Add(value);
                     ListTeachers = ListTeachers.ToList();
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
+                    teacher.Subjects.Remove(SelectedSubjectDG);
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was deleted");
                     Teachers.Remove(value);
                     Teachers = Teachers.ToList();
+                    db.SaveChanges();
                 }
                 _deleteTeacherFromSubject = null;
                 OnPropertyChanged("DeleteTeacherFromSubject");

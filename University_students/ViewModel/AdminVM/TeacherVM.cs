@@ -41,6 +41,7 @@ namespace University_students.ViewModel.AdminVM
                 SelectedPulpit = value?.Pulpit;
                 Subjects = value?.Subjects.ToList();
                 if (value != null) {
+                    ListSubjects = db.Subjects.ToList();
                     List<Subject> ResultSubjects  = new List<Subject>();
                     foreach (var sub in ListSubjects)
                     {
@@ -56,6 +57,7 @@ namespace University_students.ViewModel.AdminVM
                 }
                 else IsEnabledUD = false;
                 OnPropertyChanged("SelectedTeacherDG");
+                OnPropertyChanged("ListSubjects");
             }
         }
 
@@ -115,7 +117,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
         private List<Subject> _listSubjects;
         public List<Subject> ListSubjects
         {
@@ -144,12 +145,15 @@ namespace University_students.ViewModel.AdminVM
             get => _addedSubject;
             set
             {
-                if (value != null)
+                if (value != null && SelectedTeacherDG != null)
                 {
+
                     ListSubjects.Remove(value);
                     Subjects.Add(value);
+                    new CustomBoxes.CustomMessageBox(value.ToString() + " was added").Show();
+                    var sub = db.Subjects.FirstOrDefault(s => s.Id == value.Id);
                     var teacher = db.Users.FirstOrDefault(t => t.Id == SelectedTeacherDG.Id);
-                    teacher.Subjects.Add(value);
+                    teacher.Subjects.Add(sub);
                     db.SaveChanges();
                 }
                 ListSubjects = ListSubjects.ToList();
@@ -169,6 +173,7 @@ namespace University_students.ViewModel.AdminVM
                 {
                     Subjects.Remove(value);
                     ListSubjects.Add(value);
+                    new CustomBoxes.CustomMessageBox(value.ToString() + " was deleted").Show();
                     var teacher = db.Users.FirstOrDefault(t => t.Id == SelectedTeacherDG.Id);
                     teacher.Subjects.Remove(value);
                     db.SaveChanges();

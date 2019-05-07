@@ -10,8 +10,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       >
-    <Grid  RenderTransformOrigin="0.498,0.493" Background="White">
-        <Grid.ColumnDefinitions>
+    <Grid  RenderTransformOrigin="0.498,0.493">
+		<Grid.Background>
+			<ImageBrush ImageSource="/University_students;component/Resources/img4.jpg" Stretch="UniformToFill"/>
+		</Grid.Background>
+		<Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>

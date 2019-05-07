@@ -52,6 +52,7 @@ namespace University_students.CustomBoxes.ViewModel
                     var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
                     tech.Teaching.TaughtGroups.Remove(gr);
                     db.SaveChanges();
+                    new CustomMessageBox(gr.ToString() + " was deleted").Show();
                     tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
                     TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
@@ -72,16 +73,20 @@ namespace University_students.CustomBoxes.ViewModel
                     var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
                     var sub = db.Subjects.FirstOrDefault(s => s.Id == SelectedSub.Id);
-                    db.TaughtGroups.Add(new TaughtGroups()
+                    var taughtGroups = db.TaughtGroups.FirstOrDefault(gtg => (gtg.Group.Id == gr.Id && gtg.Subject.Id == sub.Id));
+                    if (taughtGroups == null)
                     {
-                        Subject = sub,
-                        Group = gr,
-                        Teaching = tech.Teaching
-                    });
-                    db.SaveChanges();
-                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
-                    CurrentTeacher = tech;
-                    TeacherGroups = tech.Teaching.TaughtGroups.ToList();
+                        db.TaughtGroups.Add(new TaughtGroups()
+                        {
+                            Subject = sub,
+                            Group = gr,
+                            Teaching = tech.Teaching
+                        });
+                        db.SaveChanges();
+                        tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                        CurrentTeacher = tech;
+                        TeacherGroups = tech.Teaching.TaughtGroups.ToList();
+                    } else new CustomBoxes.CustomMessageBox(taughtGroups.ToString() + " already exist").Show();
                 }
                 _SelectedFromListGroups = value;
                 OnPropertyChanged("SelectedFromListGroups");

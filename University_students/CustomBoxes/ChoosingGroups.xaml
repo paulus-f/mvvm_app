@@ -10,13 +10,13 @@
         MinHeight="300"
         MinWidth="502.103"
         Title="ChoosingGroups" Height="300" Width="502.103">
-    <Border CornerRadius="55" BorderBrush="#99FFC0C0" BorderThickness="5" Background="Beige">
-        <Grid Margin="0,-4,5,4">
-            <Button Content="Close" Click="closeBox" Margin="221,258,173,0" BorderBrush="#FFF71414" Background="#FFCF0D0D" Height="Auto"/>
-            <ListBox x:Name="lb1" SelectedItem="{Binding SelectedTeacherGroup}" ItemsSource="{Binding TeacherGroups}" Height="182" VerticalAlignment="Top" Margin="10,61,228,0" Background="#FFF9E4B5" SelectionChanged="ListBox_SelectionChanged"/>
-            <ListBox x:Name="lb2" SelectedItem="{Binding SelectedFromListGroups}" ItemsSource="{Binding ListGroups}" Margin="276,61,10,47" Background="#FFF9E4B5" SelectionChanged="ListBox_SelectionChanged"/>
-            <Label Content="Teacher groups" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Width="96"/>
-            <ComboBox HorizontalAlignment="Left" SelectedItem="{Binding SelectedSub}" ItemsSource="{Binding ListSubs}" Margin="207,8,0,0" VerticalAlignment="Top" Width="120"/>
-        </Grid>
-    </Border>
+	<Border CornerRadius="55" BorderBrush="Black" BorderThickness="5" Background="#FFCFCFC1">
+		<Grid Margin="0,-4,5,4">
+			<Button Content="Close" Click="closeBox" Margin="221,258,173,0" BorderBrush="#FFCF0D0D" Background="#FFCF0D0D" Height="Auto"/>
+			<ListBox x:Name="lb1" SelectedItem="{Binding SelectedTeacherGroup}" ItemsSource="{Binding TeacherGroups}" Height="182" VerticalAlignment="Top" Margin="10,61,228,0" Background="#FFE8E2D6" SelectionChanged="ListBox_SelectionChanged" Foreground="#FF1B1B1C" FontWeight="Bold"/>
+			<ListBox x:Name="lb2" SelectedItem="{Binding SelectedFromListGroups}" ItemsSource="{Binding ListGroups}" Margin="276,61,10,47" Background="#FFE8E2D6" SelectionChanged="ListBox_SelectionChanged" Foreground="#FF1B1B1C" FontWeight="Bold"/>
+			<Label Content="Teacher groups" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold"/>
+			<ComboBox HorizontalAlignment="Left" SelectedItem="{Binding SelectedSub}" ItemsSource="{Binding ListSubs}" Margin="177,8,0,0" VerticalAlignment="Top" Width="150"/>
+		</Grid>
+	</Border>
 </Window>
