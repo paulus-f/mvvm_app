@@ -65,13 +65,13 @@
                                 <Label Grid.Column="1" Content="Success"/>
                             </Grid>
                         </Button>
-                        <Button Grid.Column="4" MinHeight="15" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00F32E1B" BorderBrush="#FFF32E1B">
+                        <Button Grid.Column="4" MinHeight="15" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00FF0000" BorderBrush="#FFFF1600">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <materialDesign:PackIcon Grid.Column="0" Kind="Minus" Background="#FFC11109" />
+                                <materialDesign:PackIcon Grid.Column="0" Kind="Minus" Background="#FFFF1600" />
                                 <Label Grid.Column="1" Content="Fail"/>
                             </Grid>
                         </Button>

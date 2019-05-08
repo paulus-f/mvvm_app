@@ -15,13 +15,12 @@
         MinWidth ="1000"
         SizeToContent="Manual"
         AllowsTransparency="True"
-        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         x:Name="mainWindow" Width="1000">
     <Window.Resources>
         <vm:ViewModelLocator x:Key="Locator" />
     </Window.Resources>
-    <Border CornerRadius="10" BorderBrush="#FF171005" BorderThickness="5">
+    <Border CornerRadius="5" BorderBrush="#FF171005" BorderThickness="7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="289*"/>
@@ -32,7 +31,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ContentControl x:Name="currentControl" Content="{Binding MainCurrentControl}" Grid.Row="1" Grid.ColumnSpan="2" />
-            <Grid x:Name="GridBarTitle" Background="#F57C00"  Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
+            <Grid x:Name="GridBarTitle" Grid.ColumnSpan="2" MouseDown="GridBarraTitulo_MouseDown">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
                     <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
                         <materialDesign:PackIcon Kind="Power"/>

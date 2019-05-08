@@ -29,7 +29,7 @@ namespace University_students
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new NavigationViewModel(currentControl);
+            DataContext = new NavigationViewModel(currentControl, GridBarTitle);
         }
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)

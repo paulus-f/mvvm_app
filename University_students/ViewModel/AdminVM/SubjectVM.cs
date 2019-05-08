@@ -144,7 +144,7 @@ namespace University_students.ViewModel.AdminVM
                     // fix bug
                     var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
                     teacher.Subjects.Add(SelectedSubjectDG);
-                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was added");
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was added").Show();
                     ListTeachers.Remove(value);
                     ListTeachers = ListTeachers.ToList();
                     db.SaveChanges();
@@ -166,7 +166,7 @@ namespace University_students.ViewModel.AdminVM
                     ListTeachers = ListTeachers.ToList();
                     var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
                     teacher.Subjects.Remove(SelectedSubjectDG);
-                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was deleted");
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was deleted").Show();
                     Teachers.Remove(value);
                     Teachers = Teachers.ToList();
                     db.SaveChanges();
