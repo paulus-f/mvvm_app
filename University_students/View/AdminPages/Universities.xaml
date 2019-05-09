@@ -31,7 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Add" Grid.Column="3" Command="{Binding AddUniversityCommand}" IsEnabled="{Binding CanAdd}" Margin="55.667,56.333,72,43.667" Grid.Row="1" Height="30" RenderTransformOrigin="0.082,0.431" VerticalAlignment="Center" Background="#FF212121" BorderBrush="#FF212121"/>
-        <ComboBox Grid.Column="3" Text="Type University" SelectedItem="{Binding TypeUniversity}" Margin="19,10,40,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Foreground="Black" BorderBrush="#89FFFFFF">
+        <ComboBox Style="{StaticResource SimpleComboBox}" Grid.Column="3" Text="Type University" SelectedItem="{Binding TypeUniversity}" Margin="19,10,40,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Foreground="Black" BorderBrush="#89FFFFFF">
             <System:String>University</System:String>
             <System:String>Academy</System:String>
             <System:String>Institute</System:String>

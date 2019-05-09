@@ -7,6 +7,7 @@
         WindowStartupLocation="CenterScreen"
         MaxHeight="300"
         MaxWidth="502.103"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         MinHeight="300"
         MinWidth="502.103"
         Title="ChoosingGroups" Height="300" Width="502.103">

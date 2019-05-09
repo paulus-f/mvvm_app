@@ -8,6 +8,7 @@
         MaxHeight="150"
         MaxWidth="250"
         MinHeight="150"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         MinWidth="250"
         Title="ChoosingGroups" Height="150" Width="250">
     <Border CornerRadius="55" BorderBrush="#FFC77A0C" BorderThickness="5" Background="#FF271F10">
