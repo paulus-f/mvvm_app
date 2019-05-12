@@ -51,6 +51,7 @@ namespace University_students.CustomBoxes.ViewModel
                     var tech = db.Users.Include("Teaching").FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
                     new CustomMessageBox(gr.ToString() + " was deleted").Show();
+                    DeleteSubjectProgresses(gr);
                     db.TaughtGroups.Remove(gr);
                     db.SaveChanges();
                     tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
@@ -85,6 +86,7 @@ namespace University_students.CustomBoxes.ViewModel
                         };
                         tech.Teaching.TaughtGroups.Add(tg);
                         db.SaveChanges();
+                        CreateSubjectProgresses(tg);
                         tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                         CurrentTeacher = tech;
                         TeacherGroups = tech.Teaching.TaughtGroups.ToList();
@@ -144,6 +146,36 @@ namespace University_students.CustomBoxes.ViewModel
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void CreateSubjectProgresses(TaughtGroups taughtGroups)
+        {
+            List<User> groupStudents = taughtGroups.Group.Students.ToList();
+            List<SubjectProgress> sp = new List<SubjectProgress>();
+            foreach (User student in groupStudents)
+            {
+                db.SubjectProgress.Add(new SubjectProgress()
+                {
+                    User = student,
+                    UnValidExcuses = 0,
+                    ValidExcuses = 0,
+                    TaughtGroups = taughtGroups,
+                    IsExamPassed = Enums.StateExam.Waiting,
+                    IsStartCertifiationPassed = Enums.StateCertification.Waiting,
+                    IsFinishCertifiationPassed = Enums.StateCertification.Waiting,
+                });
+               db.SaveChanges();
+            }
+        }
+
+        private void DeleteSubjectProgresses(TaughtGroups taughtGroups)
+        {
+            var subjectProgressStudents= db.SubjectProgress.Where(subPr => subPr.TaughtGroupsId == taughtGroups.Id).ToList();
+            foreach(var subjectProgressStudent in subjectProgressStudents)
+            {
+                db.SubjectProgress.Remove(subjectProgressStudent);
+                db.SaveChanges();
+            }
         }
     }
 }

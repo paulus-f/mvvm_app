@@ -40,8 +40,9 @@ namespace University_students.ViewModel.AdminVM
                 Name = value?.Name;
                 City = value?.City;
                 TypeUniversity = value?.TypeUniversity;
-                if (value != null)
+                if (value?.Сertification != null)
                 {
+
                     SelectedFirstAutumnStartDate = value.Сertification.FirstAutumnStartDate;
                     SelectedFirstAutumnFinishDate = value.Сertification.FirstAutumnEndDate;
                     SelectedFirstSpringFinishDate = value.Сertification.FirstSpringEndDate;
@@ -50,6 +51,10 @@ namespace University_students.ViewModel.AdminVM
                     SelectedLastSpringFinishDate = value.Сertification.LastSpringEndDate;
                     SelectedLastAutumnStartDate = value.Сertification.LastAutumnStartDate;
                     SelectedFirstSpringStartDate = value.Сertification.FirstSpringStartDate;
+                }
+                else
+                {
+
                 }
                 IsEnabledUD = true;
                 OnPropertyChanged("SelectedUniversityDG");
@@ -242,14 +247,32 @@ namespace University_students.ViewModel.AdminVM
             univ.Name = Name;
             univ.City = City;
             univ.TypeUniversity = TypeUniversity;
-            univ.Сertification.FirstAutumnStartDate = SelectedFirstAutumnStartDate;
-            univ.Сertification.FirstAutumnEndDate = SelectedFirstAutumnFinishDate;
-            univ.Сertification.FirstSpringEndDate = SelectedFirstSpringFinishDate;
-            univ.Сertification.LastAutumnEndDate = SelectedLastAutumnFinishDate;
-            univ.Сertification.LastSpringStartDate = SelectedLastSpringStartDate;
-            univ.Сertification.LastSpringEndDate = SelectedLastSpringFinishDate;
-            univ.Сertification.LastAutumnStartDate = SelectedLastAutumnStartDate;
-            univ.Сertification.FirstSpringStartDate = SelectedFirstSpringStartDate;
+            if (univ.Сertification != null)
+            {
+                univ.Сertification.FirstAutumnStartDate = SelectedFirstAutumnStartDate;
+                univ.Сertification.FirstAutumnEndDate = SelectedFirstAutumnFinishDate;
+                univ.Сertification.FirstSpringEndDate = SelectedFirstSpringFinishDate;
+                univ.Сertification.LastAutumnEndDate = SelectedLastAutumnFinishDate;
+                univ.Сertification.LastSpringStartDate = SelectedLastSpringStartDate;
+                univ.Сertification.LastSpringEndDate = SelectedLastSpringFinishDate;
+                univ.Сertification.LastAutumnStartDate = SelectedLastAutumnStartDate;
+                univ.Сertification.FirstSpringStartDate = SelectedFirstSpringStartDate;
+            }
+            else
+            {
+                Сertification newСertification = new Сertification()
+                {
+                    FirstAutumnStartDate = SelectedFirstAutumnStartDate,
+                    FirstAutumnEndDate = SelectedFirstAutumnFinishDate,
+                    FirstSpringEndDate = SelectedFirstSpringFinishDate,
+                    LastAutumnEndDate = SelectedLastAutumnFinishDate,
+                    LastSpringStartDate = SelectedLastSpringStartDate,
+                    LastSpringEndDate = SelectedLastSpringFinishDate,
+                    LastAutumnStartDate = SelectedLastAutumnStartDate,
+                    FirstSpringStartDate = SelectedFirstSpringStartDate
+                };
+                univ.Сertification = newСertification;
+            }
             db.SaveChanges();
             AllUniversities = db.Universities.ToList();
             SelectedUniversityDG = null;
@@ -287,7 +310,7 @@ namespace University_students.ViewModel.AdminVM
             }
 
             var univ = db.Universities.FirstOrDefault(un => un.Name == Name);
-            if (univ != null)
+            if (univ == null)
             {
                 Сertification newСertification = new Сertification()
                 {

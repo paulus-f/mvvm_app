@@ -49,12 +49,13 @@ namespace University_students.ViewModel
         private SubjectProgress _SelectedSubject;
         public SubjectProgress SelectedSubject
         {
+
             get => _SelectedSubject;
             set
             {
                 _SelectedSubject = value;
                 SelectedSubjectCertification = value?.ToResultCertifications();
-                IsSelectedWorkOut =  SelectedSubject.WorkOuts.Count != 0 ? true : false;
+                IsSelectedWorkOut =  SelectedSubject?.WorkOuts?.Count != 0 ? true : false;
                 OnPropertyChanged("SelectedSubject");
                 OnPropertyChanged("SelectedSubjectCertification");
             }

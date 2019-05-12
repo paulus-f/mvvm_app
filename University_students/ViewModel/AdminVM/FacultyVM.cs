@@ -246,14 +246,32 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteFaculty()
         {
-            db.Faculties.Remove(db.Faculties
+            var faculty = db.Faculties
                 .Include("Specialites.Groups.TaughtGroups")
                 .Include("Specialites.Groups.Students")
-                .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
+                .Include("Pulpits.Teachers")
+                .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id);
+            DeleteDependencyFaculty(faculty);
+            db.Faculties.Remove(faculty);
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
             SelectedFacultyDG = null;
             IsEnabledUD = false;
+        }
+
+        private void DeleteDependencyFaculty(Faculty f)
+        {
+            var students = db.Users.Where(us => us.Group.Speciality.FacultyId == f.Id);
+            db.Users.RemoveRange(students);
+            var tg = db.TaughtGroups.Where(gr => gr.Group.Speciality.FacultyId == f.Id);
+            db.TaughtGroups.RemoveRange(tg);
+            var teachings = db.Teachings.Where(ts => ts.User.Pulpit.FacultyId == f.Id);
+            db.Teachings.RemoveRange(teachings);
+            var teachers = db.Users.Where(us => us.Pulpit.FacultyId == f.Id);
+            db.Users.RemoveRange(teachers);
+            var groups = db.Groups.Where(gr => gr.Speciality.FacultyId == f.Id);
+            db.Groups.RemoveRange(groups);
+            db.SaveChanges();
         }
 
         private void CanUpdateFaculty()

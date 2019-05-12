@@ -33,5 +33,6 @@ namespace University_students.Models
               .HasForeignKey(e => e.PulpitId)
               .WillCascadeOnDelete(false);
         }
+
     }
 }

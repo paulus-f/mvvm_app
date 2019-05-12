@@ -217,10 +217,17 @@ namespace University_students.ViewModel.AdminVM
                 .FirstOrDefault(u => u.Id == _selectedStudentDG.Id);
             db.Users.Remove(deleteUser);
             db.SaveChanges();
-            ListStudents = db.Users
-                .Where(st => st.TypeUser == Enums.Role.Students &&
-                             st.Pulpit.FacultyId == SelectedFaculty.Id)
-                .ToList();
+            if(SelectedFaculty != null)
+                ListStudents = db.Users
+                    .Where(st => st.TypeUser == Enums.Role.Students &&
+                                 st.Pulpit.FacultyId == SelectedFaculty.Id)
+                    .ToList();
+            else
+                ListStudents = db.Users
+                    .Where(st => st.TypeUser == Enums.Role.Students &&
+                                 st.Pulpit.Faculty == null)
+                    .ToList();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

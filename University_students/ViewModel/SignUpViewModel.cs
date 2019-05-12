@@ -290,8 +290,8 @@ namespace University_students.ViewModel
             if (String.IsNullOrEmpty(FirstName)) result = false;
             if (String.IsNullOrEmpty(LastName)) result = false;
             if (SelectedGroup == null) result = false;
-            return result;
             //return true; // if need admin;
+            return result;
         }
 
         private void CanUndoMessage()
@@ -323,7 +323,7 @@ namespace University_students.ViewModel
             //    TypeUser = Enums.Role.Admin,
             //    Password = BCrypt.Net.BCrypt.HashPassword("admin"),
             //};
-            //-------------------------------------------------------------//
+            ////-------------------------------------------------------------//
             User newUser = new User()
             {
                 Login = _login,
@@ -333,9 +333,9 @@ namespace University_students.ViewModel
                 Password = BCrypt.Net.BCrypt.HashPassword(_password),
                 Group = SelectedGroup.Group
             };
+            // ---------------------------------------------------------------------------- //
             db.Users.Add(newUser);
             db.SaveChanges();
-            // ---------------------------------------------------------------------------- //
             // comment if need admin
             foreach (TaughtGroups tg in SelectedGroup.Group.TaughtGroups)
             {

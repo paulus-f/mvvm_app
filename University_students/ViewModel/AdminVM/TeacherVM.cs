@@ -155,10 +155,12 @@ namespace University_students.ViewModel.AdminVM
                     teacher.Subjects.Add(sub);
                     db.SaveChanges();
                 }
-                if(SelectedTeacherDG == null && value != null)
+                if (SelectedTeacherDG == null && value != null)
                     new CustomBoxes.CustomMessageBox("Please selecte a teacher").Show();
-                ListSubjects = ListSubjects.ToList();
-                Subjects = Subjects.ToList();
+                else
+                    ListSubjects = ListSubjects?.ToList();
+                    Subjects = Subjects?.ToList();
+
                 _addedSubject = null;
                 OnPropertyChanged("AddedSubject");
             }
@@ -414,6 +416,8 @@ namespace University_students.ViewModel.AdminVM
             ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
             ListSubjects = db.Subjects.ToList();
             Subjects = new List<Subject>();
+            ListSubjects = db.Subjects.ToList();
+            ListUniversities = db.Universities.Select(u => u.Name).ToList();
         }
 
         private void CanInviteTeacher()
