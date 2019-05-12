@@ -24,9 +24,9 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Sign Up" FontWeight="Bold" HorizontalAlignment="Center" Margin="188,5,17,5" FontSize="20" Grid.Row="1" Foreground="#FFF9F9F9" Grid.Column="1" Width="104"/>
-            <TextBlock Text="Login" Grid.Row="2" Margin="14,10,0,10" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="116"/>
-            <TextBox x:Name="txtNameSignUp" Grid.Row="2" Grid.Column="1" Margin="135,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
+            <TextBlock Text=" Sign Up" FontWeight="Bold" HorizontalAlignment="Center" Margin="144,0,35,10" FontSize="20" Grid.Row="1" Foreground="#FFF9F9F9" Grid.Column="1" Width="125"/>
+            <TextBlock Text="Login" Grid.Row="2" Margin="14,10,0,10" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="65"/>
+            <TextBox x:Name="txtNameSignUp" Grid.Row="2" Grid.Column="1" Margin="99,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
                 <TextBox.Text>
                     <Binding Path="Login" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
                         <Binding.ValidationRules >
@@ -35,8 +35,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Text="First Name" Grid.Row="3" Margin="14,10,0,9.999" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="116"/>
-            <TextBox x:Name="txtFirstNameSignUp"  Grid.Row="3" Grid.Column="1" Margin="135,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
+            <TextBlock Text="First Name" Grid.Row="3" Margin="14,10,0,10" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="65"/>
+            <TextBox x:Name="txtFirstNameSignUp"  Grid.Row="3" Grid.Column="1" Margin="99,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
                 <TextBox.Text>
                     <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
                         <Binding.ValidationRules >
@@ -45,8 +45,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Text="Last Name" Grid.Row="4" Margin="14,10.001,0,10" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="116"/>
-            <TextBox x:Name="txtLastNameSignUp" Grid.Row="4" Grid.Column="1" Margin="135,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
+            <TextBlock Text="Last Name" Grid.Row="4" Margin="14,10,0,10" Foreground="White" Grid.Column="1" HorizontalAlignment="Left" Width="65"/>
+            <TextBox x:Name="txtLastNameSignUp" Grid.Row="4" Grid.Column="1" Margin="99,3,4,10" MinWidth="100" Foreground="#FFFFC1C1">
                 <TextBox.Text>
                     <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
                         <Binding.ValidationRules >
@@ -55,7 +55,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBlock Text="Password" Grid.Row="5" Margin="14,10,0,10" Foreground="#FFF7F1F1" Grid.Column="1" HorizontalAlignment="Left" Width="90.404"/>
+            <TextBlock Text="Password" Grid.Row="5" Margin="14,10,0,10" Foreground="#FFF7F1F1" Grid.Column="1" HorizontalAlignment="Left" Width="65"/>
             <TextBox x:Name="txtPasswordSignUp" Grid.Column="1" Grid.Row="5" Margin="135,10,10,3" MinWidth="100" Grid.ColumnSpan="2" Foreground="#FF212121" SelectionBrush="#FF080E13" Opacity="0">
                 <TextBox.Text>
                     <Binding Path="Password" UpdateSourceTrigger="PropertyChanged"  ValidatesOnDataErrors="True">
@@ -82,11 +82,12 @@
             <materialDesign:Snackbar IsActive="{Binding IsActiveMessage}" Grid.Row="7" HorizontalAlignment="Stretch" Margin="26.236,10,2.462,10" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
                 <materialDesign:SnackbarMessage Content="{Binding Message}" ActionContent="X" ActionCommand="{Binding UndoCommand}" Margin="11,0,4,0" Height="49" />
             </materialDesign:Snackbar>
-            <ComboBox DisplayMemberPath="Name"  SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.Column="2" Margin="10,4,10,10" Grid.Row="2"/>
-            <ComboBox DisplayMemberPath="Name" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" ItemsSource="{Binding ListFaculties}" Grid.Column="2" Margin="10,4,10,10" Grid.Row="3" VerticalAlignment="Stretch"/>
-            <ComboBox DisplayMemberPath="GroupStr" SelectedValue="{Binding SelectedGroup, Mode=TwoWay}" ItemsSource="{Binding ListGroupsString}"   Grid.Column="2" Margin="10,3,10,10" Grid.Row="4" VerticalAlignment="Stretch"/>
+            <ComboBox Style="{StaticResource SimpleComboBox}" DisplayMemberPath="Name"  SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.Column="2" Margin="10,4,10,10" Grid.Row="2"/>
+            <ComboBox Style="{StaticResource SimpleComboBox}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" ItemsSource="{Binding ListFaculties}" Grid.Column="2" Margin="10,4,10,10" Grid.Row="3" VerticalAlignment="Stretch"/>
+            <ComboBox Style="{StaticResource SimpleComboBox}" DisplayMemberPath="GroupStr" SelectedValue="{Binding SelectedGroup, Mode=TwoWay}" ItemsSource="{Binding ListGroupsString}"   Grid.Column="2" Margin="10,3,10,10" Grid.Row="4" VerticalAlignment="Stretch"/>
             <PasswordBox  x:Name="pass" Grid.Column="1" Margin="135,10,10,0" Grid.Row="5" VerticalAlignment="Top" Password="efeds&#xD;&#xA;" Grid.ColumnSpan="2" Foreground="WhiteSmoke" Height="30.624" PasswordChanged="Pass_Changed"/>
             <PasswordBox x:Name="passCon" Grid.Column="1" Margin="135,10,10,10" Grid.Row="6" Password="efeds&#xA;" Grid.ColumnSpan="2" Foreground="WhiteSmoke" PasswordChanged="PassCon_Changed"/>
+            <TextBlock Text="University" Grid.Row="1" Margin="47,10,0,10" Foreground="White" Grid.Column="2" HorizontalAlignment="Left" Width="78"/>
         </Grid>
     </Border>
 

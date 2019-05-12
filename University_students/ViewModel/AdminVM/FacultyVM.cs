@@ -152,6 +152,7 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedUniversity = value;
                 _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                IsEnabledUD = false;
                 AllFaculties = _selectedUniversityModel.Faculties.ToList();
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -220,7 +221,11 @@ namespace University_students.ViewModel.AdminVM
                 .Include("Teachers")
                 .FirstOrDefault(p => p.Id == param.Id));
             db.SaveChanges();
-            ListPulpit = db.Pulpits.ToList();
+            if(SelectedFacultyDG != null)
+                ListPulpit = db.Faculties
+                               .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id)
+                               .Pulpits
+                               .ToList();
         }
 
         private void CanAddPulpit()
@@ -253,6 +258,7 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanUpdateFaculty()
         {
+            // if null dg
             var faculty = db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id);
             faculty.Name = Name;
             faculty.Dean = Dean;

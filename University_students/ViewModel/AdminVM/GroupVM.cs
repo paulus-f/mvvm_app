@@ -107,7 +107,7 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedFaculty = value;
                 if (value != null)
-                    _selectedFacultyModel = _selectedUniversityModel.Faculties.FirstOrDefault(u => u.Name == value.Name);
+                    _selectedFacultyModel = db.Faculties.FirstOrDefault(f => f.Id == value.Id);
                 else
                     _selectedFacultyModel = null; 
                 ListSpeciality = _selectedFacultyModel?.Specialites.ToList(); 

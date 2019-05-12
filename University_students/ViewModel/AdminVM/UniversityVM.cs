@@ -78,7 +78,6 @@ namespace University_students.ViewModel.AdminVM
             }
         }
 
-
         private DateTime _SelectedLastAutumnStartDate;
         public DateTime SelectedLastAutumnStartDate
         {
@@ -144,9 +143,6 @@ namespace University_students.ViewModel.AdminVM
                 OnPropertyChanged("SelectedLastSpringFinishDate");
             }
         }
-
-
-
 
         private bool _isEnabledUD;
         public bool IsEnabledUD
@@ -290,30 +286,35 @@ namespace University_students.ViewModel.AdminVM
                 return;
             }
 
-            Сertification newСertification = new Сertification()
+            var univ = db.Universities.FirstOrDefault(un => un.Name == Name);
+            if (univ != null)
             {
-                FirstAutumnStartDate = SelectedFirstAutumnStartDate,
-                FirstAutumnEndDate = SelectedFirstAutumnFinishDate,
-                FirstSpringEndDate = SelectedFirstSpringFinishDate,
-                LastAutumnEndDate = SelectedLastAutumnFinishDate,
-                LastSpringStartDate =  SelectedLastSpringStartDate,
-                LastSpringEndDate = SelectedLastSpringFinishDate,
-                LastAutumnStartDate = SelectedLastAutumnStartDate,
-                FirstSpringStartDate  = SelectedFirstSpringStartDate
-            };
+                Сertification newСertification = new Сertification()
+                {
+                    FirstAutumnStartDate = SelectedFirstAutumnStartDate,
+                    FirstAutumnEndDate = SelectedFirstAutumnFinishDate,
+                    FirstSpringEndDate = SelectedFirstSpringFinishDate,
+                    LastAutumnEndDate = SelectedLastAutumnFinishDate,
+                    LastSpringStartDate = SelectedLastSpringStartDate,
+                    LastSpringEndDate = SelectedLastSpringFinishDate,
+                    LastAutumnStartDate = SelectedLastAutumnStartDate,
+                    FirstSpringStartDate = SelectedFirstSpringStartDate
+                };
 
-            University newUniversity = new University()
-            {
-                TypeUniversity = this.TypeUniversity,
-                City = this.City,
-                Name = this.Name,
-                Сertification = newСertification
-            };
-            
-            db.Universities.Add(newUniversity);
-            City = String.Empty;
-            Name = String.Empty;
-            db.SaveChanges();
+                University newUniversity = new University()
+                {
+                    TypeUniversity = this.TypeUniversity,
+                    City = this.City,
+                    Name = this.Name,
+                    Сertification = newСertification
+                };
+
+                db.Universities.Add(newUniversity);
+                City = String.Empty;
+                Name = String.Empty;
+                db.SaveChanges();
+            }
+            else new CustomBoxes.CustomMessageBox("Duplicate name of university").Show();
             AllUniversities = db.Universities.ToList();
         }
 

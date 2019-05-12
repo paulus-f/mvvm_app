@@ -127,6 +127,7 @@ namespace University_students.ViewModel
             set
             {
                 _selectedGroup = value;
+                IsEnabled = CheckField();
                 OnPropertyChanged("SelectedGroup");
             }
         }
@@ -290,6 +291,7 @@ namespace University_students.ViewModel
             if (String.IsNullOrEmpty(LastName)) result = false;
             if (SelectedGroup == null) result = false;
             return result;
+            //return true; // if need admin;
         }
 
         private void CanUndoMessage()
@@ -311,7 +313,17 @@ namespace University_students.ViewModel
                 IsActiveMessage = true;
                 return;
             }
-
+            //-------------------------------------------------------------//
+            //Add Admin
+            //User newUser = new User()
+            //{
+            //    Login = "admin",
+            //    FirstName = "admin",
+            //    LastName = "admin",
+            //    TypeUser = Enums.Role.Admin,
+            //    Password = BCrypt.Net.BCrypt.HashPassword("admin"),
+            //};
+            //-------------------------------------------------------------//
             User newUser = new User()
             {
                 Login = _login,
@@ -323,7 +335,8 @@ namespace University_students.ViewModel
             };
             db.Users.Add(newUser);
             db.SaveChanges();
-
+            // ---------------------------------------------------------------------------- //
+            // comment if need admin
             foreach (TaughtGroups tg in SelectedGroup.Group.TaughtGroups)
             {
                 var newSP = new SubjectProgress()
@@ -339,6 +352,7 @@ namespace University_students.ViewModel
                 db.SubjectProgress.Add(newSP);
             }
             db.SaveChanges();
+            // ---------------------------------------------------------------------------- //
             Login = String.Empty;
             FirstName = String.Empty;
             LastName = String.Empty;

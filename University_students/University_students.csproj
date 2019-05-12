@@ -61,6 +61,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Faker.NET45, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.1.1\lib\net452\Faker.NET45.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -175,7 +178,9 @@
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.cs" />
-    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs" />
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.cs" />
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.Designer.cs">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
@@ -489,7 +494,9 @@
     <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx" />
+    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903282246449_AddPulpitIdToTeacher.resx">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
     </EmbeddedResource>

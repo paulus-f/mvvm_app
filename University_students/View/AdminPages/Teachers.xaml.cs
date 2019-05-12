@@ -77,6 +77,13 @@ namespace University_students.View.AdminPages
                 new CustomBoxes.CustomMessageBox("Connection is fail").Show();
             };
         }
-        
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) => subjItems.SelectedItem = null;
+
+        private void SubjItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            subjItems.SelectedItem = null;
+            subjItems.SelectedIndex = -1;
+        }
     }
 }

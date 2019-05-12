@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="University_students.ViewModel.AdminVM.FacultyVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYFkQAAgQSAEEICCAAARQgACABAAIYIACAkBgIKA=</HashCode>
+      <FileName>ViewModel\AdminVM\FacultyVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.GroupVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwFEYAAkQCAUAIAKMAgAAwACAIAIAYIABCgCAAAQ=</HashCode>
+      <FileName>ViewModel\AdminVM\GroupVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.SpecialityVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQJAYFFIAAgQSAEAIICIAwQAwAAAAAAIAIAAAACgQAA=</HashCode>
+      <FileName>ViewModel\AdminVM\SpecialityVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.StudentVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQBEAAAgQDAEAIAKKCiBAwACAEgAIAMABCACAAAA=</HashCode>
+      <FileName>ViewModel\AdminVM\StudentVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.SubjectVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQC4FEAAAhUAAMQIADIAoQAwgACAEEAAIAAIkgQAAA=</HashCode>
+      <FileName>ViewModel\AdminVM\SubjectVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.TeacherVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCMAwlEAAEhQCAHYJAHIigARwiACAEAIBeAEAEDwAAA=</HashCode>
+      <FileName>ViewModel\AdminVM\TeacherVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminVM.UniversityVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACIGGAiBgQAAEIKECCAa0EgCAgAgAAAAEZIgBCAAA=</HashCode>
+      <FileName>ViewModel\AdminVM\UniversityVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.TeacherVM.AccreditationVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAICAAAAAAYUQAS4AJAgAEAgAAAEKRAAAhNABCAIAE=</HashCode>
+      <FileName>ViewModel\TeacherVM\AccreditationVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.TeacherVM.CertificationVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABAgAAAAAAQAAEQIAIABAQAggAAMAAgAAABAAAAAAA=</HashCode>
+      <FileName>ViewModel\TeacherVM\CertificationVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.TeacherVM.GroupsVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAgAAAAAAQEAAQIAIAgAAAgAAAEAAAAAABAAAAAAA=</HashCode>
+      <FileName>ViewModel\TeacherVM\GroupsVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.AdminViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIiQBAAIAwAAAQYEAAIAIAgChAAAAhAQAQAIEAAgA=</HashCode>
+      <FileName>ViewModel\AdminViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.LoginViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAABAAgIAQAQAAKAEAAEAAgJAgIAACEAAQIACAAAA=</HashCode>
+      <FileName>ViewModel\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.MainViewModel" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="University_students.ViewModel.NavigationViewModel" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAAAAAAAAAIIIAAAEAgDACAAAAAAAACIAAAAA=</HashCode>
+      <FileName>ViewModel\NavigationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="University_students.ViewModel.SignUpViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCVAQHAAgIAQCQAQKAMIAkAA4IEgIBACEYARIACAAAg=</HashCode>
+      <FileName>ViewModel\SignUpViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.StartUpViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAACAAAAQAAAAIIAAAAAAAgBIAAAEAAABAAEIAAAI=</HashCode>
+      <FileName>ViewModel\StartUpViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.SupportViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIABCQAAAAAIEAAAAgAgAIAAAAAEAAAIAAAACE=</HashCode>
+      <FileName>ViewModel\SupportViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.TeacherViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAYIAAAAAAIEAAAAAEgCgAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ViewModel\TeacherViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.UserViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAiBAgAMEAAAAAIEBAAAQAgCgAAAAAAAAQAgAAAAA=</HashCode>
+      <FileName>ViewModel\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="University_students.ViewModel.ViewModelLocator" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelLocator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GalaSoft.MvvmLight.ViewModelBase" Collapsed="true">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

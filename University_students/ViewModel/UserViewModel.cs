@@ -112,7 +112,7 @@ namespace University_students.ViewModel
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;
-            UserUniversity = CurrentUser.Group.Speciality.Faculty.University.Name;
+            UserUniversity = CurrentUser?.Group?.Speciality?.Faculty?.University?.Name;
             return null;
         }
 

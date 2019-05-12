@@ -33,13 +33,10 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _selectedTeacherDG = value;
+                Subjects = value?.Subjects.ToList();
                 LoginTeacher = value?.Login;
                 FirstNameTeacher = value?.FirstName;
                 LastNameTeacher = value?.LastName;
-                SelectedUniversity = value?.Pulpit?.Faculty.University.Name;
-                SelectedFaculty = value?.Pulpit?.Faculty;
-                SelectedPulpit = value?.Pulpit;
-                Subjects = value?.Subjects.ToList();
                 if (value != null) {
                     ListSubjects = db.Subjects.ToList();
                     List<Subject> ResultSubjects  = new List<Subject>();
@@ -57,7 +54,9 @@ namespace University_students.ViewModel.AdminVM
                 }
                 else IsEnabledUD = false;
                 OnPropertyChanged("SelectedTeacherDG");
-                OnPropertyChanged("ListSubjects");
+                OnPropertyChanged("SelectedFaculty");
+                OnPropertyChanged("SelectedUniversity");
+                OnPropertyChanged("SelectedPulpit");
             }
         }
 
@@ -88,7 +87,7 @@ namespace University_students.ViewModel.AdminVM
                         .ToList();
                     ListTeachers = db.Users
                        .Include("Pulpit.Faculty")
-                       .Where(u => u.Pulpit.Faculty.University.Name == value.Name)
+                       .Where(u => u.Pulpit.Faculty.Name == value.Name)
                        .ToList();
                 }
                 OnPropertyChanged("SelectedFaculty");
@@ -156,6 +155,8 @@ namespace University_students.ViewModel.AdminVM
                     teacher.Subjects.Add(sub);
                     db.SaveChanges();
                 }
+                if(SelectedTeacherDG == null && value != null)
+                    new CustomBoxes.CustomMessageBox("Please selecte a teacher").Show();
                 ListSubjects = ListSubjects.ToList();
                 Subjects = Subjects.ToList();
                 _addedSubject = null;
@@ -315,6 +316,10 @@ namespace University_students.ViewModel.AdminVM
                         .Include("Faculty.University")
                         .Where(p => p.Faculty.University.Name == SelectedUniversity)
                         .ToList();
+                    ListTeachers = db.Users
+                        .Where(teacher => teacher.TypeUser == Enums.Role.Teacher &&
+                                          teacher.Pulpit.Faculty.University.Id == _selectedUniversityModel.Id)
+                        .ToList();
                 }
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -395,12 +400,12 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanResetDG()
         {
+            AddedSubject = null;
             SelectedTeacherDG = null;
             SelectedPulpit = null;
             SelectedFaculty = null;
             ListFaculties = null;
             ListPulpits = null;
-            SelectedTeacherDG = null;
             FirstNameTeacher = null;
             LastNameTeacher = null;
             EmailTeacher = null;
@@ -458,6 +463,7 @@ namespace University_students.ViewModel.AdminVM
                 db.Users.Add(newTeacher);
                 sendInviteToMail(password);
                 db.SaveChanges();
+                new CustomBoxes.CustomMessageBox("OK").Show();
                 SelectedTeacherDG = null;
                 FirstNameTeacher = null;
                 LastNameTeacher = null;
@@ -493,25 +499,32 @@ namespace University_students.ViewModel.AdminVM
 
         private void sendInviteToMail(string pw)
         {
-            MailAddress from;
-            MailAddress to;
-            MailMessage message;
-            SmtpClient smtp;
-            to = new MailAddress(EmailTeacher);
-            smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential(Secrets.EMAIL_TO, Secrets.PASSWORD);
-            from = new MailAddress(Secrets.EMAIL_TO);
-            message = new MailMessage(from, to);
-            message.Subject = Secrets.SUBJECT_EMAIL;
-            message.Body = $"" +
-                $"<h1>Welcome to App University Student</h1>" +
-                $"<h2>You was added to database in app</h2>" +
-                $"<h3> Your login: {LoginTeacher} </h3>" +
-                $"<h3> Your password: {pw} </h3>" +
-                $"";
-            message.IsBodyHtml = true;
-            smtp.EnableSsl = true;
-            smtp.Send(message);
+            try
+            {
+                MailAddress from;
+                MailAddress to;
+                MailMessage message;
+                SmtpClient smtp;
+                to = new MailAddress(EmailTeacher);
+                smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential(Secrets.EMAIL_TO, Secrets.PASSWORD);
+                from = new MailAddress(Secrets.EMAIL_TO);
+                message = new MailMessage(from, to);
+                message.Subject = Secrets.SUBJECT_EMAIL;
+                message.Body = $"" +
+                    $"<h1>Welcome to App University Student</h1>" +
+                    $"<h2>You was added to database in app</h2>" +
+                    $"<h3> Your login: {LoginTeacher} </h3>" +
+                    $"<h3> Your password: {pw} </h3>" +
+                    $"";
+                message.IsBodyHtml = true;
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+            }
+            catch (Exception e)
+            {
+                new CustomBoxes.CustomMessageBox(e.Message).Show();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

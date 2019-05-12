@@ -11,10 +11,10 @@
         mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
+        ResizeMode="CanResize"  
         MinHeight="600"
         MinWidth ="1000"
         SizeToContent="Manual"
-        AllowsTransparency="True"
         FontFamily="{DynamicResource MaterialDesignFont}"
         x:Name="mainWindow" Width="1000">
     <Window.Resources>

@@ -29,9 +29,9 @@ namespace University_students.CustomBoxes.ViewModel
         {
             db = new USDbContext();
             teacherUniversity = (int)teacher.Pulpit.Faculty.UniversityId;
-            CurrentTeacher = teacher;
-            ListSubs = teacher.Subjects.ToList();
-            TeacherGroups = teacher.Teaching.TaughtGroups.ToList();
+            CurrentTeacher = db.Users.FirstOrDefault(t => t.Id == teacher.Id);
+            ListSubs = CurrentTeacher.Subjects.ToList();
+            TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
             ListGroups = (from gr in db.Groups
                           join sp in db.Specialities on gr.SpecialityId equals sp.Id
                           join f in db.Faculties on sp.FacultyId equals f.Id
@@ -48,11 +48,11 @@ namespace University_students.CustomBoxes.ViewModel
             {
                 if (value != null)
                 {
-                    var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var tech = db.Users.Include("Teaching").FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
-                    tech.Teaching.TaughtGroups.Remove(gr);
-                    db.SaveChanges();
                     new CustomMessageBox(gr.ToString() + " was deleted").Show();
+                    db.TaughtGroups.Remove(gr);
+                    db.SaveChanges();
                     tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
                     TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
@@ -70,18 +70,20 @@ namespace University_students.CustomBoxes.ViewModel
             {
                 if(value != null && SelectedSub != null)
                 {
-                    var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var tech = db.Users.Include("Teaching").FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var teaching = db.Teachings.FirstOrDefault(t => t.Id == tech.Teaching.Id);
                     var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
                     var sub = db.Subjects.FirstOrDefault(s => s.Id == SelectedSub.Id);
                     var taughtGroups = db.TaughtGroups.FirstOrDefault(gtg => (gtg.Group.Id == gr.Id && gtg.Subject.Id == sub.Id));
                     if (taughtGroups == null)
                     {
-                        db.TaughtGroups.Add(new TaughtGroups()
+                        var tg = new TaughtGroups()
                         {
                             Subject = sub,
                             Group = gr,
-                            Teaching = tech.Teaching
-                        });
+                            Teaching = teaching
+                        };
+                        tech.Teaching.TaughtGroups.Add(tg);
                         db.SaveChanges();
                         tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                         CurrentTeacher = tech;

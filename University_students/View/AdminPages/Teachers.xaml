@@ -24,13 +24,6 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="dataGrid" Margin="10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedSpecialityDG}" ItemsSource="{Binding Specialities}" Grid.RowSpan="3" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="100" Header="Speciality" Binding="{Binding Speciality.Name}"/>
-                    <DataGridTextColumn Width="150" Header="Number of group" Binding="{Binding NumberGroup}"/>
-                    <DataGridTextColumn Width="100" Header="First Year" Binding="{Binding FirstYear}"/>
-                </DataGrid.Columns>
-            </DataGrid>
             <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200*"/>
@@ -44,7 +37,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <DataGrid Margin="10,10,0,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedTeacherDG}" ItemsSource="{Binding ListTeachers}" Grid.RowSpan="3" IsReadOnly="True">
+                <DataGrid  Margin="10,10,0,10" Grid.Row="1" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedTeacherDG}" ItemsSource="{Binding ListTeachers}" Grid.RowSpan="3" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="70" Header="Pulpit" Binding="{Binding Pulpit.Name}"/>
                         <DataGridTextColumn Width="87" Header="University" Binding="{Binding Pulpit.Faculty.University.Name}"/>
@@ -64,10 +57,10 @@
                 <TextBox Grid.Column="3" Margin="26,16,38,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastNameTeacher}" Height="32" VerticalAlignment="Top" Foreground="White"/>
                 <TextBox Grid.Column="3" Margin="26,53,38,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstNameTeacher}" Height="34" VerticalAlignment="Top" Foreground="White"/>
                 <TextBox Grid.Column="3" Margin="26,92,38,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoginTeacher}" Height="33" VerticalAlignment="Top" Foreground="White"/>
-                <ListBox  ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding AddedSubject}" Grid.Column="2" Margin="10,0,10,48" Grid.Row="2" Grid.RowSpan="2" Height="138" VerticalAlignment="Bottom" Foreground="#DDFFFFFF" FontWeight="Bold"/>
+                <ListBox x:Name="subjItems" ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding AddedSubject}" Grid.Column="2" Margin="10,64,10,0" Grid.Row="2" Grid.RowSpan="2" Foreground="#DDFFFFFF" FontWeight="Bold" Height="138" VerticalAlignment="Top" SelectionChanged="SubjItems_SelectionChanged"/>
                 <TextBox Grid.Column="2"  Margin="0,35,10,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SearchSubjects, Mode=TwoWay}" RenderTransformOrigin="-0.026,0.522" TextChanged="TextBox_TextChanged" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="173" Foreground="White"/>
                 <Label  Content="Subjects" Grid.Column="2" Margin="13,35,0,0" Grid.Row="2" RenderTransformOrigin="-0.019,0.577" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT" HorizontalAlignment="Left" Width="73" Height="24" VerticalAlignment="Top"/>
-                <ListBox   ItemsSource="{Binding Subjects}" SelectedItem="{Binding DeletedSubject}" Grid.Column="3" Margin="10,0,10,48" Grid.Row="2" Grid.RowSpan="2" Height="138" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#DDFFFFFF"/>
+                <ListBox   ItemsSource="{Binding Subjects}" SelectedItem="{Binding DeletedSubject}" Grid.Column="3" Margin="10,64,10,0" Grid.Row="2" Grid.RowSpan="2" Height="138" VerticalAlignment="Top" FontWeight="Bold" Foreground="#DDFFFFFF"/>
                 <Label Content="Teacher's Subjects" Grid.Column="3" Margin="16,35,10,0" Grid.Row="2" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="24" VerticalAlignment="Top"/>
                 <ComboBox Style="{StaticResource SimpleComboBox}"  Grid.Column="3" SelectedValue="{Binding SelectedPulpit, Mode=TwoWay}" Text="Pulpit" Margin="16,58,26,0" ItemsSource="{Binding ListPulpits}"  DisplayMemberPath="Name"   VerticalAlignment="Top" Height="26" Foreground="Black"/>
                 <Label Content="Pulpit" Grid.Column="2" Margin="0,54,10,0" RenderTransformOrigin="0.098,0.271" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT" HorizontalAlignment="Right" Width="96" Height="30" VerticalAlignment="Top"/>
