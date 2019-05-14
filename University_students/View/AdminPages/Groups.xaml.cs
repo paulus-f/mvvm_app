@@ -25,5 +25,10 @@ namespace University_students.View.AdminPages
             InitializeComponent();
             DataContext = new ViewModel.AdminVM.GroupVM();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

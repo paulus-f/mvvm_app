@@ -8,17 +8,16 @@
       d:DesignHeight="450" d:DesignWidth="800"
       >
 
-    <Grid HorizontalAlignment="Left" Width="800" Height="450" VerticalAlignment="Top">
-        <TextBlock Foreground="Black" Margin="6,0,0,308" TextWrapping="Wrap" Text="On this moment there is not certification in university" FontSize="48" FontFamily="News706 BT" TextAlignment="Center"/>
-        <Calendar SelectionMode="None"  x:Name="calendar" Margin="260,142,260,0" RenderTransformOrigin="0.5,0.5" Background="#FFF1D9A4" Foreground="#DD000000">
-            <Calendar.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Calendar.BorderBrush>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/University_students;component/Resources/img3.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <TextBlock Foreground="Black" Margin="0,0,0,308" TextWrapping="Wrap" FontSize="48" FontFamily="Sitka Small" TextAlignment="Center" Text="On this moment there is not certification in university">
+            <TextBlock.Effect>
+                <DropShadowEffect/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <Calendar SelectionMode="None"  x:Name="calendar" Margin="260,142,0,0" RenderTransformOrigin="0.5,0.5" Background="White" Foreground="#DD000000" BorderBrush="#FFDA1515" HorizontalAlignment="Left" Width="280">
             <Calendar.BlackoutDates/>
         </Calendar>
     </Grid>

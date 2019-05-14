@@ -29,9 +29,9 @@ namespace University_students.CustomBoxes.ViewModel
         {
             db = new USDbContext();
             teacherUniversity = (int)teacher.Pulpit.Faculty.UniversityId;
-            CurrentTeacher = teacher;
-            ListSubs = teacher.Subjects.ToList();
-            TeacherGroups = teacher.Teaching.TaughtGroups.ToList();
+            CurrentTeacher = db.Users.FirstOrDefault(t => t.Id == teacher.Id);
+            ListSubs = CurrentTeacher.Subjects.ToList();
+            TeacherGroups = CurrentTeacher.Teaching.TaughtGroups.ToList();
             ListGroups = (from gr in db.Groups
                           join sp in db.Specialities on gr.SpecialityId equals sp.Id
                           join f in db.Faculties on sp.FacultyId equals f.Id
@@ -48,9 +48,11 @@ namespace University_students.CustomBoxes.ViewModel
             {
                 if (value != null)
                 {
-                    var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var tech = db.Users.Include("Teaching").FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     var gr = db.TaughtGroups.FirstOrDefault(g => g.Id == value.Id);
-                    tech.Teaching.TaughtGroups.Remove(gr);
+                    new CustomMessageBox(gr.ToString() + " was deleted").Show();
+                    DeleteSubjectProgresses(gr);
+                    db.TaughtGroups.Remove(gr);
                     db.SaveChanges();
                     tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
                     CurrentTeacher = tech;
@@ -69,19 +71,26 @@ namespace University_students.CustomBoxes.ViewModel
             {
                 if(value != null && SelectedSub != null)
                 {
-                    var tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var tech = db.Users.Include("Teaching").FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                    var teaching = db.Teachings.FirstOrDefault(t => t.Id == tech.Teaching.Id);
                     var gr = db.Groups.FirstOrDefault(g => g.Id == value.Id);
                     var sub = db.Subjects.FirstOrDefault(s => s.Id == SelectedSub.Id);
-                    db.TaughtGroups.Add(new TaughtGroups()
+                    var taughtGroups = db.TaughtGroups.FirstOrDefault(gtg => (gtg.Group.Id == gr.Id && gtg.Subject.Id == sub.Id));
+                    if (taughtGroups == null)
                     {
-                        Subject = sub,
-                        Group = gr,
-                        Teaching = tech.Teaching
-                    });
-                    db.SaveChanges();
-                    tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
-                    CurrentTeacher = tech;
-                    TeacherGroups = tech.Teaching.TaughtGroups.ToList();
+                        var tg = new TaughtGroups()
+                        {
+                            Subject = sub,
+                            Group = gr,
+                            Teaching = teaching
+                        };
+                        tech.Teaching.TaughtGroups.Add(tg);
+                        db.SaveChanges();
+                        CreateSubjectProgresses(tg);
+                        tech = db.Users.FirstOrDefault(t => t.Id == CurrentTeacher.Id);
+                        CurrentTeacher = tech;
+                        TeacherGroups = tech.Teaching.TaughtGroups.ToList();
+                    } else new CustomBoxes.CustomMessageBox(taughtGroups.ToString() + " already exist").Show();
                 }
                 _SelectedFromListGroups = value;
                 OnPropertyChanged("SelectedFromListGroups");
@@ -137,6 +146,36 @@ namespace University_students.CustomBoxes.ViewModel
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private void CreateSubjectProgresses(TaughtGroups taughtGroups)
+        {
+            List<User> groupStudents = taughtGroups.Group.Students.ToList();
+            List<SubjectProgress> sp = new List<SubjectProgress>();
+            foreach (User student in groupStudents)
+            {
+                db.SubjectProgress.Add(new SubjectProgress()
+                {
+                    User = student,
+                    UnValidExcuses = 0,
+                    ValidExcuses = 0,
+                    TaughtGroups = taughtGroups,
+                    IsExamPassed = Enums.StateExam.Waiting,
+                    IsStartCertifiationPassed = Enums.StateCertification.Waiting,
+                    IsFinishCertifiationPassed = Enums.StateCertification.Waiting,
+                });
+               db.SaveChanges();
+            }
+        }
+
+        private void DeleteSubjectProgresses(TaughtGroups taughtGroups)
+        {
+            var subjectProgressStudents= db.SubjectProgress.Where(subPr => subPr.TaughtGroupsId == taughtGroups.Id).ToList();
+            foreach(var subjectProgressStudent in subjectProgressStudents)
+            {
+                db.SubjectProgress.Remove(subjectProgressStudent);
+                db.SaveChanges();
+            }
         }
     }
 }

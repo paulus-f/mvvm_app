@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using University_students.Messager;
 using University_students.Models;
 
@@ -15,10 +17,8 @@ namespace University_students.ViewModel
     class NavigationViewModel
     {
         private UserControl StartUpPage;
-        private UserControl AdminPage;
-        private UserControl UserPage;
         private ContentControl _currentControl;
-        
+        private Grid _grid;
         private UserControl _mainCurrentControl;
         public UserControl MainCurrentControl
         {
@@ -30,10 +30,13 @@ namespace University_students.ViewModel
             }
         }
 
-        public NavigationViewModel(ContentControl currentControl)
+        public NavigationViewModel(ContentControl currentControl, Grid GridBarTitle)
         {
             _currentControl = currentControl;
+            _grid = GridBarTitle;
             StartUpPage = new View.StartUpPage();
+            Color color = (Color)ColorConverter.ConvertFromString("#FF1B3453");
+            _grid.Background = new SolidColorBrush(color);
             MainCurrentControl = StartUpPage;
             Messenger.Default.Register<ChangeNavigationPageMessage>(this, (action) => ReceiveMessage(action));
             Messenger.Default.Register<LogOutMessage>(this, (action) => ReceiveMessage(action));
@@ -62,9 +65,9 @@ namespace University_students.ViewModel
                     ChangeOnTeacherPage(action.CurrentUser);
                     break;
             }
+            _grid.UpdateLayout();
             return null;
         }
-
 
         private object SetCurrentUser(User user)
         {
@@ -75,6 +78,8 @@ namespace University_students.ViewModel
 
         private void ChangeOnUserPage(User user)
         {
+            Color color = (Color)ColorConverter.ConvertFromString("#FF317D99");
+            _grid.Background = new SolidColorBrush(color);
             _currentControl.Content = new View.UserPage();
             SetCurrentUser(user);
             _currentControl.UpdateLayout();
@@ -82,6 +87,8 @@ namespace University_students.ViewModel
 
         private void ChangeOnAdminPage(User user)
         {
+            Color color = (Color)ColorConverter.ConvertFromString("#FF344151");
+            _grid.Background = new SolidColorBrush(color);
             _currentControl.Content = new View.AdminPage();
             SetCurrentUser(user);
             _currentControl.UpdateLayout();
@@ -89,6 +96,8 @@ namespace University_students.ViewModel
 
         private void ChangeOnTeacherPage(User user)
         {
+            Color color = (Color)ColorConverter.ConvertFromString("#F57C00");
+            _grid.Background = new SolidColorBrush(color);
             _currentControl.Content = new View.TeacherPage();
             SetCurrentUser(user);
             _currentControl.UpdateLayout();

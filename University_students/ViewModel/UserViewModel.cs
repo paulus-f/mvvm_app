@@ -49,14 +49,19 @@ namespace University_students.ViewModel
         private SubjectProgress _SelectedSubject;
         public SubjectProgress SelectedSubject
         {
+
             get => _SelectedSubject;
             set
             {
                 _SelectedSubject = value;
-                IsSelectedWorkOut =  SelectedSubject.WorkOuts.Count != 0 ? true : false;
+                SelectedSubjectCertification = value?.ToResultCertifications();
+                IsSelectedWorkOut =  SelectedSubject?.WorkOuts?.Count != 0 ? true : false;
                 OnPropertyChanged("SelectedSubject");
+                OnPropertyChanged("SelectedSubjectCertification");
             }
         }
+
+        public string SelectedSubjectCertification { get; set; }
 
         public string Login
         {
@@ -108,7 +113,7 @@ namespace University_students.ViewModel
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;
-            UserUniversity = CurrentUser.Group.Speciality.Faculty.University.Name;
+            UserUniversity = CurrentUser?.Group?.Speciality?.Faculty?.University?.Name;
             return null;
         }
 

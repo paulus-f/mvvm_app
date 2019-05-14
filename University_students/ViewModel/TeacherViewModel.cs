@@ -27,6 +27,9 @@ namespace University_students.ViewModel
         private object ReceiveMessage(SendCurrentUserMessage action)
         {
             CurrentUser = action.CurrentUser;
+            if (CurrentUser.TypeUser == Enums.Role.Admin || 
+                CurrentUser.TypeUser == Enums.Role.Students)
+                return null;
             GroupsContent = new View.TeacherPages.GroupsContent(_currentUser);
             AccreditationContent = new View.TeacherPages.AccreditationContent(_currentUser);
             Models.Сertification certification = CurrentUser.Pulpit.Faculty.University.Сertification;

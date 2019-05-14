@@ -8,12 +8,15 @@
         MaxHeight="150"
         MaxWidth="250"
         MinHeight="150"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         MinWidth="250"
         Title="ChoosingGroups" Height="150" Width="250">
     <Border CornerRadius="55" BorderBrush="#FFC77A0C" BorderThickness="5" Background="#FF271F10">
         <Grid Margin="0,-4,-5,-5">
             <Button Content="Close" Click="closeBox" Margin="76,108,78,10" BorderBrush="#FF0C0303" Background="#FFCF8607" Height="Auto" RenderTransformOrigin="0.5,0.5"/>
-            <TextBlock x:Name="MessageLabel" Text="" Margin="34,25,53,46" Foreground="#FFA6621D" FontFamily="Geometr706 BlkCn BT" TextAlignment="Center" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="16"/>
+            <StackPanel Orientation="Vertical" Margin="32,19,40,46">
+                <TextBlock x:Name="MessageLabel" Text="" TextWrapping="WrapWithOverflow" Foreground="#FFA6621D" FontFamily="Impact" TextAlignment="Center" TextTrimming="WordEllipsis" Height="85" FontSize="14"/>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

@@ -30,33 +30,5 @@ namespace University_students.View
             dc = new SupportViewModel();
             DataContext = dc;
         }
-
-        private bool CheckConnection()
-        {
-            WebClient client = new WebClient();
-            try
-            {
-                using (client.OpenRead("http://www.google.com"))
-                    return true;
-            }
-            catch (WebException)
-            {
-                return false;
-            }
-        }
-
-        private void CheckConnection(object sender, RoutedEventArgs e)
-        {
-            if (CheckConnection())
-            {
-                dc.IsConnected = true;
-                new CustomBoxes.CustomMessageBox("Complete").Show();
-            }
-            else
-            {
-                dc.IsConnected = false;
-                new CustomBoxes.CustomMessageBox("Connection is fail").Show();
-            };
-        }
     }
 }

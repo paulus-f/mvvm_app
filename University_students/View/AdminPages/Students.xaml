@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:University_students.View.AdminPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="1000"
       Title="Students">
 
     <Grid Grid.ColumnSpan="4" Grid.RowSpan="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="133*"/>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="28*"/>
-            <ColumnDefinition Width="22*"/>
+            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="110*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -32,17 +32,17 @@
                 <DataGridTextColumn Width="*" Header="Faculty" Binding="{Binding Group.Speciality.Faculty.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Students" Margin="9,10,10,45" FontSize="36"/>
-        <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="111,13,10,0" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Top" Height="27"/>
-        <Label Content="Faculty" Grid.Column="3" Margin="10,13,131,72" RenderTransformOrigin="0.098,0.271"/>
-        <Label Content="University" Grid.Column="1" Margin="10,10,113,72" RenderTransformOrigin="0.098,0.271"/>
-        <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,0,10,10" Background="#FFDA4D46" VerticalAlignment="Bottom"/>
-        <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="87,10,1,0" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Top" Height="30"/>
-        <TextBox Grid.Column="1" Margin="70,79,1,10" TextWrapping="Wrap" Text="{Binding SearchUsers, Mode=TwoWay}" TextChanged="TextBox_TextChanged"/>
-        <Label Content="Search" Grid.Column="1" Margin="10,0,10,10" RenderTransformOrigin="0.509,0.308" Height="24" VerticalAlignment="Bottom"/>
-        <ComboBox Grid.Column="3" SelectedValue="{Binding SelectedGroups, Mode=TwoWay}" Text="Faculty" Margin="111,45,10,0" ItemsSource="{Binding ListGroups}"  DisplayMemberPath="Name"   VerticalAlignment="Top" Height="27"/>
-        <Label Content="Group" Grid.Column="3" Margin="10,45,131,40" RenderTransformOrigin="-0.424,0.333"/>
-        <Label Content="Speciality" Grid.Column="1" Margin="10,42,118,40" RenderTransformOrigin="0.098,0.271"/>
-        <ComboBox Grid.Column="1" SelectedValue="{Binding SelectedSpeciality, Mode=TwoWay}"  Margin="87,45,1,0" ItemsSource="{Binding ListSpicialities}" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Students" Margin="9,10,10,0" FontSize="36" Height="70" VerticalAlignment="Top" FontWeight="Bold" Background="#00000000" Foreground="White"/>
+        <ComboBox Style="{StaticResource SimpleComboBox}"  Grid.Column="3" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" Text="Faculty" Margin="0,13,10,0" ItemsSource="{Binding ListFaculties}"  DisplayMemberPath="Name"   VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="159" Foreground="Black"/>
+        <Label Content="Faculty" Grid.Column="3" Margin="20,10,0,0" RenderTransformOrigin="0.098,0.271" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
+        <Label Content="University" Grid.Column="1" Margin="10,10,0,0" RenderTransformOrigin="0.098,0.271" HorizontalAlignment="Left" Width="88" Height="32" VerticalAlignment="Top" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT"/>
+        <Button  Content="Delete" MaxHeight="70" MaxWidth="220" IsEnabled="{Binding IsEnabledUD}" Command="{Binding DeleteCommand}" Height="30" RenderTransformOrigin="0.082,0.431" Margin="10,85,10,0" Background="#FFDA4D46" BorderBrush="#FFB43B3B" VerticalAlignment="Top"/>
+        <ComboBox Style="{StaticResource SimpleComboBox}"  Grid.Column="1" SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}"  Margin="0,13,1,0" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="162" Foreground="Black"/>
+        <TextBox Grid.Column="1" Margin="0,85,1,0" TextWrapping="Wrap" Text="{Binding SearchUsers, Mode=TwoWay}" TextChanged="TextBox_TextChanged" HorizontalAlignment="Right" Width="162" Height="30" VerticalAlignment="Top" Foreground="Black"/>
+        <Label Content="Search" Grid.Column="1" Margin="10,85,0,0" RenderTransformOrigin="0.509,0.308" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT"/>
+        <ComboBox Style="{StaticResource SimpleComboBox}"  Grid.Column="3"  SelectedValue="{Binding SelectedGroups, Mode=TwoWay}" Text="Faculty" Margin="0,50,10,0" ItemsSource="{Binding ListGroups}"  DisplayMemberPath="" VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="159" Foreground="Black"/>
+        <Label Content="Group" Grid.Column="3" Margin="20,50,0,0" RenderTransformOrigin="-0.424,0.333" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
+        <Label Content="Speciality" Grid.Column="1" Margin="10,47,0,0" RenderTransformOrigin="0.098,0.271" HorizontalAlignment="Left" Width="88" Height="33" VerticalAlignment="Top" Background="#00000000" Foreground="White" FontWeight="Bold" FontFamily="Perpetua Titling MT"/>
+        <ComboBox Style="{StaticResource SimpleComboBox}"  Grid.Column="1" DisplayMemberPath="Name" SelectedValue="{Binding SelectedSpeciality, Mode=TwoWay}"  Margin="0,50,1,0" ItemsSource="{Binding ListSpecialities}" VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="162" Foreground="Black"/>
     </Grid>
 </Page>

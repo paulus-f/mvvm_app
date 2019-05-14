@@ -21,10 +21,19 @@ namespace University_students.View
     /// </summary>
     public partial class Login : Page
     {
+        private LoginViewModel loginViewModel;
+
         public Login()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
+            loginViewModel = new LoginViewModel();
+            DataContext = loginViewModel;
+        }
+
+        private void Pass_Changed(object sender, RoutedEventArgs e)
+        {
+            if (loginViewModel != null)
+                loginViewModel.Password = pass?.Password;
         }
     }
 }

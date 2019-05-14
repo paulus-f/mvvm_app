@@ -61,6 +61,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Faker.NET45, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.1.1\lib\net452\Faker.NET45.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -73,11 +76,23 @@
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Cquential.Microsoft.Practices.ServiceLocation.1.0.0\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.17.1.0.42\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.17.1.0.42\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Themes.Metro.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Themes.Metro.WPF.17.1.0.42\lib\net46\Syncfusion.Themes.Metro.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -163,7 +178,9 @@
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.cs" />
-    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs" />
+    <Compile Include="Migrations\201903282011344_AddSubjectAndAddAssociations.Designer.cs">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.cs" />
     <Compile Include="Migrations\201903282246449_AddPulpitIdToTeacher.Designer.cs">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
@@ -312,6 +329,14 @@
     <Compile Include="View\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomBoxes\BackgroundStudentBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -329,6 +354,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomBoxes\ViewWorkouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Borders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ComboBoxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -461,7 +494,9 @@
     <EmbeddedResource Include="Migrations\201903270712002_AddPulpitTable.resx">
       <DependentUpon>201903270712002_AddPulpitTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx" />
+    <EmbeddedResource Include="Migrations\201903282011344_AddSubjectAndAddAssociations.resx">
+      <DependentUpon>201903282011344_AddSubjectAndAddAssociations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903282246449_AddPulpitIdToTeacher.resx">
       <DependentUpon>201903282246449_AddPulpitIdToTeacher.cs</DependentUpon>
     </EmbeddedResource>
@@ -571,6 +606,21 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\img4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

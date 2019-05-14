@@ -64,8 +64,14 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _searchPuplpits = value;
-                if (value != String.Empty) ListPulpit = db.Pulpits.Where(p => p.FacultyId == SelectedFacultyDG.Id && p.Name.Contains(value)).ToList();
-                else ListPulpit = new List<Pulpit>();
+                if (SelectedFacultyDG != null)
+                    if (value != String.Empty) ListPulpit = db.Pulpits
+                            .Where(p => p.FacultyId == SelectedFacultyDG.Id && 
+                                        p.Name.Contains(value))
+                            .ToList();
+                    else ListPulpit = db.Pulpits
+                            .Where(p  => p.FacultyId == SelectedFacultyDG.Id)
+                            .ToList();
                 OnPropertyChanged("SearchPuplpits");
             }
         }
@@ -146,6 +152,7 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedUniversity = value;
                 _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                IsEnabledUD = false;
                 AllFaculties = _selectedUniversityModel.Faculties.ToList();
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -210,9 +217,15 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeletePulpit(Pulpit param)
         {
-            db.Pulpits.Remove(param);
+            db.Pulpits.Remove(db.Pulpits
+                .Include("Teachers")
+                .FirstOrDefault(p => p.Id == param.Id));
             db.SaveChanges();
-            ListPulpit = db.Pulpits.ToList();
+            if(SelectedFacultyDG != null)
+                ListPulpit = db.Faculties
+                               .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id)
+                               .Pulpits
+                               .ToList();
         }
 
         private void CanAddPulpit()
@@ -228,23 +241,42 @@ namespace University_students.ViewModel.AdminVM
                 db.SaveChanges();
                 ListPulpit = db.Pulpits.Where(p => p.Faculty.Id == _selectedFacultyDG.Id)?.ToList();
             }
-            else
-            {
-                //smth
-            }
+            else new CustomBoxes.CustomMessageBox("Fill all fields").Show();
         }
 
         private void CanDeleteFaculty()
         {
-            db.Faculties.Remove(db.Faculties.FirstOrDefault(f => f.Id == SelectedFacultyDG.Id));
+            var faculty = db.Faculties
+                .Include("Specialites.Groups.TaughtGroups")
+                .Include("Specialites.Groups.Students")
+                .Include("Pulpits.Teachers")
+                .FirstOrDefault(f => f.Id == SelectedFacultyDG.Id);
+            DeleteDependencyFaculty(faculty);
+            db.Faculties.Remove(faculty);
             db.SaveChanges();
             AllFaculties = db?.Universities.FirstOrDefault(f => f.Name == _selectedUniversity).Faculties.ToList();
             SelectedFacultyDG = null;
             IsEnabledUD = false;
         }
 
+        private void DeleteDependencyFaculty(Faculty f)
+        {
+            var students = db.Users.Where(us => us.Group.Speciality.FacultyId == f.Id);
+            db.Users.RemoveRange(students);
+            var tg = db.TaughtGroups.Where(gr => gr.Group.Speciality.FacultyId == f.Id);
+            db.TaughtGroups.RemoveRange(tg);
+            var teachings = db.Teachings.Where(ts => ts.User.Pulpit.FacultyId == f.Id);
+            db.Teachings.RemoveRange(teachings);
+            var teachers = db.Users.Where(us => us.Pulpit.FacultyId == f.Id);
+            db.Users.RemoveRange(teachers);
+            var groups = db.Groups.Where(gr => gr.Speciality.FacultyId == f.Id);
+            db.Groups.RemoveRange(groups);
+            db.SaveChanges();
+        }
+
         private void CanUpdateFaculty()
         {
+            // if null dg
             var faculty = db.Faculties.FirstOrDefault((f) => f.Id == SelectedFacultyDG.Id);
             faculty.Name = Name;
             faculty.Dean = Dean;
@@ -256,11 +288,14 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanAddFaculty()
         {
-            if(_selectedUniversityModel == null)
+            
+            if( _selectedUniversityModel == null ||
+                Dean == null || Dean == String.Empty ||
+                Name == null || Name == String.Empty)
             {
+                new CustomBoxes.CustomMessageBox("Fill all field").Show();
                 return;
             }
-
             Faculty newFaculty = new Faculty()
             {
                 University = this._selectedUniversityModel,

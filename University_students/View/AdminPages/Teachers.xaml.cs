@@ -55,12 +55,21 @@ namespace University_students.View.AdminPages
             }
         }
 
+        private void ShowDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = true;
+        }
+
+        private void CloseDialog_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+        }
+
         private void CheckConnection(object sender, RoutedEventArgs e)
         {
             if (CheckConnection())
             {
                 vm.IsNet = true;
-                new CustomBoxes.CustomMessageBox("Complete").Show();
             }
             else
             {
@@ -68,6 +77,13 @@ namespace University_students.View.AdminPages
                 new CustomBoxes.CustomMessageBox("Connection is fail").Show();
             };
         }
-        
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) => subjItems.SelectedItem = null;
+
+        private void SubjItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            subjItems.SelectedItem = null;
+            subjItems.SelectedIndex = -1;
+        }
     }
 }

@@ -127,6 +127,8 @@ namespace University_students.ViewModel.TeacherVM
             set
             {
                 _SelectedProgressStudent = value;
+                if(value != null)
+                    new CustomBoxes.CustomMessageBox(value.ToResultCertifications()).Show();
                 OnPropertyChanged("SelectedProgressStudent");
             }
         }

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -27,6 +28,7 @@ namespace University_students.ViewModel
             to = new MailAddress(Secrets.EMAIL_TO);
             smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials =  new NetworkCredential(Secrets.EMAIL_TO, Secrets.PASSWORD);
+            Message = "Message";
         }
 
         private string _email;
@@ -51,14 +53,17 @@ namespace University_students.ViewModel
             }
         }
 
-        private bool _IsConnected;
-        public bool IsConnected
+        private bool Ping()
         {
-            get { return _IsConnected; }
-            set
+            WebClient client = new WebClient();
+            try
             {
-                _IsConnected = value;
-                OnPropertyChanged("IsConnected");
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch (WebException)
+            {
+                return false;
             }
         }
 
@@ -74,7 +79,19 @@ namespace University_students.ViewModel
 
         private void CanSupport()
         {
-            if (IsConnected)
+            if(!new Regex(RegexPattern.emailPattern).IsMatch(Email))
+            {
+                new CustomBoxes.CustomMessageBox("Email is not validated").Show();
+                return;
+            }
+
+            if(Message == String.Empty || Message == null)
+            {
+                new CustomBoxes.CustomMessageBox("Message empty").Show();
+                return;
+            }
+
+            if (Ping())
             {
                 from = new MailAddress(_email);
                 message = new MailMessage(from, to);
@@ -85,7 +102,10 @@ namespace University_students.ViewModel
                 smtp.Send(message);
                 Email = String.Empty;
                 Message = String.Empty;
+                new CustomBoxes.CustomMessageBox("Complete").Show();
             }
+            else new CustomBoxes.CustomMessageBox("Connection is fail").Show();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

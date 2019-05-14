@@ -198,8 +198,13 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanAddSpeciality()
         {
-            if (_selectedUniversityModel == null || _selectedFacultyModel == null)
+            if (_selectedUniversityModel == null ||
+                _selectedFacultyModel == null ||
+                Name == null || Name == String.Empty ||
+                Qualification == null || Qualification == String.Empty ||
+                CodeSpec == null || CodeSpec == String.Empty)
             {
+                new CustomBoxes.CustomMessageBox("Fill all fields").Show();
                 return;
             }
 

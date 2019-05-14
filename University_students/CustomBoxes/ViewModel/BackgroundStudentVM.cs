@@ -15,7 +15,6 @@ namespace University_students.CustomBoxes.ViewModel
     class BackgroundStudentVM : ViewModelBase, INotifyPropertyChanged
     {
         private USDbContext db;
-        private int teacherUniversity;
 
         private User _CurrentStudent;
         public User CurrentStudent
@@ -38,6 +37,8 @@ namespace University_students.CustomBoxes.ViewModel
                 OnPropertyChanged("SubjectProgress");
             }
         }
+
+        public string FullProgress { set; get; }
 
         private List<WorkOut> _ListWorkOut;
         public List<WorkOut> ListWorkOut
@@ -65,6 +66,7 @@ namespace University_students.CustomBoxes.ViewModel
         {
             db = new USDbContext();
             SubjectProgress = sp;
+            FullProgress = sp.ToFullResults();
             ListWorkOut = sp.WorkOuts.ToList();
             CurrentStudent = student;
         }
@@ -82,6 +84,7 @@ namespace University_students.CustomBoxes.ViewModel
         private void CanConfirmWorkOut(WorkOut _wo)
         {
             db.WorkOuts.FirstOrDefault(wo => wo.Id == _wo.Id).IsWorkOut = true;
+            new CustomBoxes.CustomMessageBox("OK").Show();
             db.SaveChanges();
             ListWorkOut = db.SubjectProgress.FirstOrDefault(sp => sp.Id == SubjectProgress.Id).WorkOuts.ToList();
         }

@@ -127,6 +127,7 @@ namespace University_students.ViewModel
             set
             {
                 _selectedGroup = value;
+                IsEnabled = CheckField();
                 OnPropertyChanged("SelectedGroup");
             }
         }
@@ -289,6 +290,7 @@ namespace University_students.ViewModel
             if (String.IsNullOrEmpty(FirstName)) result = false;
             if (String.IsNullOrEmpty(LastName)) result = false;
             if (SelectedGroup == null) result = false;
+            //return true; // if need admin;
             return result;
         }
 
@@ -311,7 +313,17 @@ namespace University_students.ViewModel
                 IsActiveMessage = true;
                 return;
             }
-
+            //-------------------------------------------------------------//
+            //Add Admin
+            //User newUser = new User()
+            //{
+            //    Login = "admin",
+            //    FirstName = "admin",
+            //    LastName = "admin",
+            //    TypeUser = Enums.Role.Admin,
+            //    Password = BCrypt.Net.BCrypt.HashPassword("admin"),
+            //};
+            ////-------------------------------------------------------------//
             User newUser = new User()
             {
                 Login = _login,
@@ -320,15 +332,32 @@ namespace University_students.ViewModel
                 TypeUser = Enums.Role.Students,
                 Password = BCrypt.Net.BCrypt.HashPassword(_password),
                 Group = SelectedGroup.Group
-
             };
+            // ---------------------------------------------------------------------------- //
             db.Users.Add(newUser);
+            db.SaveChanges();
+            // comment if need admin
+            foreach (TaughtGroups tg in SelectedGroup.Group.TaughtGroups)
+            {
+                var newSP = new SubjectProgress()
+                {
+                    User = newUser,
+                    UnValidExcuses = 0,
+                    ValidExcuses = 0,
+                    TaughtGroups = tg,
+                    IsExamPassed = Enums.StateExam.Waiting,
+                    IsStartCertifiationPassed = Enums.StateCertification.Waiting,
+                    IsFinishCertifiationPassed = Enums.StateCertification.Waiting,
+                };
+                db.SubjectProgress.Add(newSP);
+            }
+            db.SaveChanges();
+            // ---------------------------------------------------------------------------- //
             Login = String.Empty;
             FirstName = String.Empty;
             LastName = String.Empty;
             Password = String.Empty;
             ConfirmedPassword = String.Empty;
-            db.SaveChanges();
             GoToUserPage(newUser);
         }
 

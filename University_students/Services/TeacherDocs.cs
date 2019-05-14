@@ -55,7 +55,7 @@ namespace University_students.Services
                 Thread.Sleep(1000);
                 para1.Range.InsertParagraphAfter();
 
-                Table firstTable = document.Tables.Add(para1.Range, taughtGroups.Group.Students.Count + 1, 8, ref missing, ref missing);
+                Table firstTable = document.Tables.Add(para1.Range, taughtGroups.Group.Students.Count, 8, ref missing, ref missing);
                 firstTable.Borders.Enable = 1;
                 User[] students = taughtGroups.Group.Students.ToArray();
                 int numStudent = 0;

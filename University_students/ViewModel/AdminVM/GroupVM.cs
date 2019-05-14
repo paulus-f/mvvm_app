@@ -93,8 +93,11 @@ namespace University_students.ViewModel.AdminVM
             get => _selectedSpeciality;
             set
             {
-                _selectedSpeciality = value;
-                ListGroups = value.Groups.ToList();
+                if (value != null)
+                {
+                    _selectedSpeciality = value;
+                    ListGroups = value.Groups.ToList();
+                }
                 OnPropertyChanged("SelectedSpeciality");
             }
         }
@@ -107,7 +110,10 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedFaculty = value;
                 if (value != null)
-                    _selectedFacultyModel = _selectedUniversityModel.Faculties.FirstOrDefault(u => u.Name == value.Name);
+                {
+                    _selectedFacultyModel = db.Faculties.FirstOrDefault(f => f.Id == value.Id);
+                    ListGroups = db.Groups.Where(gr => gr.Speciality.Faculty.Name == value.Name).ToList();
+                }
                 else
                     _selectedFacultyModel = null; 
                 ListSpeciality = _selectedFacultyModel?.Specialites.ToList(); 
@@ -155,9 +161,12 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _selectedGroupsDG = value;
-                FirstYear = value.FirstYear;
-                NumberGroup = value.NumberGroup;
-                IsEnabledUD = true;
+                if (value != null)
+                {
+                    FirstYear = value.FirstYear;
+                    NumberGroup = value.NumberGroup;
+                    IsEnabledUD = true;
+                }
                 OnPropertyChanged("SelectedGroupsDG");
             }
         }
@@ -196,6 +205,7 @@ namespace University_students.ViewModel.AdminVM
         {
             if (SelectedSpeciality == null)
             {
+                new CustomBoxes.CustomMessageBox("Fill all fields").Show();
                 return;
             }
             Group newGroup = new Group()

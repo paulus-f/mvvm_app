@@ -29,25 +29,39 @@ namespace University_students.Models
             WorkOuts = new List<WorkOut>();
         }
 
-        public string ToResultExam()
+        public string ToResultCertifications()
         {
-            string res = "";
-            switch (IsExamPassed)
+            string res = " -Start Certifiation --- ";
+            switch (IsStartCertifiationPassed)
             {
-                case Enums.StateExam.Waiting:
-                    res += "Exam: Waiting ";
+                case Enums.StateCertification.Failed:
+                    res += "Certification: Failed ";
                     break;
-                case Enums.StateExam.Passed:
-                    res += "Exam: Passed ";
+                case Enums.StateCertification.Passed:
+                    res += "Certification: Passed ";
                     break;
-                case Enums.StateExam.Failed:
-                    res += "Exam: Failed ";
+                case Enums.StateCertification.Waiting:
+                    res += "Certification: Waiting ";
+                    break;
+            }
+
+            res += " -Finish Certifiation --- ";
+            switch (IsFinishCertifiationPassed)
+            {
+                case Enums.StateCertification.Failed:
+                    res += "Certification: Failed";
+                    break;
+                case Enums.StateCertification.Passed:
+                    res += "Certification: Passed ";
+                    break;
+                case Enums.StateCertification.Waiting:
+                    res += "Certification: Waiting ";
                     break;
             }
             return res;
         }
 
-        public override string ToString()
+        public string ToFullResults()
         {
             string res = "";
             switch(IsExamPassed)
@@ -82,13 +96,34 @@ namespace University_students.Models
             switch (IsFinishCertifiationPassed)
             {
                 case Enums.StateCertification.Failed:
-                    res += "1st cert.: Failed ";
+                    res += "2nd cert.: Failed ";
                     break;
                 case Enums.StateCertification.Passed:
-                    res += "1st cert.: Passed";
+                    res += "2nd cert.: Passed";
                     break;
                 case Enums.StateCertification.Waiting:
-                    res += "1st cert.: Waiting ";
+                    res += "2nd cert.: Waiting ";
+                    break;
+            }
+            return res;
+        }
+
+        public override string ToString()
+        {
+            string res = "";
+            switch (IsExamPassed)
+            {
+                case Enums.StateExam.Waiting:
+                    res += "Exam: Waiting ";
+                    break;
+                case Enums.StateExam.Passed:
+                    res += "Exam: Passed ";
+                    break;
+                case Enums.StateExam.Retake:
+                    res += "Exam: Retake ";
+                    break;
+                case Enums.StateExam.Failed:
+                    res += "Exam: Failed ";
                     break;
             }
             return res;

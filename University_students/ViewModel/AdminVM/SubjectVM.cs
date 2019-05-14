@@ -27,7 +27,6 @@ namespace University_students.ViewModel.AdminVM
             RangeHours = Enumerable.Range(1, 100).ToArray();
             ListSubjects = db.Subjects.ToList();
             ListUniversities = db.Universities.Select(u => u.Name).ToList();
-            ListTeachers = db.Users.Where(t => t.TypeUser == Enums.Role.Teacher).ToList();
         }
 
         private bool _isEnabledUD;
@@ -115,13 +114,16 @@ namespace University_students.ViewModel.AdminVM
             {
                 _selectedSubjectDG = value;
                 Name = value?.Name;
+                Teachers = new List<User>();
+                ListTeachers = new List<User>();
                 if (value != null)
                 {
+                    var sub = db.Subjects.FirstOrDefault(sb => sb.Id == value.Id);
                     SelectedHours = value.Hour;
                     ListTeachers = db.Users
                         .Where(u => u.Subjects.All(s => s.Id != value.Id) && u.TypeUser == Enums.Role.Teacher)
                         .ToList();
-                    Teachers = (List<User>)value?.Teachers.ToList();
+                    Teachers = sub.Teachers.ToList();
                     IsEnabledUD = true;
                 }
                 OnPropertyChanged("SelectedSubjectDG");
@@ -135,12 +137,17 @@ namespace University_students.ViewModel.AdminVM
             set
             {
                 _addTeacherToSubject = value;
-                if (value != null)
+                if (value != null && SelectedSubjectDG != null)
                 {
                     Teachers.Add(value);
                     Teachers = Teachers.ToList();
+                    // fix bug
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
+                    teacher.Subjects.Add(SelectedSubjectDG);
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was added").Show();
                     ListTeachers.Remove(value);
                     ListTeachers = ListTeachers.ToList();
+                    db.SaveChanges();
                 }
                 _addTeacherToSubject = null;
                 OnPropertyChanged("AddTeacherToSubject");
@@ -157,8 +164,12 @@ namespace University_students.ViewModel.AdminVM
                 {
                     ListTeachers.Add(value);
                     ListTeachers = ListTeachers.ToList();
+                    var teacher = db.Users.FirstOrDefault(t => t.Id == value.Id);
+                    teacher.Subjects.Remove(SelectedSubjectDG);
+                    new CustomBoxes.CustomMessageBox(SelectedSubjectDG.ToString() + "was deleted").Show();
                     Teachers.Remove(value);
                     Teachers = Teachers.ToList();
+                    db.SaveChanges();
                 }
                 _deleteTeacherFromSubject = null;
                 OnPropertyChanged("DeleteTeacherFromSubject");
@@ -197,7 +208,12 @@ namespace University_students.ViewModel.AdminVM
                 if (value != null)
                 {
                     _selectedUniversityModel = db?.Universities.FirstOrDefault(f => f.Name == value);
+                    ListTeachers = db.Users
+                        .Where(t => t.TypeUser == Enums.Role.Teacher &&
+                                    t.Pulpit.Faculty.University.Name == value)
+                        .ToList();
                     ListFaculties = _selectedUniversityModel.Faculties.ToList();
+
                 }
                 OnPropertyChanged("SelectedUniversity");
             }
@@ -259,7 +275,10 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteSubject()
         {
-            db.Subjects.Remove(SelectedSubjectDG);
+            var sub = db.Subjects
+                .Include("TaughtGroups")
+                .FirstOrDefault(s => s.Id == SelectedSubjectDG.Id);
+            db.Subjects.Remove(sub);
             db.SaveChanges();
             ListSubjects.Remove(SelectedSubjectDG);
             ListSubjects = ListSubjects.ToList();
@@ -270,7 +289,8 @@ namespace University_students.ViewModel.AdminVM
         private void CanAddSubject()
         {
             if ( Name != null &&
-                 Teachers != null
+                 Teachers != null &&
+                 SelectedHours != 0
                 )
             {
 
@@ -285,10 +305,7 @@ namespace University_students.ViewModel.AdminVM
                 db.SaveChanges();
                 ListSubjects = db.Subjects.ToList();
             }
-            else
-            {
-                //smth
-            }
+            else new CustomBoxes.CustomMessageBox("Fill all fields").Show();
         }
 
         private void CanResetDG()

@@ -9,10 +9,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="listTemplate">
-            <StackPanel Margin="5">
-                <materialDesign:PackIcon Kind="Accessible"/>
-                <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
-            </StackPanel>
+            <Border Background="#FF1B1B1C" CornerRadius="10" >
+                <StackPanel  Margin="5" Background="#FF1B1B1C">
+                    <materialDesign:PackIcon Background="White" Kind="AccountGroup"/>
+                    <TextBlock FontSize="16" Text="{Binding}" Foreground="White" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -25,35 +27,54 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="160*"/>
         </Grid.ColumnDefinitions>
         <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
                 ItemsSource="{Binding ListGroups}"
                 Margin="10" Grid.ColumnSpan="2" Grid.RowSpan="4" Grid.Row="1">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <TextBlock Text="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" TextAlignment="Center" FontFamily="Segoe UI Black"/>
-        <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}" Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
+        <Label Content="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" FontFamily="Segoe UI Black" Foreground="White" Background="#FF423B3B"/>
+        <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}" Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Background="White">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding }" Grid.Column="0"></TextBlock >
-                        <Button Content="Fail"  Grid.Column="1" Command="{Binding DataContext.AddValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FF0AB639"/>
-                        <Button Content="Succes" Grid.Column="2" Command="{Binding DataContext.AddUnValidPassCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#FFF32E1B"/>
+                        <TextBlock Text="{Binding User}" Grid.Column="0"></TextBlock >
+                        <Button Grid.Column="2" MinHeight="15" ToolTip="Full Info Right Click" Command="{Binding DataContext.AddSuccessCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#FF0AB639">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Grid.Column="0" Kind="Done" Background="#FFA6A606" />
+                                <Label Grid.Column="1" Content="Success"/>
+                            </Grid>
+                        </Button>
+                        <Button Grid.Column="4" MinHeight="15" ToolTip="Full Info Right Click" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00FF0000" BorderBrush="#FFFF1600">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Grid.Column="0" Kind="Minus" Background="#FFFF1600" />
+                                <Label Grid.Column="1" Content="Fail"/>
+                            </Grid>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
