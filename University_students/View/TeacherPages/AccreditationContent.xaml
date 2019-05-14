@@ -11,7 +11,7 @@
         <DataTemplate x:Key="listTemplate">
             <Grid>
                 <StackPanel>
-                    <materialDesign:PackIcon Kind="Accessible"/>
+                    <materialDesign:PackIcon Kind="AccountGroup"/>
                     <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" />
                 </StackPanel>
             </Grid>

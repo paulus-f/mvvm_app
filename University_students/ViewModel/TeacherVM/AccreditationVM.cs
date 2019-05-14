@@ -30,6 +30,7 @@ namespace University_students.ViewModel.TeacherVM
             get => _SelectedGroup;
             set
             {
+                db = new USDbContext();
                 ListStudentProgress = db.SubjectProgress
                     .Where(sp => sp.TaughtGroups.Id == value.Id && sp.IsOffsetPassed == false)
                     .ToList();
@@ -223,8 +224,8 @@ namespace University_students.ViewModel.TeacherVM
                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == false)
                .ToList();
             ListStudentProgressExam = db.SubjectProgress
-                .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == true)
-                .ToList();
+               .Where(sp => sp.TaughtGroups.Id == SelectedGroup.Id && sp.IsOffsetPassed == true)
+               .ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

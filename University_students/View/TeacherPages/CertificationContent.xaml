@@ -11,7 +11,7 @@
         <DataTemplate x:Key="listTemplate">
             <Border Background="#FF1B1B1C" CornerRadius="10" >
                 <StackPanel  Margin="5" Background="#FF1B1B1C">
-                    <materialDesign:PackIcon Background="White" Kind="Accessible"/>
+                    <materialDesign:PackIcon Background="White" Kind="AccountGroup"/>
                     <TextBlock FontSize="16" Text="{Binding}" Foreground="White" HorizontalAlignment="Center" />
                 </StackPanel>
             </Border>
@@ -43,7 +43,7 @@
             </ListBox.ItemsPanel>
         </ListBox>
         <Label Content="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" FontFamily="Segoe UI Black" Foreground="White" Background="#FF423B3B"/>
-        <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}" Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
+        <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}" Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Background="White">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -55,7 +55,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding User}" Grid.Column="0"></TextBlock >
-                        <Button Grid.Column="2" MinHeight="15" Command="{Binding DataContext.AddSuccessCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#FF0AB639">
+                        <Button Grid.Column="2" MinHeight="15" ToolTip="Full Info Right Click" Command="{Binding DataContext.AddSuccessCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#000AB639" BorderBrush="#FF0AB639">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -65,7 +65,7 @@
                                 <Label Grid.Column="1" Content="Success"/>
                             </Grid>
                         </Button>
-                        <Button Grid.Column="4" MinHeight="15" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00FF0000" BorderBrush="#FFFF1600">
+                        <Button Grid.Column="4" MinHeight="15" ToolTip="Full Info Right Click" Command="{Binding DataContext.AddFailCertificationCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Background="#00FF0000" BorderBrush="#FFFF1600">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
