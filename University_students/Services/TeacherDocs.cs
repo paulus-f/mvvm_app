@@ -50,12 +50,10 @@ namespace University_students.Services
                     + Environment.NewLine
                     + $"Группа: {taughtGroups.Group}"
                     + Environment.NewLine;
-
+                document.PageSetup.LeftMargin = 4.0F;
                 Paragraph para1 = document.Content.Paragraphs.Add(ref missing);
-                Thread.Sleep(1000);
-                para1.Range.InsertParagraphAfter();
-
-                Table firstTable = document.Tables.Add(para1.Range, taughtGroups.Group.Students.Count, 8, ref missing, ref missing);
+                para1.Range.InsertAfter("");
+                Table firstTable = document.Tables.Add(para1.Range, taughtGroups.Group.Students.Count + 1, 8, ref missing, ref missing);
                 firstTable.Borders.Enable = 1;
                 User[] students = taughtGroups.Group.Students.ToArray();
                 int numStudent = 0;
@@ -66,14 +64,14 @@ namespace University_students.Services
                     {
                         if (cell.RowIndex == 1)
                         {
-                            if (cell.ColumnIndex == 1) FillCell(cell, "Студент");
-                            if (cell.ColumnIndex == 2) FillCell(cell, "1ая аттестация");
-                            if (cell.ColumnIndex == 3) FillCell(cell, "2ая аттестация");
-                            if (cell.ColumnIndex == 4) FillCell(cell, "Зачет");
-                            if (cell.ColumnIndex == 5) FillCell(cell, "Экзамен");
-                            if (cell.ColumnIndex == 6) FillCell(cell, "По уважительной");
-                            if (cell.ColumnIndex == 7) FillCell(cell, "По неуважительной");
-                            if (cell.ColumnIndex == 8) FillCell(cell, "Количество отработок");
+                            if (cell.ColumnIndex == 1) FillCell(cell, 80, "Студент");
+                            if (cell.ColumnIndex == 2) FillCell(cell, 90,"1ая аттестация");
+                            if (cell.ColumnIndex == 3) FillCell(cell, 90, "2ая аттестация");
+                            if (cell.ColumnIndex == 4) FillCell(cell, 80, "Зачет");
+                            if (cell.ColumnIndex == 5) FillCell(cell, 90, "Экзамен");
+                            if (cell.ColumnIndex == 6) FillCell(cell, 50, "По уважительной");
+                            if (cell.ColumnIndex == 7) FillCell(cell, 50, "По неуважительной");
+                            if (cell.ColumnIndex == 8) FillCell(cell, 50, "Количество отработок");
                         }
                         else
                         {
@@ -81,35 +79,46 @@ namespace University_students.Services
                             switch (cell.ColumnIndex)
                             {
                                 case 1:
+                                    cell.Width = 80;
+                                    cell.Range.Font.Size = 8;
                                     cell.Range.Text = students[numStudent].ToString();
                                     break;
                                 case 2:
+                                    cell.Width = 90;
+                                    cell.Range.Font.Size = 8;
                                     cell.Range.Text = CheckCertification(currentSubjectProgress, false);
                                     break;
                                 case 3:
+                                    cell.Width = 90;
+                                    cell.Range.Font.Size = 8;
                                     cell.Range.Text = CheckCertification(currentSubjectProgress, true);
                                     break;
                                 case 4:
+                                    cell.Width = 80;
                                     cell.Range.Text = CheckOffset(currentSubjectProgress);
                                     break;
                                 case 5:
+                                    cell.Width = 90;
                                     cell.Range.Text = CheckExam(currentSubjectProgress);
                                     break;
                                 case 6:
+                                    cell.Width = 50;
                                     cell.Range.Text = currentSubjectProgress.ValidExcuses.ToString();
                                     break;
                                 case 7:
+                                    cell.Width = 50;
                                     cell.Range.Text = currentSubjectProgress.UnValidExcuses.ToString();
                                     break;
                                 case 8:
+                                    cell.Width = 50;
                                     cell.Range.Text = currentSubjectProgress.WorkOuts.Count.ToString();
+                                    numStudent++;
                                     break;
                             }
                         }
                     }
-                    if (row.Index != 1) numStudent++;
                 }
-                object filename = $"report.docx";
+                object filename = $"report_{DateTime.Now.ToString("dd_M_yyyy_hh_mm")}.docx";
                 document.SaveAs2(ref filename);
                 document.Close(ref missing, ref missing, ref missing);
                 document = null;
@@ -125,12 +134,13 @@ namespace University_students.Services
             }
         }
 
-        private static void FillCell(Cell cell, string str)
+        private static void FillCell(Cell cell, int width, string str)
         {
+            cell.Width = width;
             cell.Range.Text = str;
             cell.Range.Font.Bold = 2;
             cell.Range.Font.Name = "verdana";
-            cell.Range.Font.Size = 10;
+            cell.Range.Font.Size = 8;
             cell.Shading.BackgroundPatternColor = WdColor.wdColorGray25;
             cell.VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalCenter;
             cell.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
