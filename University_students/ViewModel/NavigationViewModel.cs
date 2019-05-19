@@ -44,6 +44,8 @@ namespace University_students.ViewModel
 
         private object ReceiveMessage(LogOutMessage action)
         {
+            Color color = (Color)ColorConverter.ConvertFromString("#FF1B3453");
+            _grid.Background = new SolidColorBrush(color);
             StartUpPage = new View.StartUpPage();
             MainCurrentControl = StartUpPage;
             _currentControl.Content = StartUpPage;
@@ -78,7 +80,7 @@ namespace University_students.ViewModel
 
         private void ChangeOnUserPage(User user)
         {
-            Color color = (Color)ColorConverter.ConvertFromString("#FF317D99");
+            Color color = (Color)ColorConverter.ConvertFromString("#FF46B6EA");
             _grid.Background = new SolidColorBrush(color);
             _currentControl.Content = new View.UserPage();
             SetCurrentUser(user);

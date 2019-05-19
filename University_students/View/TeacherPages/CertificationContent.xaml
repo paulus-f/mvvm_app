@@ -43,7 +43,8 @@
             </ListBox.ItemsPanel>
         </ListBox>
         <Label Content="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" FontFamily="Segoe UI Black" Foreground="White" Background="#FF423B3B"/>
-        <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}" Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Background="White">
+        <Border Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" CornerRadius="25" Background="#7FFFFFFF" >
+            <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -79,6 +80,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        </Border>
     </Grid>
 </UserControl>
 
