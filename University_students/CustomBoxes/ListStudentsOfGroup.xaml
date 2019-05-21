@@ -45,7 +45,7 @@
             <Label Content="{Binding Group}" Margin="122,10,237,254"/>
             <Label Content="{Binding Subject}" Margin="250,10,109,254"/>
             <TextBox Margin="205,245,154,13" TextWrapping="Wrap" Text="{Binding Reason}"/>
-            <Label Content="Reason for Work Out" Margin="58,251,307,7" RenderTransformOrigin="1.594,-0.919"/>
+            <Label Content="Reason for Work Out" Margin="42,249,312,9" RenderTransformOrigin="1.594,-0.919" FontWeight="Bold" FontFamily="Arial"/>
         </Grid>
     </Border>
 </Window>

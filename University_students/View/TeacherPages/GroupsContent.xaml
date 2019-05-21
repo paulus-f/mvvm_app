@@ -22,7 +22,7 @@
             </Button>
         </DataTemplate>
         <DataTemplate x:Key="listTemplateSubject">
-            <StackPanel Margin="5">
+            <StackPanel MinWidth="150" MinHeight="40" Margin="5">
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="15" Height="15" Background="Black" BorderBrush="{x:Null}" Foreground="White" FontSize="24">
                     <materialDesign:PackIcon Kind="Book"/>
                 </Button>
