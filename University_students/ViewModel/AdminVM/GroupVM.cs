@@ -222,9 +222,16 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteFaculty()
         {
-            db.Groups.Remove(db.Groups.FirstOrDefault(f => f.Id == SelectedGroupsDG.Id));
+            var group = db.Groups
+                .Include("TaughtGroups")
+                .Include("Students")
+                .FirstOrDefault(f => f.Id == SelectedGroupsDG.Id);
+            db.TaughtGroups.RemoveRange(db.TaughtGroups.Where(tg => tg.GroupId == group.Id));
+            db.Users.RemoveRange(db.Users.Where(tg => tg.GroupId == group.Id));
+            db.Groups.Remove(group);
             db.SaveChanges();
-            ListGroups = db?.Specialities.FirstOrDefault(s => s.Id == SelectedSpeciality.Id).Groups.ToList();
+            ListGroups.Remove(group);
+            ListGroups = ListGroups.ToList();
             SelectedGroupsDG = null;
             IsEnabledUD = false;
         }

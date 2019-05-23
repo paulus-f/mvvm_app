@@ -28,7 +28,7 @@ namespace University_students.Models
 
         public override string ToString()
         {
-            return Subject?.Name + " " + Group.ToString();
+            return Subject?.Name + " " + Group?.ToString();
         }
     }
 }

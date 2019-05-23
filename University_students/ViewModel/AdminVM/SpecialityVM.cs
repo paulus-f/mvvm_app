@@ -177,9 +177,17 @@ namespace University_students.ViewModel.AdminVM
 
         private void CanDeleteSpeciality()
         {
-            db.Specialities.Remove(db.Specialities.FirstOrDefault(s => s.Id == SelectedSpecialityDG.Id));
+            var sp = db.Specialities
+                .Include("Groups.TaughtGroups")
+                .Include("Groups.Students")
+                .FirstOrDefault(s => s.Id == _selectedSpecialityDG.Id);
+            db.TaughtGroups.RemoveRange(db.TaughtGroups.Where(tg => tg.Group.SpecialityId == sp.Id));
+            db.Users.RemoveRange(db.Users.Where(tg => tg.Group.SpecialityId == sp.Id));
+            db.Groups.RemoveRange(db.Groups.Where(g => g.SpecialityId == sp.Id));
+            db.Specialities.Remove(sp);
             db.SaveChanges();
-            Specialities = _selectedFacultyModel.Specialites.ToList();
+            Specialities.Remove(sp);
+            Specialities = Specialities.ToList();
             SelectedSpecialityDG = null;
             IsEnabledUD = false;
         }

@@ -79,8 +79,8 @@
                 </TextBox.Text>
             </TextBox>
             <Button Command="{Binding SignUpCommand}" IsEnabled="{Binding IsEnabled}" Content="Ok" Grid.Row="7" Grid.Column="2" Margin="47,5,34,7" Height="Auto" Background="#FF383C40" BorderBrush="#FF34373A"/>
-            <materialDesign:Snackbar IsActive="{Binding IsActiveMessage}" Grid.Row="7" HorizontalAlignment="Stretch" Margin="26.236,10,2.462,10" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
-                <materialDesign:SnackbarMessage Content="{Binding Message}" ActionContent="X" ActionCommand="{Binding UndoCommand}" Margin="11,0,4,0" Height="49" />
+            <materialDesign:Snackbar IsActive="{Binding IsActiveMessage}" Grid.Row="6" HorizontalAlignment="Stretch" Margin="2,32,0,0" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2">
+                <materialDesign:SnackbarMessage Content="{Binding Message}" ActionContent="X" ActionCommand="{Binding UndoCommand}" Margin="0,0,5,0" Height="53"/>
             </materialDesign:Snackbar>
             <ComboBox Style="{StaticResource SimpleComboBox}" DisplayMemberPath="Name"  SelectedValue="{Binding SelectedUniversity, Mode=TwoWay}" ItemsSource="{Binding ListUniversities}" VerticalAlignment="Stretch" Grid.Column="2" Margin="10,4,10,10" Grid.Row="2"/>
             <ComboBox Style="{StaticResource SimpleComboBox}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedFaculty, Mode=TwoWay}" ItemsSource="{Binding ListFaculties}" Grid.Column="2" Margin="10,4,10,10" Grid.Row="3" VerticalAlignment="Stretch"/>

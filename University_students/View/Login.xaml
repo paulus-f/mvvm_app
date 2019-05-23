@@ -20,7 +20,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Log in" FontWeight="Bold" HorizontalAlignment="Center" Margin="31,5,199,5" FontSize="20" Foreground="#FFF9F9F9" Grid.Column="2" Width="58"/>
+            <TextBlock Text="Log in" FontWeight="Bold" HorizontalAlignment="Center" Margin="31,5,194,5" FontSize="20" Foreground="#FFF9F9F9" Grid.Column="2" Width="63"/>
             <TextBlock Text="Login" Grid.Row="1" Margin="34,19,5,12" Foreground="White" Grid.Column="1"/>
             <TextBox x:Name="txtName" Grid.Row="1" Grid.Column="2" Margin="3,8,10,12" MinWidth="100" Foreground="#FFFFC1C1" >
                 <TextBox.Text>

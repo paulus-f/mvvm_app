@@ -33,16 +33,17 @@
             <ColumnDefinition Width="201*"/>
             <ColumnDefinition Width="160*"/>
         </Grid.ColumnDefinitions>
-        <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
-                ItemsSource="{Binding ListGroups}"
-                Margin="10" Grid.ColumnSpan="2" Grid.RowSpan="4" Grid.Row="1">
+        <Border Margin="10" Grid.ColumnSpan="2" Grid.RowSpan="4" Grid.Row="1" Background="#FF8D8D8D" CornerRadius="20">
+            <ListBox SelectedItem="{Binding SelectedGroup}"  ItemTemplate="{StaticResource listTemplate}" 
+                ItemsSource="{Binding ListGroups}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Label Content="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="24" FontFamily="Segoe UI Black" Foreground="White" Background="#FF423B3B"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </Border>
+        <Label Content="{Binding TypeCertification}" Margin="10,10,10,8" Grid.ColumnSpan="2" FontSize="20" FontFamily="Segoe UI Black" Foreground="White" Background="#FF423B3B" Width="293"/>
         <Border Margin="10" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" CornerRadius="25" Background="#7FFFFFFF" >
             <ListBox SelectedItem="{Binding SelectedProgressStudent}" ItemsSource="{Binding ListProgressStudents}">
             <ListBox.ItemTemplate>
@@ -50,9 +51,9 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding User}" Grid.Column="0"></TextBlock >
